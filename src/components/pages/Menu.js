@@ -87,14 +87,7 @@ class Demo extends Component {
 		        <li><a href target="_self">Lịch sử - Địa lý</a></li>
 		        <li><a href target="_self">Khoa học tự nhiên</a></li>
 		      </ul>
-		    </li>
-		    <li><a href target="_self">Sách văn hóa - Nghệ thuật</a>
-		      <ul className="submenu10">
-		        <li><a href target="_self">Doanh nhân - Người nổi tiếng</a></li>
-		        <li><a href target="_self">Văn hóa - Du lịch</a></li>
-		        <li><a href target="_self">Tâm linh - Tôn giáo</a></li>
-		      </ul>
-		    </li>		
+		    </li>	
 		  </ul>
 		</div>
      );

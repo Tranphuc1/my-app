@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-class Navigation extends Component {
-    render() {
-        return (
-            <div>
-                <ul>
-                    <li>
-                        <Link to="/Signup">Signup</Link>
-                    </li>
-                </ul>
-            </div>
-        );
-    }
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Singup from '../pages/Signup';
+
+//components
+//
+
+class DieuHuong extends Component {
+  render() {
+    return (
+    	<Router>
+    	<div>
+				<Switch>
+                    <Route path="/Signup" exact component={Singup} />														
+				</Switch>
+		</div>
+	 	</Router>
+     );
+  }
 }
 
-export default Navigation;
+export default DieuHuong;

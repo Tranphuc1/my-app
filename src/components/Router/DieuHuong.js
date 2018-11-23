@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 //components
 import Product from './../Product/Product';
 import homePage from './../pages/homePage';
-import Navigation from './Navigation';
-import Singup from '../pages/Signup';
+import Header from '../headerComponents/header';
+import Footer from '../footerComponents/footer';
+
 //
 
 class DieuHuong extends Component {
@@ -13,15 +14,14 @@ class DieuHuong extends Component {
     return (
     	<Router>
     	<div>
-				<Navigation/>
-				<Switch>
-							<Route path="/product" exact component={Product} />						
-							<Route path="/" exact component={homePage} />						
-							<Route exact component={Product} />
+		<Route path="/" exact component={Header} />
+				<Switch>	
+							
+							<Route path="/" exact component={homePage} />
+							<Route path="/product" exact component={Product} />	
+							
 				</Switch>
-				<Switch>
-					<Route path="/Signup" exact component={Singup}/>
-				</Switch>
+				<Route path="/" exact component={Footer} />
 	    	
 		</div>
 	 	</Router>

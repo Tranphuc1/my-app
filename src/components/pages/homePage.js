@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Demo from './Menu';
 import Slider from './slideContener';
 import Search from './search';
+import Singup from './Signup';
 class Homepage extends Component {
   render() {
     return (
@@ -12,6 +13,7 @@ class Homepage extends Component {
 					<Search/>
 	    		<Demo/>
 	    		<Slider />
+					<Singup/>
 	    	</div>
 	    </container>
      );

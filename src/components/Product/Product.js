@@ -10,7 +10,6 @@ class Product extends Component {
         <h2 align="center">Danh Sách Sản Phẩm</h2>
         <h3>Sách Mới</h3>
         <MenuList />
-
       </div>
      );
   }

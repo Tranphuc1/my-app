@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import anh1 from './imgslide/p1.jpg';
 import anh2 from './imgslide/p2.jpg';
 import anh3 from './imgslide/p3.jpg';
