@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 var config = {
   apiKey: "AIzaSyCbIWhMZj3CzJ2J7f3qU5kwD57ubVbnwYw",
   authDomain: "reactjs-1d447.firebaseapp.com",

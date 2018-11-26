@@ -1,43 +1,33 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {
-	BrowserRouter as Router,
-	Route,
-	Link
-} from 'react-router-dom';
-import {firebaseConnect} from "./../firebaseConnect";
-//components
-import App from './../App';
-//
-
-
-class App extends Component {
-	contructor(props){
-	super(props);
-	this.state ={
-		user:{},
-	}
-}
-componentsDidMount(){
-	this.authListener();
-}
-authListener(){
-    		fire.auth().onAuthSateChanged((user) => {
-    			if(user){
-    				this.setState({user});
-
-    			}else{
-    				this.setState({user:null});
-    			}
-    		});
-    	}
+import { firebaseConnect } from '../../../FirebaseConnect';
+import Signup from './Signup';
+import App from '../../../App';
+class Login extends Component {
+	constructor() {
+		super();
+		this.state = ({
+		  user: null,
+		});
+		this.authListener = this.authListener.bind(this);
+	  }
+componentDidMount() {
+		this.authListener();
+	  }
+authListener() {
+    firebaseConnect.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
   render() {
     return (
     	<div className="LoginForm">
-    	{this.state.user ? (<App />) : (<LoginForm/>) }
+    	{this.state.user ? ( <App />) : (<Signup />)}
     	</div>
      );
   }
 }
-
-export default App;
+export default Login;

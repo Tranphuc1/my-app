@@ -21,7 +21,35 @@ class Item extends Component {
                             <a className=" btn btn-danger" href=""><span className="glyphicon glyphicon-shopping-cart"> Mua </span></a> 
                         </div> 
                         </div> 
-                    </div>  
+                    </div> 
+                    <div id="main" style={{margin: 20}}>{/*#main*/}
+                        
+                        <div className="container thumbnail content">
+                            <div className="row">
+                            <h2><span className="label " style={{color: '#1ea815'}}>SÁCH LIÊN QUAN </span></h2>
+                            </div>
+                            <div className="row margin1 text-center">{/*row margin1*/}
+                            <div className="row margin1 text-center">
+
+                                <div className="col-md-3 col-sm-12 col-xs-12 thumbnail">
+                                <a href="img/<?php echo $item['anh_sp'];?>" className="preview">
+                                    <img src="img/<?php echo $item['anh_sp'];?>" className="img-thumbnail text-center" alt="Book" style={{maxHeight: 270, maxWidth: 220}} />
+                                </a>
+                                <h4 className="text-center"><a href=""></a></h4>
+                                <p>Tình trạng: </p>
+                                <p> Khuyến Mãi:</p>
+                                <p className="text-center price"><span> VNĐ</span></p>
+                                <p className="add-cart">
+                                    <a href="frontent/giohang/themhang.php?id_sp=<?php echo $item['id_sp'];?>">
+                                    <span className="glyphicon glyphicon-shopping-cart" style={{fontSize: 20}}> Mua </span></a> |
+                                    <a href="index.php?page_layout=chitietsp&id_sp=<?php echo $item['id_sp'];?>"> <span style={{fontSize: 15}}> Xem thêm </span></a>
+                                </p>
+                                </div>	
+                            </div>	
+                            </div>
+                        </div>
+                        </div>
+ 
                 </div> 
         );
     }

@@ -682,7 +682,26 @@ padding: 1.3em;
 {
 	display:inline !important;
 }
-
+.beta-form-checkout select {
+	line-height:37px;
+	height:37px
+	}
+.beta-form-checkout input {
+	margin-bottom:5px
+	}
+.form-block {
+	margin-bottom:20px;
+	overflow:hidden
+	}
+.form-block>* {
+	float:left
+	}
+	
+.form-block label {
+	width:200px;
+	font-weight:lighter
+	}
+	
 
 
 

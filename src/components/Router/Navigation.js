@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Singup from '../pages/Signup';
+import Signup from '../Admin/Login/Signup';
 
 //components
 //
@@ -11,7 +11,7 @@ class DieuHuong extends Component {
     	<Router>
     	<div>
 				<Switch>
-                    <Route path="/Signup" exact component={Singup} />														
+                    {/* <Route path="/Signup" exact component={Signup} />														 */}
 				</Switch>
 		</div>
 	 	</Router>

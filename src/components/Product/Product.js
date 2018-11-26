@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //components
-import MenuList from './MenuList';
+import MenuList from './MenuProduct';
+import DetailProducts from './DetailProducts';
 
 class Product extends Component {
   render() {
@@ -10,6 +11,7 @@ class Product extends Component {
         <h2 align="center">Danh Sách Sản Phẩm</h2>
         <h3>Sách Mới</h3>
         <MenuList />
+        <DetailProducts />
       </div>
      );
   }
