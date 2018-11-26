@@ -7,7 +7,9 @@ import homePage from './../pages/homePage';
 import Header from '../headerComponents/header';
 import Footer from '../footerComponents/footer';
 import Signup from '../Admin/Login/Signup';
-import Home from '../Admin/Login/Home';
+import Home from '../Admin/Manage/Home';
+import App1 from '../Admin/Manage/App/App1';
+
 
 //
 
@@ -17,7 +19,8 @@ class DieuHuong extends Component {
     	<Router>
     	<div>
 				<Route path="/" exact component={Header} />
-				<Switch>	
+				<Switch>		
+							<Route path="/App1" exact component={App1}/>
 							<Route path="/Home" exact component={Home} />
 							<Route path="/Signup" exact component={Signup}/>
 							<Route path="/" exact component={homePage} />

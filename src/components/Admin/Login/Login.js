@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { firebaseConnect } from '../../../FirebaseConnect';
 import Signup from './Signup';
-import App from '../../../App';
+import App1 from '../Manage/App/App1';
 class Login extends Component {
 	constructor() {
 		super();
@@ -25,7 +25,7 @@ authListener() {
   render() {
     return (
     	<div className="LoginForm">
-    	{this.state.user ? ( <App />) : (<Signup />)}
+    	{this.state.user ? ( <App1 />) : (<Signup />)}
     	</div>
      );
   }
