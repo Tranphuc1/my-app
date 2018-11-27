@@ -2,41 +2,40 @@ import React, { Component } from 'react';
 // const uuidv4 = require('uuid/v4');
 
 class Form extends Component {
-    // constructor(props) {
-    //     super(props);
+    constructor(props) {
+        super(props);
 
-    //     this.state = {
-    //         txtUser : '',
-    //         txtPass : '',
-    //         sltLevel : 1
-    //     };
+        this.state = {
+            txtUser : '',
+            txtPass : ''
+        };
+    }
+    changeInput = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+
+        this.setState({
+            [name] : value
+        });
+    }
     // }
-    
-    // changeInput = (event) => {
-    //     const target = event.target;
-    //     const name = target.name;
-    //     const value = target.value;
+        submitForm =(event) =>{
+            event.preventDefault();
+            event.target.reset();
+            const {txtUser,txtPass} = this.state;
+            let content = '';
+            content += 'User :' + txtUser;
+            content += 'Pass :' + txtPass;
+            console.log(content);
 
-    //     this.setState({
-    //         [name] : value
-    //     });
-
-    // }
-
-    // submitForm = (event) => {
-    //     event.preventDefault();
-    //     event.target.reset();
-        
-    //     const {txtUser,txtPass,sltLevel} = this.state;
-
-    //     const item = {};
-    //     item.id = uuidv4();
-    //     item.username = txtUser;
-    //     item.password = txtPass;
-    //     item.level = parseInt(sltLevel,10);
-
-    //     this.props.add(item);
-    // }
+            const item ={};
+            item.id = "11";
+            item.username = txtUser;
+            item.password = txtPass;
+            console.log(item);
+            this.props.add(item);
+        }
 
     render() {
         return (
@@ -58,7 +57,7 @@ class Form extends Component {
                         <form method="POST" onSubmit={ (e) => this.submitForm(e) }>
                             <div className="form-group">
                                 <label htmlFor="txtUser">Thành Viên</label>
-                                {/* <input type="text" name="txtUser" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } /> */}
+                                <input type="text" name="txtUser" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="txtPass">Mật Khẩu</label>

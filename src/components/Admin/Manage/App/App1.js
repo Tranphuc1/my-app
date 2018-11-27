@@ -4,18 +4,19 @@ import Nav from '../Nav/Nav';
 import Form from '../Form/Form';
 import Table from '../Table/Table';
 import Header from '../../../headerComponents/header';
-
+import Mydata from '../data.json';
 class App1 extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        statusForm : false
+        statusForm : false,
+        usersData: Mydata
       };
     }
   
     showForm = () => {
       if (this.state.statusForm) {
-        return <Form FromToogle = { (e) => this.changeStatusForm(e)}></Form>
+        return <Form FromToogle = { (e) => this.changeStatusForm(e)} add={(item)=> this.addAction(item)}></Form>
       }
     }
   
@@ -26,13 +27,13 @@ class App1 extends Component {
       });
     }
   
-    // addAction = (item) => {
-    //   this.state.usersData.push(item);
+    addAction = (item) => {
+      this.state.usersData.push(item);
   
-    //   this.setState({
-    //     usersData : this.state.usersData
-    //   });
-    // }
+      this.setState({
+        usersData : this.state.usersData
+      });
+    }
     
     render() {
       return (
@@ -41,7 +42,7 @@ class App1 extends Component {
           <Header/>
           <Nav></Nav>
           <div className="container" style={{display: '-webkit-inline-box'}}>
-            <Table changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
+            <Table userData ={this.state.usersData} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
             { this.showForm() } 
           </div>
         </div>

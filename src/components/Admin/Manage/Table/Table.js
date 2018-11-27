@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import TableRow from './Table-row';
+
 class Table extends Component {
 
     showButton = () => {
@@ -17,17 +19,16 @@ class Table extends Component {
         }
     }
 
-    // mappingData = () => {
-    //     const tableRow = this.props.usersData.map((value,key) => {
-    //         return <TableRow key={ key } index={ key } level={ value.level }>{ value.username }</TableRow>;
-    //     });
-    //     return tableRow;
-    // }
-
+    mappingData = () =>{
+        const tableRow = this.props.userData.map((value,key) => {
+            return <TableRow key={key} index ={key} >{value.username}</TableRow>
+        });
+        return tableRow;
+    }
     
     render() {
+        console.log(this.props.userData);
         return (
-            
             <div className={this.classTable()}>
 
                 <table className="table table-bordered table-hover">
@@ -41,9 +42,9 @@ class Table extends Component {
                             </th>
                         </tr>
                     </thead>
-                    {/* <tbody>
-                        { this.mappingData() }
-                    </tbody> */}
+                    <tbody>
+                        {this.mappingData()}
+                    </tbody>
                 </table>
             </div>
         );
