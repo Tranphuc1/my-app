@@ -19,25 +19,38 @@ class Form extends Component {
             [name] : value
         });
     }
-    // }
-        submitForm =(event) =>{
-            event.preventDefault();
-            event.target.reset();
-            const {txtUser,txtPass} = this.state;
-            let content = '';
-            content += 'User :' + txtUser;
-            content += 'Pass :' + txtPass;
-            console.log(content);
+    // changeInput = (event) => {
+    //     const target = event.target;
+    //     const name = target.name;
+    //     const value = target.value;
 
-            const item ={};
-            item.id = "11";
-            item.username = txtUser;
-            item.password = txtPass;
-            console.log(item);
-            this.props.add(item);
-        }
+    //     this.setState({
+    //         [name] : value
+    //     });
+    // }
+    // }
+    submitForm =(event) =>{
+        event.preventDefault();
+        event.target.reset();
+        const {txtUser,txtPass} = this.state;
+        let content = '';
+        content += 'User :' + txtUser;
+        content += 'Pass :' + txtPass;
+        console.log(content);
+
+        const item ={};
+        item.id = "11";
+        item.username = txtUser;
+        item.password = txtPass;
+        console.log(item);
+        this.props.add(item);
+    }
+
 
     render() {
+        // noteData.once('value').then(function(snapshot){
+        //     console.log(snapshot.val());
+        //   })
         return (
             <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div className="alert alert-danger" role="alert">

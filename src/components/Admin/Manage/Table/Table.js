@@ -3,6 +3,7 @@ import TableRow from './Table-row';
 
 class Table extends Component {
 
+
     showButton = () => {
         if (!this.props.changedButton) {
             return <a className="btn btn-success btn-sm" href="them" role="button" onClick={ (e) => this.props.FromToogle(e) }><i className="fa fa-plus" aria-hidden="true" /> Thêm</a>
@@ -10,7 +11,6 @@ class Table extends Component {
             return <a className="btn btn-danger btn-sm" href="dong" role="button" onClick={(e) => this.props.FromToogle(e) }><i className="fa fa-close" aria-hidden="true" /> Đóng</a>
         }
     }
-
     classTable = () => {
         if (!this.props.changedButton) {
             return "col-xs-12 col-sm-12 col-md-12 col-lg-12";
@@ -27,7 +27,6 @@ class Table extends Component {
     }
     
     render() {
-        console.log(this.props.userData);
         return (
             <div className={this.classTable()}>
 

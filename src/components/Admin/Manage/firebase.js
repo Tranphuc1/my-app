@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 var config = {
   apiKey: "AIzaSyCbIWhMZj3CzJ2J7f3qU5kwD57ubVbnwYw",
   authDomain: "reactjs-1d447.firebaseapp.com",
@@ -6,9 +6,7 @@ var config = {
   projectId: "reactjs-1d447",
   storageBucket: "reactjs-1d447.appspot.com",
   messagingSenderId: "48949881617"
-}
-// class nodeData {
-//   var nodata = firebase.database.ref('User');
-// }
-export  const firebaseConnect = firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
+export const nodeData = firebase.database().ref("/Sanpham");
 // export default nodeData 

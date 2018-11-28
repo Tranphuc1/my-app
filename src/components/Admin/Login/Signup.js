@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { firebaseConnect } from '../../../FirebaseConnect';
 
@@ -83,7 +84,6 @@ class Signup extends Component {
     </div>
   </div>
 </div>
-
     </div>
     );
   }
