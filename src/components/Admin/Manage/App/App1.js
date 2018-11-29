@@ -6,6 +6,7 @@ import Table from '../Table/Table';
 import Mydata from '../data.json';
 import Header from '../../../headerComponents/header';
 import { firebaseConnect } from '../../../../FirebaseConnect';
+
 // var noteData  = firebaseConnect.database().ref('User');
 //  noteData.once('value').then(function(snapshot){});
 class App1 extends Component {
@@ -13,7 +14,7 @@ class App1 extends Component {
       super(props);
       this.nodeData = firebaseConnect.database().ref('/User');
       this.state = {
-        statusForm : false,
+        statusForm : true,
         usersData: Mydata
       }
     }
@@ -24,18 +25,18 @@ class App1 extends Component {
     //     console.log(snapshot.val())
     //   });
     // }
-    // showForm = () => {
-    //   if (this.state.statusForm) {
-    //     return <Form FromToogle = { (e) => this.changeStatusForm(e)} add={(item)=> this.addAction(item)}></Form>
-    //   }
-    // }
+    showForm = () => {
+      if (this.state.statusForm) {
+        return <Form FromToogle = { (e) => this.changeStatusForm(e)} add={(item)=> this.addAction(item)}></Form>
+      }
+    }
   
-    // changeStatusForm = (event) => {
-    //   event.preventDefault();
-    //   this.setState({
-    //     statusForm: !this.state.statusForm
-    //   });
-    // }
+    changeStatusForm = (event) => {
+      event.preventDefault();
+      this.setState({
+        statusForm: this.state.statusForm
+      });
+    }
     showForm = () => {
       if (this.state.statusForm) {
         return <Form formToogle={ (e) => this.changeStatusForm(e) } add={ (item) => this.addAction(item) }></Form>
@@ -50,6 +51,7 @@ class App1 extends Component {
     }
   addAction = (item) => {
     this.nodeData.push(item)
+    alert('thêm dữ liệu thành công' + JSON.stringify(item)+"thành công")
     // this.state.usersData.push(item);
 
     // this.setState({
@@ -58,10 +60,6 @@ class App1 extends Component {
   }
 
     render() {
-
-      this.nodeData.once('value').then(function(snapshot){
-        console.log(snapshot.val());
-      })
       return (
         <div className="App">
         <div className="container">
@@ -77,6 +75,21 @@ class App1 extends Component {
       );
     }
   }
-  
+  // const mapStateToProps = (state, ownProps) => ({
+  //   return{
+  //     testthoi:state.testconnect
+  //   }
+  // })
+  // //this.props.testthoi
+  // const mapDispatchToProps = (dispatch,ownProps){
+  //   return{
+  //     addDataStore:()=>{
+  //       dispatch({type:"ADD_DATA"})
+  //     }
+  //   }
+    
+  // }
+  // //this.props.addDataStore()
+  // export default connect(mapStateToProps, mapDispatchToProps)(App1)
 
 export default App1;

@@ -11,7 +11,7 @@ class Footer extends Component {
 			  <div id="container">
 			    <div className="footer_address">
 			      <div className="block " id="content_FooterAddress"><div className="blockcontent"><div style={{textAlign: 'center'}}>
-			            Copyright © 2018 Nobita.vn</div>
+			            Copyright © 2018 Sói Ca</div>
 			          <div style={{textAlign: 'center'}}>
 			            &nbsp;</div>
 			          <div style={{textAlign: 'center'}}>

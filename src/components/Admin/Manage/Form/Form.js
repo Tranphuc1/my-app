@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // const uuidv4 = require('uuid/v4');
-
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -44,6 +43,7 @@ class Form extends Component {
         item.password = txtPass;
         console.log(item);
         this.props.add(item);
+
     }
 
 
@@ -85,4 +85,17 @@ class Form extends Component {
     }
 }
 
+// const mapStateToProps = (state, ownProps) => {
+//     return{
+//         testThoi:state.testconnect
+//     }
+// }
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return{
+//         addDataStore:()=>{
+//             dispatch({type:"Add_data"})
+//         }
+//     }
+// }
 export default Form;
+// export default connect(mapStateToProps, mapDispatchToProps)(Form);
