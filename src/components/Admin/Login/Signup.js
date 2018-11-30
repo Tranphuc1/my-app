@@ -55,7 +55,7 @@ class Signup extends Component {
               <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
           </form>
       </div>
-      <div className="container">
+      {/* <div className="container">
   <div className="row">
     <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div className="card card-signin my-5">
@@ -83,7 +83,7 @@ class Signup extends Component {
       </div>
     </div>
   </div>
-</div>
+</div> */}
     </div>
     );
   }

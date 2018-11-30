@@ -1,29 +1,35 @@
+import p1 from '../../pages/imgslide/p1.jpg';
+import p2 from '../../pages/imgslide/p2.jpg';
+import p3 from '../../pages/imgslide/p3.jpg';
 var initialState = [
     {
         id : 1,
-        name : 'Iphone 7 Plus',
-        image : 'https://images-na.ssl-images-amazon.com/images/I/51wcd%2Bz24TL._SX425_.jpg',
-        description : 'Sản phẩm do apple sản phẩm',
+        name : 'Đắc Nhân Tâm',
+        image : p2,
+        description : 'Phải Thật Nhẫn Tâm',
         price : 500,
         inventory : 10,
+        author:"Sơn thùng MTP",
         rating : 4
     },
     {
         id : 2,
-        name : 'Samsung galaxy S7',
-        image : 'https://s7d2.scene7.com/is/image/SamsungUS/SMG930_gs7_102416?$product-details-jpg$',
-        description : 'Sản phẩm do samsung sản phẩm',
+        name : 'Tìm Được Nhau Khó Thế Nào',
+        image : p1,
+        description : 'Khó nó mới hay',
         price : 400,
         inventory : 15,
-        rating : 3
+        author:'Mr.siro',
+        rating : 4.5
     },
     {
         id : 3,
-        name : 'Oppo F1s',
-        image : 'http://drop.ndtv.com/TECH/product_database/images/832016120148PM_635_oppo_f1s.jpeg',
-        description : 'Sản phẩm do china sản phẩm',
+        name : 'Thanh xuân như 1 cơn mưa rào',
+        image : p3,
+        description : 'Dù cảm lạnh vì mưa cũng muốn được quay lại',
         price : 450,
         inventory : 5,
+        author:"Mỹ Tâm",
         rating : 5
     }
 ];

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../headerComponents/header';
 import Footer from '../footerComponents/footer';
-import Products from './Products';
 import Message from './Message';
 import Cart from './Cart';
+import ProductsContainer from './Containers/ProductsContainer';
 
 class AllFile extends Component {
     render() {
@@ -12,7 +12,7 @@ class AllFile extends Component {
                 <Header />
                 <main id="mainContainer">
                     <div className="container">
-                        <Products />
+                        <ProductsContainer/>
                         <Message />
                         <Cart/>
                     </div>

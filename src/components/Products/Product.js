@@ -8,9 +8,8 @@ class Product extends Component {
             <div className="col-lg-4 col-md-6 mb-r">
                 <div className="card text-center card-cascade narrower">
                     <div className="view overlay hm-white-slight z-depth-1">
-                        {/* <img src={ product.image } */}
-                        <img src="http://cafefcdn.com/thumb_w/650/2017/photo1514606141082-1514606141082-1514690372285.jpg"/>
-                            {/* className="img-fluid" alt={product.name} /> */}
+                        <img src={ product.image }
+                             className="img-fluid" alt={product.name} />
                         <a>
                             <div className="mask waves-light waves-effect waves-light"></div>
                         </a>
@@ -18,27 +17,22 @@ class Product extends Component {
                     <div className="card-body">
                         <h4 className="card-title">
                             <strong>
-                                TRANQUANGPHUC
-                                {/* <a>{ product.name }</a> */}
+                                <a>{ product.name }</a>
                             </strong>
                         </h4>
                         <ul className="rating">
                             <li>
-                                {/* { this.showRatings(product.rating) } */}
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
+                                { this.showRatings(product.rating) }
                             </li>
+                            
                         </ul>
                         <p className="card-text">
-                            MÔ TẢ
-                            {/* { product.description } */}
+                            { product.description }
                         </p>
-                        <div className="card-footer">
-                                    {/* {product.price} */}
-                            <span className="left">12$</span>
+                        <p className="card-text">
+                            { product.author }
+                        </p>
+                        <div className="card-footer">{product.price}<span className="left">$</span>
                             <span className="right">
                                 <a 
                                     className="btn-floating blue-gradient" 
@@ -46,9 +40,7 @@ class Product extends Component {
                                     title="" 
                                     data-original-title="Add to Cart"
                                     //onClick={ () => this.onAddToCart(product) }
-                                >
-                                    <i className="fa fa-shopping-cart"></i>
-                                     
+                                ><i className="fa fa-shopping-cart"></i>     
                                 </a>
                             </span>
                         </div>
@@ -71,6 +63,9 @@ class Product extends Component {
         for(var j = 1; j <= ( 5-rating);j++){
             result.push(<i key={i + j} className="fa fa-star-o"></i>);
         }
+        // for (var k = 2;k <=(1+rating/2);k++){
+        //     result.push(<i key={k} class="fas fa-star-half-alt"></i></i>)
+        // }
         return result;
     }
 
