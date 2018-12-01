@@ -1,5 +1,7 @@
 import * as Types from '../constants/ActionType';
-
+// var data = database.ref("/Sanpham").on('value', () => {
+//     console.log("data change");
+//   });
 export const actAddToCart = (product, quantity) => {
     return {
         type: Types.ADD_TO_CART,

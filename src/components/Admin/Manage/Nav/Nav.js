@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 class Nav extends Component {
     render() {
         return (
@@ -12,7 +12,9 @@ class Nav extends Component {
                             <a href="#tab1Id" className="nav-link active">Trang Chủ</a>
                             </li>
                             <li className="nav-item">
-                            <a href="#tab5Id" className="nav-link">Sản Phẩm</a>
+                            <li>
+                                <Link to="/Component">Sách Mới</Link>
+                            </li>
                             </li>
                             <li className="nav-item">
                             <a href="#tab5Id" className="nav-link">Hóa Đơn</a>

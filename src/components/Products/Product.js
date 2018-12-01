@@ -1,38 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
+import { firebaseConnect } from '../../FirebaseConnect';
+
 // import * as Message from './../constants/Message';
 
 class Product extends Component {
+    // constructor(props){
+    //     super(props);
+    // //     this.state = {
+    // //         name : '',
+    // //         author: '',
+    // //         description:'',
+    // //         id: null,
+    // //         inventory:'',
+    // //         price: null,
+    // //         rating: null
+    // //     };
+    // }
+    // componentDidMount(){
+    //     firebaseConnect.database().ref("/Sanpham").once('value',(snapshot) => {
+    //         this.setState({
+    //                 name : snapshot.val().name,
+    //                 author : snapshot.val().author,
+    //                 description : snapshot.val().description,
+    //                 id :snapshot.val().id,
+    //                 inventory : snapshot.val().inventory,
+    //                 price : snapshot.val().price,
+    //                 rating : snapshot.val().rating
+    //             })
+    //     } )
+    // }
+    // componentDidMount(){
+    //     firebaseConnect.database().ref("/Sanpham").on('value', (snapshot) => {
+    //       var product= (snapshot.val());
+    //     });
+    //   }
     render() {
-        var { product } = this.props;
+        // const product =  JSON.stringify(product);
+        // // console.log(this.state.data);
+        // console.log(product);
         return (
+            
             <div className="col-lg-4 col-md-6 mb-r">
                 <div className="card text-center card-cascade narrower">
                     <div className="view overlay hm-white-slight z-depth-1">
-                        <img src={ product.image }
-                             className="img-fluid" alt={product.name} />
+                        {/* <img src={ product.image } */}
+                             className="img-fluid" alt={this.props.name} />
                         <a>
+
                             <div className="mask waves-light waves-effect waves-light"></div>
                         </a>
                     </div>
                     <div className="card-body">
                         <h4 className="card-title">
                             <strong>
-                                <a>{ product.name }</a>
+                                <a>{ this.props.name }</a>
                             </strong>
                         </h4>
                         <ul className="rating">
                             <li>
-                                { this.showRatings(product.rating) }
+                                { this.showRatings(this.props.rating) }
                             </li>
                             
                         </ul>
                         <p className="card-text">
-                            { product.description }
+                            { this.props.description }
                         </p>
                         <p className="card-text">
-                            { product.author }
+                            { this.props.author }
                         </p>
-                        <div className="card-footer">{product.price}<span className="left">$</span>
+                        <div className="card-footer">{this.props.price}<span className="left">$</span>
                             <span className="right">
                                 <a 
                                     className="btn-floating blue-gradient" 

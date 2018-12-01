@@ -1,7 +1,7 @@
 import p1 from '../../pages/imgslide/p1.jpg';
 import p2 from '../../pages/imgslide/p2.jpg';
 import p3 from '../../pages/imgslide/p3.jpg';
-var initialState = [
+var initialState= [
     {
         id : 1,
         name : 'Đắc Nhân Tâm',

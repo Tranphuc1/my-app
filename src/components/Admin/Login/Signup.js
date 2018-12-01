@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import { firebaseConnect } from '../../../FirebaseConnect';
 
-
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -55,37 +53,61 @@ class Signup extends Component {
               <button onClick={this.signup} style={{marginLeft: '25px'}} className="btn btn-success">Signup</button>
           </form>
       </div>
-      {/* <div className="container">
-  <div className="row">
-    <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div className="card card-signin my-5">
-        <div className="card-body">
-          <h5 className="card-title text-center">Sign In</h5>
-          <form className="form-signin">
-            <div className="form-label-group">
-              <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
-              <label htmlFor="inputEmail">Email address</label>
-            </div>
-            <div className="form-label-group">
-              <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-              <label htmlFor="inputPassword">Password</label>
-            </div>
-            <div className="custom-control custom-checkbox mb-3">
-              <input type="checkbox" className="custom-control-input" id="customCheck1" />
-              <label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
-            </div>
-            <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-            <hr className="my-4" />
-            <button className="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i className="fab fa-google mr-2" /> Sign in with Google</button>
-            <button className="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i className="fab fa-facebook-f mr-2" /> Sign in with Facebook</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> */}
+      {/* <div className="app flex-row align-items-center">
+        <Container>
+          <Row className="justify-content-center">
+            <Col md="8">
+              <CardGroup>
+                <Card className="p-4">
+                  <CardBody>
+                    <Form>
+                      <h1>Login</h1>
+                      <p className="text-muted">Sign In to your account</p>
+                      <InputGroup className="mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="icon-user"></i>
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="text" placeholder="Username" autoComplete="username" />
+                      </InputGroup>
+                      <InputGroup className="mb-4">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="icon-lock"></i>
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input type="password" placeholder="Password" autoComplete="current-password" />
+                      </InputGroup>
+                      <Row>
+                        <Col xs="6">
+                          <Button color="primary" className="px-4">Login</Button>
+                        </Col>
+                        <Col xs="6" className="text-right">
+                          <Button color="link" className="px-0">Forgot password?</Button>
+                        </Col>
+                      </Row>
+                    </Form>
+                  </CardBody>
+                </Card>
+                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                  <CardBody className="text-center">
+                    <div>
+                      <h2>Sign up</h2>
+                      <Link to="/register">
+                        <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
+                      </Link>
+                    </div>
+                  </CardBody>
+                </Card>
+              </CardGroup>
+            </Col>
+          </Row>
+        </Container>
+      </div> */} */}
     </div>
     );
   }
 }
 export default Signup;
+

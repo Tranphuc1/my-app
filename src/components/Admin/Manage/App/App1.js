@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Nav from '../Nav/Nav';
+import Navvar from '../Nav/Nav';
 // import Table from '../Table/Table';
-import Form from '../Form/Form';
+import Form from '../Form/UserForm';
 import Table from '../Table/Table';
 import Mydata from '../data.json';
-import Header from '../../../headerComponents/header';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 
 // var noteData  = firebaseConnect.database().ref('User');
@@ -49,6 +48,10 @@ class App1 extends Component {
         statusForm : !this.state.statusForm
       });
     }
+  logout(e){
+    e.preventDefault()
+    this.props.history.push('/Signup')
+  }
   addAction = (item) => {
     this.nodeData.push(item)
     alert('thêm dữ liệu thành công' + JSON.stringify(item)+"thành công")
@@ -63,9 +66,8 @@ class App1 extends Component {
       return (
         <div className="App">
         <div className="container">
-          <Header/>
-          <Nav></Nav>
-          <button onClick={this.logout}>Logout</button>
+          <Navvar></Navvar>
+          <button onClick={e =>this.logout(e)}>Logout</button>
           <div className="container" style={{display: '-webkit-inline-box'}}>
             <Table userData ={this.state.usersData} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
             { this.showForm() } 
