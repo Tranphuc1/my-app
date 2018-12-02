@@ -1,23 +1,42 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 class Nav extends Component {
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             changedForm:true
+//         }
+//     }
+//     changedForm = () => {
+//         if(this.state.changedForm){
+//             return 
+//         }   
+// }
+        
+    
+    
+    
     render() {
-        return (
+        return ( 
             <div>
             <nav className="navbar navbar-light bg-faded rounded navbar-toggleable-md">
                 <div className="collapse navbar-collapse" id="containerNavbar">
                     <div>
                         <ul className="nav nav-tabs|pills" id="navId">
                             <li className="nav-item">
-                            <a href="#tab1Id" className="nav-link active">Trang Chủ</a>
+                                <button type="button" class="btn btn-defalt" >
+                                <Link to ="/App1/User">Thành viên</Link></button>
                             </li>
                             <li className="nav-item">
                             <li>
-                                <Link to="/Component">Sách Mới</Link>
+                                <button type="button" className="btn btn-defalt" >
+                                {/* // onClick={ () => this.props.changedForm() }> */}
+                                <Link to ="/App1/PushProduct">Sản Phẩm</Link></button>
                             </li>
                             </li>
                             <li className="nav-item">
-                            <a href="#tab5Id" className="nav-link">Hóa Đơn</a>
+                                <button type="button" class="btn btn-defalt">
+                                <Link to ="/App1/PushBill">Hóa đơn</Link></button>
                             </li>
                         </ul>
                         {/* Tab panes */}
@@ -40,5 +59,4 @@ class Nav extends Component {
         );
     }
 }
-
 export default Nav;

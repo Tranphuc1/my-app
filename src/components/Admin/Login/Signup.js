@@ -21,7 +21,7 @@ class Signup extends Component {
   login(e) {
     e.preventDefault();
     firebaseConnect.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-    .then((u)=>{this.props.history.push("/App1");})
+    .then((u)=>{this.props.history.push("/App1/User");})
     .catch((error) => {
         console.log(error);
       });

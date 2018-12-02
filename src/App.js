@@ -18,7 +18,7 @@ class App extends Component {
 	    	<div className="App">
 		    	<div className="container-fluid">
 			 		<DieuHuong />
-					<Navigation/>
+					{/* <Navigation/> */}
 		    	</div>
 	 		</div>
 	 	</Router>

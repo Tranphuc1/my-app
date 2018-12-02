@@ -20,18 +20,10 @@ class Form extends Component {
         event.preventDefault();
         event.target.reset();
         const {txtUser,txtPass} = this.state;
-        let content = '';
-        content += 'User :' + txtUser;
-        content += 'Pass :' + txtPass;
-        console.log(content);
-
         const item ={};
-        item.id = "11";
         item.username = txtUser;
         item.password = txtPass;
-        console.log(item);
         this.props.add(item);
-
     }
 
 
@@ -51,14 +43,13 @@ class Form extends Component {
                     <div className="card-header">
                         Thêm
                         <button type="button" className="close" aria-label="Close" onClick={ (e) => this.props.FromToogle(e) }>
-                            <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div className="card-block">
                         <form method="POST" onSubmit={ (e) => this.submitForm(e) }>
                             <div className="form-group">
                                 <label htmlFor="txtUser">Thành Viên</label>
-                                <input type="text" name="txtUser" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } />
+                                <input type="email" name="txtUser" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="txtPass">Mật Khẩu</label>

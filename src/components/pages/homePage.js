@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Demo from './Menu';
 import Slider from './slideContener';
 import Search from './search';
-import {Link} from 'react-router-dom';
 class Homepage extends Component {
 	
   render() {

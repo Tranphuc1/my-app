@@ -12,13 +12,11 @@ class DieuHuong extends Component {
   render() {
     return (
 			<div>
-    	<Router>
-				<Switch>	
-										<Route path="/Nav" component={Nav} />
+    	<Router>	
+										<Route exact path="/Nav" component={Nav} />
                     <Route path="/Signup" exact component={Signup} />
 										<Route path ="/App1" exact component={App1}/>	
 										<Route path ="/Component" component={componentName}/>					
-				</Switch>	
 	 	</Router>
 		 </div>
      );
