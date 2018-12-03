@@ -31,9 +31,6 @@ class DieuHuong extends Component {
 								<Route path="/App1/PushProduct" exact component={PushProduct} />
 							</Switch>
 							<Route path="/"  component={Footer} />
-							
-
-				
 		</div>
      );
   }

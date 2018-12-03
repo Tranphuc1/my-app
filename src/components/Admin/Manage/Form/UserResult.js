@@ -3,6 +3,7 @@ import Form from '../Form/UserForm';
 import Table from '../Table/Table';
 import Mydata from '../data.json';
 import { firebaseConnect } from '../../../../FirebaseConnect';
+import EditUser from './EditUser';
 var nodeData = firebaseConnect.database().ref('/User');
 class UserResult extends Component {
     constructor(props) {
@@ -46,7 +47,10 @@ class UserResult extends Component {
       return (
         <div className="App">
         <div className="container">
+          
+          <EditUser />
           <div className="container" style={{display: '-webkit-inline-box'}}>
+            
             <Table userData ={this.state.usersData} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
             { this.showForm() } 
           </div>

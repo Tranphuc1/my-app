@@ -8,7 +8,7 @@ import componentName from '../Admin/Manage/ProductsForm/PushProduct';
 //components
 //
 
-class DieuHuong extends Component {
+class navaigation extends Component {
   render() {
     return (
 			<div>
@@ -23,4 +23,4 @@ class DieuHuong extends Component {
   }
 }
 
-export default DieuHuong;
+export default navaigation;

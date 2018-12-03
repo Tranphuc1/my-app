@@ -22,24 +22,20 @@ class Nav extends Component {
             <nav className="navbar navbar-light bg-faded rounded navbar-toggleable-md">
                 <div className="collapse navbar-collapse" id="containerNavbar">
                     <div>
-                        <ul className="nav nav-tabs|pills" id="navId">
+                        <ul className="nav nav-pills" id="navId">
                             <li className="nav-item">
-                                <button type="button" class="btn btn-defalt" >
+                                <button type="button" className="btn btn-defalt" >
                                 <Link to ="/App1/User">Thành viên</Link></button>
                             </li>
                             <li className="nav-item">
-                            <li>
                                 <button type="button" className="btn btn-defalt" >
-                                {/* // onClick={ () => this.props.changedForm() }> */}
                                 <Link to ="/App1/PushProduct">Sản Phẩm</Link></button>
                             </li>
-                            </li>
                             <li className="nav-item">
-                                <button type="button" class="btn btn-defalt">
+                                <button type="button" className="btn btn-defalt">
                                 <Link to ="/App1/PushBill">Hóa đơn</Link></button>
                             </li>
                         </ul>
-                        {/* Tab panes */}
                         <div className="tab-content">
                             <div className="tab-pane fade show active" id="tab1Id" role="tabpanel" />
                             <div className="tab-pane fade" id="tab2Id" role="tabpanel" />

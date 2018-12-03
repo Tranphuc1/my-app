@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; 
-import { firebaseConnect } from '../../FirebaseConnect';
 
 // import * as Message from './../constants/Message';
 
@@ -43,17 +42,18 @@ class Product extends Component {
             <div className="col-lg-4 col-md-6 mb-r">
                 <div className="card text-center card-cascade narrower">
                     <div className="view overlay hm-white-slight z-depth-1">
-                        {/* <img src={ product.image } */}
-                             className="img-fluid" alt={this.props.name} />
+                        {/* <img src={ product.image }
+                             className="img-fluid" alt={this.props.name} /> */}
                         <a>
-
                             <div className="mask waves-light waves-effect waves-light"></div>
                         </a>
                     </div>
                     <div className="card-body">
                         <h4 className="card-title">
                             <strong>
-                                <a>{ this.props.name }</a>
+                                <a>{this.props.name}
+                                {/* { this.props.name } */}
+                                </a>
                             </strong>
                         </h4>
                         <ul className="rating">

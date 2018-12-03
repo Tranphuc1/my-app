@@ -7,6 +7,7 @@ import DieuHuong from './components/Router/DieuHuong';
 import Navigation from './components/Router/Navigation';
 //
 import './assets/css/style.min.css';
+import Product from './components/Products/Product';
 
 
 class App extends Component {

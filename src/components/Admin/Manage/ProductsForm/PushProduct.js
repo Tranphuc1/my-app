@@ -6,10 +6,11 @@ import { firebaseConnect } from '../../../../FirebaseConnect';
 // var uploader = document.getElementById('uploader');
 // var fileButton =document.getElementById('fileButton');
 // var storeURl = 'Sanpham/';
+
 var nodeData = firebaseConnect.database().ref('/Sanpham');
 // var storeRef = firebaseConnect.storage().ref(storeURl + files.name);
 const products = [];
-
+const storage = firebaseConnect.storage();
 //listen file 
 // fileButton.addEventListener('change',function(e){
 //   //get file
@@ -55,6 +56,7 @@ function addProducts(quantity) {
       rating:'5',
       description:'tranphuc',
       img:'',
+      url:'',
       price:i
     });
   }
@@ -71,9 +73,41 @@ export default class PushProduct extends React.Component {
         rating:'',
         description:'',
         img:null,
-        price:null
+        price:null,
+        url:'',
+        progress: 0
+      }
+      this.handleChange = this.handleChange.bind(this);
+      this.handleUpload = this.handleUpload.bind(this);
+    }
+    handleChange = e => {
+      if (e.target.files[0]) {
+        const img = e.target.files[0];
+        this.setState(() => ({img}));
       }
     }
+    handleUpload = () => {
+      const {img} = this.state;
+      const uploadTask = storage.ref(`images/${img.name}`).put(img);
+      uploadTask.on('state_changed', 
+      (snapshot) => {
+        // progrss function ....
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        this.setState({progress});
+      }, 
+      (error) => {
+           // error function ....
+        console.log(error);
+      }, 
+    () => {
+        // complete function ....
+        storage.ref('images').child(img.name).getDownloadURL().then(url => {
+            console.log(url);
+            this.setState({url});
+        })
+    });
+  }
+
     renderShowsTotal(start, to, total) {
       return (
         <p style={ { color: 'red' } }>
@@ -82,19 +116,24 @@ export default class PushProduct extends React.Component {
       );
     }
     changedData = (event) => {
-      const target = event.target;
+      const target = event.target
+      // const img = event.target.files[0];
       const name1 = target.name;
       const value = target.value;
-      this.setState({
-          [name1] : value,
-          img : event.target.files[0]
-      });
-      console.log(event.target.files[0]);
+      this.setState(() => ({
+        [name1] : value
+      }));
+      // if (event.target.files[0]) {
+      //   const img = event.target.files[0];
+      //   this.setState(() => ({
+      //     img
+      //   }));
+      // }
+      // this.handleChange(event);
     }
     submitProduct = (event) =>{
       event.preventDefault();
-      event.target.reset();
-      const {name,author,kind,rating,description,img,price} = this.state;
+      const {name,author,kind,rating,description,price,url} = this.state;
       const item ={};
         item.name = name;
         item.author = author;
@@ -102,13 +141,13 @@ export default class PushProduct extends React.Component {
         item.rating = rating;
         item.description = description;
         item.price = price;
-        item.img = img;
+        item.url = url;
         this.add(item);
     }
       add=(item)=>{
         nodeData.push(item)
-        storeRef.put(item)
-        alert('them du lieu thanh cong')
+        alert('OK nha ..')
+        
       }
     render() {
       const options = {
@@ -137,27 +176,33 @@ export default class PushProduct extends React.Component {
   
       return (
         <div className="PushProduct" >
-            <button type="button" class="btn btn-info">Thêm Sản Phẩm</button>
-            {/* <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <BootstrapTable data={ products } pagination={ true } options={ options }>
-                
-                    <TableHeaderColumn dataField='id' isKey={ true }>Product ID</TableHeaderColumn>
-                    <TableHeaderColumn dataField='name'> Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField='author'> author</TableHeaderColumn>
-                    <TableHeaderColumn dataField='rating'> rating</TableHeaderColumn>
-                    <TableHeaderColumn dataField='description'>description</TableHeaderColumn>
-                    <TableHeaderColumn dataField='img'> img</TableHeaderColumn>
-                    <TableHeaderColumn dataField='price'> Price</TableHeaderColumn>
-              </BootstrapTable >
-            </div> */}
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <button type="button" className="btn btn-info">Thêm Sản Phẩm</button>
+            
+            <div className="col-xs-4 col-sm4 col-md-4 col-lg-4">
                 <div className="card">
                     <div className="card-header">
-                        Sản Phẩm
+                        Sản phẩm
                     </div>
+                    
                     <div className="card-block">
-                        <form method="POST" onSubmit={ (e) => this.submitProduct(e) }>
+                        <form method="POST">
+                        <div className="form-group">
+                                <label>Ảnh</label>
+                                <input type="file" name="img" className="form-control"  onChange={this.handleChange}/>
+                                <a name="" id="" className="btn btn-success" role="button" onClick={this.handleUpload} style={{textAlign:'center'}}>UPLOAD</a>
+                                <progress style={{width:350}} value={this.state.progress} max="100"/>
+                                
+                            </div>
                             <div className="form-group">
+                                <label value={this.state.url} >Coppy URL:</label>
+                                <label style={{border:'solid 1px'}}><p>{this.state.url}</p></label>
+                                
+                                <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400"/>
+                                
+                            </div>
+                        </form>
+                        <form method="POST" >
+                            <div className="form-group" >
                                 <label htmlFor="name">Tên Sản Phẩm</label>
                                 <input type="text" name="name" className="form-control" placeholder="Nhập Tên Sản Phẩm" onChange={ (e) => this.changedData(e) } />
                             </div>
@@ -165,6 +210,16 @@ export default class PushProduct extends React.Component {
                                 <label htmlFor="kind">Thể Loại</label>
                                 <input type="text" name="kind" className="form-control" placeholder="Nhập Loại Sách" onChange={ (e) => this.changedData(e) }/>
                             </div>
+                            {/* <div class="dropdown open">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false">
+                                    Dropdown
+                                  </button>
+                              <div class="dropdown-menu" aria-labelledby="triggerId">
+                                <button class="dropdown-item" href="#">Action</button>
+                                <button class="dropdown-item disabled" href="#">Disabled action</button>
+                              </div>
+                            </div> */}
                             <div className="form-group">
                                 <label htmlFor="author">Tên Tác Giả</label>
                                 <input type="text" name="author" className="form-control" placeholder="Nhập Tên Tác Giả" onChange={ (e) => this.changedData(e) }/>
@@ -178,18 +233,28 @@ export default class PushProduct extends React.Component {
                                 <input type="text" name="description" className="form-control" placeholder="Mô Tả" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <div className="form-group">
-                                <label>Ảnh</label>
-                                <input type="file" name="img" className="form-control" onChange={ (e) => this.changedData(e) }/>
-                                <progress style={{width: 550 }} value="0" max="100" id="uploader">0%</progress>
+                                <label htmlFor="URL">URL</label>
+                                <input type="string" name="url" className="form-control" placeholder="Vui lòng copy URL ảnh bên trên" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Number">Rating</label>
-                                <input type="number" name="quantity" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
+                                <input type="rating" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <button type="submit" className="btn btn-primary" >Thêm</button>
+                            <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Thêm</button>
                         </form>
                     </div>
                 </div>
+            </div>
+            <div className="col-xs-8 col-sm-8 col-md-20 col-lg-8">
+              <BootstrapTable data={ products } pagination={ true } options={ options }>
+                    <TableHeaderColumn dataField='id' isKey={ true }>Product ID</TableHeaderColumn>
+                    <TableHeaderColumn dataField='name'> Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField='author'> author</TableHeaderColumn>
+                    <TableHeaderColumn dataField='rating'> rating</TableHeaderColumn>
+                    <TableHeaderColumn dataField='description'>description</TableHeaderColumn>
+                    <TableHeaderColumn dataField='img'> img</TableHeaderColumn>
+                    <TableHeaderColumn dataField='price'> Price</TableHeaderColumn>
+              </BootstrapTable >
             </div>
         </div>
       );
