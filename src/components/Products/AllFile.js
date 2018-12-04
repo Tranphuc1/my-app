@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message';
-import Cart from './Cart';
 import ProductsContainer from './Containers/ProductsContainer';
+import CartContainer from './Containers/CartContainer';
 
 class AllFile extends Component {
     render() {
@@ -11,7 +11,7 @@ class AllFile extends Component {
                     <div className="container">
                         <ProductsContainer/>
                         <Message />
-                        <Cart/>
+                        <CartContainer/>
                     </div>
                 </main >
             </div >

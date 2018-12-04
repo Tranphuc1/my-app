@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-// import * as Message from './../constants/Message';
+import * as Message from './Reducer/Message';
 
 class CartItem extends Component {
 
     render() {
-        // var { item } = this.props;
-        // var { quantity } = item;
+        var { item } = this.props;
+        var { quantity } = item;
         return (
             <tr>
                 <th scope="row">
-                    <img src="http://cafefcdn.com/thumb_w/650/2017/photo1514606141082-1514606141082-1514690372285.jpg"
-                    // {item.product.image}
+                    <img src={item.product.image}
                         style={{width:150}}
                         alt="" className="img-fluid z-depth-0" />
-                        {/* {item.product.name} */}
                 </th>
                 <td>
                     <h5>
-                        <strong>TranPhuc
-                        {/* {item.product.name} */}
-                        </strong>
+                        <strong>  {item.product.name} </strong>
                     </h5>
                 </td>
-                <td>12
-                {/* {item.product.price} */}
-                $</td>
-                <td className="center-on-small-only">
+                <td>
+                    <h5>
+                        {item.product.price} $
+                    </h5>
+                </td>
+                <td className="center-on-small-only"  >
                     <span className="qty">
-                    {/* {quantity} */}
+                            {quantity}
                      </span>
-                    <div className="btn-group radio-group" data-toggle="buttons">
+                     <div className="btn-group radio-group" data-toggle="buttons">
                         <label
                             // onClick={() => this.onUpdateQuantity(item.product, item.quantity - 1)}
                             className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
@@ -44,9 +42,7 @@ class CartItem extends Component {
                         </label>
                     </div>
                 </td>
-                <td>12
-                {/* {this.showSubTotal(item.product.price, item.quantity)} */}
-                $</td>
+                <td> {this.showSubTotal(item.product.price, item.quantity)} $</td>
                 <td>
                     <button
                         type="button"
@@ -78,9 +74,9 @@ class CartItem extends Component {
     //     onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
     // }
 
-    // showSubTotal = (price, quantity) => {
-    //     return price * quantity;
-    // }
+    showSubTotal = (price, quantity) => {
+        return price * quantity;
+    }
 
 }
 

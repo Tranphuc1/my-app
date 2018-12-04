@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 class Demo extends Component {
   render() {
     return (
- 		<div className="main_menu">
+ 		<div className="main_menu" style={{position:'inherit'}}>
 		  <ul>
 		    <li><a href style={{height: 50}}><h4>Nổi bật</h4></a>
 		      <ul className="submenu1">

@@ -14,8 +14,8 @@ class CartResult extends Component {
                 <td>
                     <h4>
                         <strong>
-                        {/* {this.showTotalAmount(cart)} */}
-                        12$</strong>
+                        {this.showTotalAmount(cart)}
+                        $</strong>
                     </h4>
                 </td>
                 <td colSpan="3">

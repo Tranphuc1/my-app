@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import CartItem from './CartItem';
-import CartResult from './CartResult';
 
 class Cart extends Component {
     render() {
-        // var { children } = this.props;
+        var { children } = this.props;
         return (
             <section className="section">
                 <div className="table-responsive">
@@ -17,18 +15,10 @@ class Cart extends Component {
                             <th scope="col">Số Lượng</th>
                             <th scope="col">Tổng Cộng</th>
                             <th scope="col"></th>
-                                {/* <th></th>
-                                <th>Sản Phẩm</th>
-                                <th>Giá</th>
-                                <th>Số Lượng</th>
-                                <th>Tổng Cộng</th>
-                                <th></th> */}
                             </tr>
                         </thead>
                         <tbody>
-                            <CartItem/>
-                            <CartResult/>
-                            {/* { children } */}
+                            { children }
                         </tbody>
                     </table>
                 </div>

@@ -1,6 +1,35 @@
 import p1 from '../../pages/imgslide/p1.jpg';
 import p2 from '../../pages/imgslide/p2.jpg';
 import p3 from '../../pages/imgslide/p3.jpg';
+import { firebaseConnect } from '../../../FirebaseConnect';
+
+
+var list =[];
+     firebaseConnect.database().ref("/Sanpham").on('value',function(note){
+        note.forEach(Element=>{
+            const key=Element.key;
+            const name = Element.val().name;
+            const author = Element.val().author;
+            const kind = Element.val().kind;
+            const rating = Element.val().rating;
+            const description = Element.val().description;
+            const price = Element.val().price;
+            const url = Element.val().url;
+                list.push({
+                    key:key,
+                    name:name,
+                    author:author,
+                    kind:kind,
+                    rating:rating,
+                    description:description,
+                    price:price,
+                    url:url
+                })
+        })
+    })
+
+
+
 var initialState= [
     {
         id : 1,
@@ -38,5 +67,4 @@ const products = (state = initialState, action) => {
         default : return [...state];
     }
 }
-
 export default products;

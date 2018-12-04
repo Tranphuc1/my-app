@@ -23,8 +23,10 @@ class DieuHuong extends Component {
 							<Route path="/"  component={Header} />
 							<Route path="/Signup" component={Signup} />
 							<Route path="/" exact component={homePage} />
+							<Route path="/" exact component={AllFile} />
 							<Route path="/product" component={AllFile} />
 							<Route path="/App1" component={App1} />
+							
 							<Switch>
 								<Route path="/App1/User" component={UserResult} />
 								<Route path="/App1/PushBill" exact  component={PushBill} />
