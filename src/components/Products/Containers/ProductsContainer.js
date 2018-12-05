@@ -6,65 +6,24 @@ import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage } from '../Reducer/index';
 import { actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
+var _ = require('lodash');
+
 class ProductsContainer extends Component {
     constructor(props){
         super(props);
         this.state ={
-            data : []
+            products : []
         };
-            
-        
     }
     componentDidMount(){
         callApi('Sanpham','GET',null).then(res =>{
-            console.log('reder');
-            this.setState({
-                data : res.data
-            });
-        });
-    }
-    // componentWillMount(){
-    //     nodeData.on('value',(notes) => {
-    //         var arrayData =[];
-    //         notes.forEach(Element =>{
-    //             const key = Element.key;
-    //             const name = Element.val().name;
-    //             const author = Element.val().author;
-    //             const kind = Element.val().kind;
-    //             const rating = Element.val().rating;
-    //             const description = Element.val().description;
-    //             const price = Element.val().price;
-    //             const url = Element.val().url;
-    //             arrayData.push({
-    //                 key:key,
-    //                 name:name,
-    //                 author:author,
-    //                 kind:kind,
-    //                 rating:rating,
-    //                 description:description,
-    //                 price:price,
-    //                 url:url
-    //             })
-    //         });
-    //         this.setState({
-    //             data:arrayData
-    //         });
-    //     })
-    // }
-    // getData = () => {
-    //     if(this.state.data)
-    //     {
-    //         return this.state.data.map((value,key) => {
-    //             return (
-    //                 <Products 
-    //                     key={key}>
-    //                 </Products>
-    //             )
-    //         })
-    //     }
-    // }
+            console.log(res.data);
+            this.props.fetchAllProducts(_.toArray(res.data));
+            
+    })
+}
+
     render() {
-        console.log(this.state.data);
         var { products } = this.props;
         return (
             <Products>
@@ -76,8 +35,8 @@ class ProductsContainer extends Component {
     const { onAddToCart, onChangeMessage } = this.props;
     let result = null;
     if (products.length > 0) {
-        result = products.map((p, i) => {
-            return <Product key={i} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} />;
+        result = products.map((p, key) => {
+            return <Product key={key} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} />;
         });
     }
     return result;
@@ -88,7 +47,7 @@ class ProductsContainer extends Component {
 ProductsContainer.propTypes = {
     products : PropTypes.arrayOf(
         PropTypes.shape({
-            key : PropTypes.number.isRequired,
+            key : PropTypes.string.isRequired,
             name : PropTypes.string.isRequired,
             description : PropTypes.string.isRequired,
             author : PropTypes.string.isRequired,

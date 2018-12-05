@@ -111,6 +111,7 @@ export default class PushProduct extends React.Component {
         
       }
     render() {
+      console.log(this.props.id)
       const options = {
         page: 2,  // which page you want to show as default
         sizePerPageList: [ {
