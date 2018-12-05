@@ -1,40 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Products from '../Products';
-import Product from '../Product';
+import Products from '../Components/Products';
+import Product from '../Components/Product';
 import PropTypes from 'prop-types';
-import { firebaseConnect } from '../../../FirebaseConnect';
-import { actAddToCart } from '../Reducer/index';
-var list = [];
- firebaseConnect.database().ref("/Sanpham").on('value',function(note){
-     note.forEach(Element=>{
-        const key=Element.key;
-        const name = Element.val().name;
-        const author = Element.val().author;
-        const kind = Element.val().kind;
-        const rating = Element.val().rating;
-        const description = Element.val().description;
-        const price = Element.val().price;
-        const url = Element.val().url;
-            list.push({
-                key:key,
-                name:name,
-                author:author,
-                kind:kind,
-                rating:rating,
-                description:description,
-                price:price,
-                url:url
-            })
-    })
-    });
+import { actAddToCart,actChangeMessage } from '../Reducer/index';
+import { actFetchProducts } from '../actions/actions';
+import callApi from '../../../ApiCaller/Api';
 class ProductsContainer extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state ={
-    //         data :[]
-    //     }
-    // }
+    constructor(props){
+        super(props);
+        this.state ={
+            data : []
+        };
+            
+        
+    }
+    componentDidMount(){
+        callApi('Sanpham','GET',null).then(res =>{
+            console.log('reder');
+            this.setState({
+                data : res.data
+            });
+        });
+    }
     // componentWillMount(){
     //     nodeData.on('value',(notes) => {
     //         var arrayData =[];
@@ -68,54 +56,51 @@ class ProductsContainer extends Component {
     //     {
     //         return this.state.data.map((value,key) => {
     //             return (
-    //                 <Product 
-    //                 key={key}
-    //                 />
+    //                 <Products 
+    //                     key={key}>
+    //                 </Products>
     //             )
     //         })
     //     }
     // }
     render() {
-        console.log(list);
+        console.log(this.state.data);
         var { products } = this.props;
         return (
             <Products>
-                { this.showProducts(products) }
+                { this.showProducts(products)}
             </Products>
         );
-    }
-
-    showProducts(products){
-        var result = null;
-        var { onAddToCart} = this.props;
-        if(products.length > 0){
-            result = products.map((product, index) => {
-                return <Product 
-                    key={index} 
-                    product={product}
-                    onAddToCart = {onAddToCart} 
-                    // onChangeMessage = {onChangeMessage}
-                />
-            });
-        }
-        return result;
-    }
 }
+    showProducts = products => {
+    const { onAddToCart, onChangeMessage } = this.props;
+    let result = null;
+    if (products.length > 0) {
+        result = products.map((p, i) => {
+            return <Product key={i} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} />;
+        });
+    }
+    return result;
+};
+
+}
+
 ProductsContainer.propTypes = {
     products : PropTypes.arrayOf(
         PropTypes.shape({
             key : PropTypes.number.isRequired,
             name : PropTypes.string.isRequired,
-            url : PropTypes.string.isRequired,
-            kind : PropTypes.string.isRequired,
             description : PropTypes.string.isRequired,
+            author : PropTypes.string.isRequired,
             price : PropTypes.number.isRequired,
             inventory : PropTypes.number.isRequired,
-            rating : PropTypes.number.isRequired
+            rating : PropTypes.number.isRequired,
+            url : PropTypes.string.isRequired
         })
     ).isRequired,
     onAddToCart : PropTypes.func.isRequired,
-    onChangeMessage : PropTypes.func.isRequired
+    onChangeMessage : PropTypes.func.isRequired,
+    fetchAllProducts :PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -128,11 +113,13 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddToCart: (product) => {
             dispatch(actAddToCart(product, 1));
+        },
+        onChangeMessage : (message) => {
+            dispatch(actChangeMessage(message));
+        },
+        fetchAllProducts : (products) => {
+            dispatch(actFetchProducts(products));
         }
-        // onChangeMessage : (message) => {
-        //     dispatch(actChangeMessage(message));
-        // }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

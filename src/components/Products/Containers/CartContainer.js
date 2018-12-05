@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Message from '../constants/Message';
-import CartResult from '../CartResult';
-import Cart from '../Cart';
-import CartItem from '../CartItem';
+import CartResult from '../Components/CartResult';
+import Cart from '../Components/Cart';
+import CartItem from '../Components/CartItem';
+import { actDeleteProductInCart, actChangeMessage,actUpdateProductInCart} from '../Reducer/index';
+
 
 class CartContainer extends Component {
-
     render() {
-        var { cart } = this.props;
-        console.log(cart);
-        return (
-            <Cart>
-                {this.showCartItem(cart)}
-                {this.showTotalAmount(cart)}
-            </Cart>
-        );
-    }
+		const { cart } = this.props;
+		return (
+			<Cart>
+				{this.showCartItem(cart)}
+				{this.showTotalMount(cart)}
+			</Cart>
+		);
+	}
 
     showCartItem = (cart) => {
-        // var { onDeleteProductInCart, onChangeMessage, onUpdateProductInCart } = this.props;
+        var { onDeleteProductInCart, onChangeMessage,onUpdateProductInCart } = this.props;
         var result = <tr><td>{Message.MSG_CART_EMPTY}</td></tr>;
         if (cart.length > 0) {
             result = cart.map((item, index) => {
@@ -29,23 +29,22 @@ class CartContainer extends Component {
                         key={index}
                         item={item}
                         index={index}
-                        // onDeleteProductInCart={onDeleteProductInCart}
-                        // onChangeMessage={onChangeMessage}
-                        // onUpdateProductInCart={onUpdateProductInCart}
+                        onDeleteProductInCart={onDeleteProductInCart}
+                        onChangeMessage={onChangeMessage}
+                        onUpdateProductInCart={onUpdateProductInCart}
                     />
                 );
             });
         }
         return result;
     }
-
-    showTotalAmount = (cart) => {
-        var result = null;
-        if (cart.length > 0) {
-            result = <CartResult cart={cart} />
-        }
-        return result;
-    }
+    showTotalMount = (cart) => {
+		let result = [];
+		if (cart.length > 0) {
+			result = <CartResult cart={cart} />
+		}
+		return result;
+	};
 
 }
 
@@ -62,9 +61,9 @@ CartContainer.propTypes = {
         }).isRequired,
         quantity: PropTypes.number.isRequired
     })).isRequired,
-    // onDeleteProductInCart : PropTypes.func.isRequired,
-    // onChangeMessage : PropTypes.func.isRequired,
-    // onUpdateProductInCart : PropTypes.func.isRequired,
+    onDeleteProductInCart : PropTypes.func.isRequired,
+    onChangeMessage : PropTypes.func.isRequired,
+    onUpdateProductInCart : PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -73,18 +72,18 @@ const mapStateToProps = state => {
     }
 }
 
-// const mapDispatchToProps = (dispatch, props) => {
-//     return {
-//         onDeleteProductInCart: (product) => {
-//             dispatch(actDeleteProductInCart(product));
-//         },
-//         onChangeMessage: (message) => {
-//             dispatch(actChangeMessage(message));
-//         },
-//         onUpdateProductInCart: (product, quantity) => {
-//             dispatch(actUpdateProductInCart(product, quantity));
-//         }
-//     }
-// }
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onDeleteProductInCart: (product) => {
+            dispatch(actDeleteProductInCart(product));
+        },
+        onChangeMessage: (message) => {
+            dispatch(actChangeMessage(message));
+        },
+        onUpdateProductInCart: (product, quantity) => {
+            dispatch(actUpdateProductInCart(product, quantity));
+        }
+    }
+}
 
-export default connect(mapStateToProps, null)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

@@ -1,9 +1,7 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var minifyCSS =require('gulp-clean-css');
 var rename = require('gulp-rename');
-var changed = require('gulp-changed');
 gulp.task('sass', function(){
     return gulp.src('src/assets/scss/style.scss')
             .pipe(sass())

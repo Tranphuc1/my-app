@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import * as Message from './Reducer/Message';
-
+import * as Message from '../constants/Message';
 class CartItem extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            quantity : 1 
+        }
+    }
 
     render() {
         var { item } = this.props;
@@ -29,15 +34,13 @@ class CartItem extends Component {
                      </span>
                      <div className="btn-group radio-group" data-toggle="buttons">
                         <label
-                            // onClick={() => this.onUpdateQuantity(item.product, item.quantity - 1)}
-                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
-                        >
+                            onClick={() => this.onUpdateQuantity(item.product, item.quantity - 1)}
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>—</a>
                         </label>
                         <label
-                            // onClick={() => this.onUpdateQuantity(item.product, item.quantity + 1)}
-                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light"
-                        >
+                            onClick={() => this.onUpdateQuantity(item.product, item.quantity + 1)}
+                            className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>+</a>
                         </label>
                     </div>
@@ -51,28 +54,26 @@ class CartItem extends Component {
                         data-placement="top"
                         title=""
                         data-original-title="Remove item"
-                        // onClick={() => this.onDelete(item.product)}
-                    >
+                        onClick={() => this.onDelete(item.product)}>
                         X
                     </button>
                 </td>
             </tr>
         );
     }
+    onUpdateQuantity = (product, quantity) => {
+        if (quantity > 0) {
+            var { onUpdateProductInCart, onChangeMessage } = this.props;
+            onUpdateProductInCart(product, quantity);
+            onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
+        }
+    }
 
-    // onUpdateQuantity = (product, quantity) => {
-    //     if (quantity > 0) {
-    //         var { onUpdateProductInCart, onChangeMessage } = this.props;
-    //         onUpdateProductInCart(product, quantity);
-    //         onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
-    //     }
-    // }
-
-    // onDelete = (product) => {
-    //     var { onDeleteProductInCart, onChangeMessage } = this.props;
-    //     onDeleteProductInCart(product);
-    //     onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
-    // }
+    onDelete = (product) => {
+        var { onDeleteProductInCart, onChangeMessage } = this.props;
+        onDeleteProductInCart(product);
+        onChangeMessage(Message.MSG_DELETE_PRODUCT_IN_CART_SUCCESS);
+    }
 
     showSubTotal = (price, quantity) => {
         return price * quantity;

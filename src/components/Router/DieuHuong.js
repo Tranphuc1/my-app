@@ -6,7 +6,7 @@ import { Route, Switch} from "react-router-dom";
 import homePage from './../pages/homePage';
 import Header from '../headerComponents/header';
 import Footer from '../footerComponents/footer';
-import AllFile from '../Products/AllFile';
+import AllFile from '../Products/Components/AllFile';
 import Signup from '../Admin/Login/Signup';
 import App1 from '../Admin/Manage/App/App1';
 import PushProduct from '../Admin/Manage/ProductsForm/PushProduct';
@@ -23,7 +23,6 @@ class DieuHuong extends Component {
 							<Route path="/"  component={Header} />
 							<Route path="/Signup" component={Signup} />
 							<Route path="/" exact component={homePage} />
-							<Route path="/" exact component={AllFile} />
 							<Route path="/product" component={AllFile} />
 							<Route path="/App1" component={App1} />
 							

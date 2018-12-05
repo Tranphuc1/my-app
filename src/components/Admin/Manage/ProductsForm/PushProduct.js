@@ -2,48 +2,9 @@ import React from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 
-
-// var uploader = document.getElementById('uploader');
-// var fileButton =document.getElementById('fileButton');
-// var storeURl = 'Sanpham/';
-
 var nodeData = firebaseConnect.database().ref('/Sanpham');
-// var storeRef = firebaseConnect.storage().ref(storeURl + files.name);
-const products = [];
+var products = [];
 const storage = firebaseConnect.storage();
-//listen file 
-// fileButton.addEventListener('change',function(e){
-//   //get file
-//     var file = e.target.value[0];
-
-//   // create store ref
-     
-//    
-
-//   //upload file
-
-//     var task = storeRef.put(file);
-  
-//     //update file
-
-//     task.on('state_changed',
-//         function progress(snapshot){
-//             var percenter = (snapshot.bytesTransferred /
-//             snapshot.totalBytes)*100;
-//             uploader.value = percenter;
-//         },
-
-//         function error(err){
-
-//         },
-
-//         function complete(){
-
-//         }
-//     );
-
-
-// });
 function addProducts(quantity) {
   const startId = products.length;
   for (let i = 0; i < quantity; i++) {
@@ -51,7 +12,7 @@ function addProducts(quantity) {
     products.push({
       id: id,
       name: 'Item name ',
-      author: 'tramphuc',
+      author: 'traphuc',
       kind:'',
       rating:'5',
       description:'tranphuc',
