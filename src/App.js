@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-//import {firebaseConnect} from "./firebaseConnect";
 //components
 import DieuHuong from './components/Router/DieuHuong';
 //
@@ -17,7 +16,6 @@ class App extends Component {
 	    	<div className="App">
 		    	<div className="container-fluid">
 			 		<DieuHuong />
-					{/* <Navigation/> */}
 		    	</div>
 	 		</div>
 	 	</Router>

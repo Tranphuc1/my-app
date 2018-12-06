@@ -51,13 +51,14 @@ class CartContainer extends Component {
 CartContainer.propTypes = {
     cart: PropTypes.arrayOf(PropTypes.shape({
         product: PropTypes.shape({
-            key: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            inventory: PropTypes.number.isRequired,
-            rating: PropTypes.number.isRequired
+            key : PropTypes.string.isRequired,
+            name : PropTypes.string.isRequired,
+            description : PropTypes.string.isRequired,
+            author : PropTypes.string.isRequired,
+            price : PropTypes.number.isRequired,
+            inventory : PropTypes.number.isRequired,
+            rating : PropTypes.number.isRequired,
+            url : PropTypes.string.isRequired
         }).isRequired,
         quantity: PropTypes.number.isRequired
     })).isRequired,

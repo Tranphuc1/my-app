@@ -17,9 +17,7 @@ class ProductsContainer extends Component {
     }
     componentDidMount(){
         callApi('Sanpham','GET',null).then(res =>{
-            console.log(res.data);
             this.props.fetchAllProducts(_.toArray(res.data));
-            
     })
 }
 
@@ -31,12 +29,14 @@ class ProductsContainer extends Component {
             </Products>
         );
 }
-    showProducts = products => {
+    showProducts = (products) => {
     const { onAddToCart, onChangeMessage } = this.props;
     let result = null;
     if (products.length > 0) {
         result = products.map((p, key) => {
-            return <Product key={key} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} />;
+            return <Product 
+                key={key} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} 
+            />;
         });
     }
     return result;

@@ -12,16 +12,15 @@ const products = (state = initialState, action) => {
     switch(action.type){ 
         case Types.ADD_TO_CART:
             index = findProductInCart(state,product);
-            // if(index !== -1){
-            //     state[index].quantity +=quantity;
-            // }else{
+            if(index !== -1){
+                state[index].quantity +=quantity;
+            }else{
             state.push({
                 product,
                 quantity
             });
-            // }
-            // localStorage.setItem('CART',JSON.stringify(state));
-            console.log(action);
+            }
+            localStorage.setItem('CART',JSON.stringify(state));
             return [...state];
         case Types.DELETE_PRODUCT_IN_CART:
                 index = findProductInCart (state,product);

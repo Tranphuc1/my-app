@@ -7,7 +7,6 @@ class CartItem extends Component {
             quantity : 1 
         }
     }
-
     render() {
         var { item } = this.props;
         var { quantity } = item;
