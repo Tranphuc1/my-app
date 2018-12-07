@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import Form from '../Form/UserForm';
 import Table from '../Table/Table';
-import Mydata from '../data.json';
-import { firebaseConnect } from '../../../../FirebaseConnect';
 import EditUser from './EditUser';
-var nodeData = firebaseConnect.database().ref('/User');
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import {actShowAllUser} from '../../../Products/actions/actions';
+import callApi from '../../../../ApiCaller/Api';
+var _ = require('lodash');
 class UserResult extends Component {
     constructor(props) {
-      super(props);
-      
+      super(props);  
       this.state = {
-        statusForm : true,
-        usersData: Mydata
+        statusForm : true
       }
     }
-    showForm = () => {
-      if (this.state.statusForm) {
-        return <Form FromToogle = { (e) => this.changeStatusForm(e)} add={(item)=> this.addAction(item)}></Form>
-      }
+    componentDidMount(){
+      callApi('User','GET',null).then(res=>{
+        this.props.actShowUser(_.toArray(res.data));
+      })
     }
-  
     changeStatusForm = (event) => {
       event.preventDefault();
       this.setState({
@@ -28,7 +27,7 @@ class UserResult extends Component {
     }
     showForm = () => {
       if (this.state.statusForm) {
-        return <Form formToogle={ (e) => this.changeStatusForm(e) } add={ (item) => this.addAction(item) }></Form>
+        return <Form formToogle={ (e) => this.changeStatusForm(e) }></Form>
       }
     }
   
@@ -38,20 +37,15 @@ class UserResult extends Component {
         statusForm : !this.state.statusForm
       });
     }
-  addAction = (item) => {
-    nodeData.push(item)
-    alert('thêm dữ liệu thành công' + JSON.stringify(item)+"thành công")
-  }
 
     render() {
+      var {User} = this.props;
       return (
         <div className="App">
         <div className="container">
-          
           <EditUser />
           <div className="container" style={{display: '-webkit-inline-box'}}>
-            
-            <Table userData ={this.state.usersData} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
+            <Table userData ={User} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
             { this.showForm() } 
           </div>
         </div>
@@ -59,4 +53,27 @@ class UserResult extends Component {
       );
     }
   }
-export default UserResult;
+UserResult.propTypes = {
+  User : PropTypes.arrayOf(
+      PropTypes.shape({
+          key : PropTypes.string.isRequired,
+          username : PropTypes.string.isRequired,
+          password : PropTypes.string.isRequired,
+      })
+  ).isRequired,
+  actShowUser : PropTypes.func.isRequired
+}
+const mapStateToProps = (state) =>{
+  return {
+    User: state.User
+  }
+}
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    actShowUser:(User)=>{
+      dispatch(actShowAllUser(User));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserResult);

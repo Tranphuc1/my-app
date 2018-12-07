@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import callApi from '../../../../ApiCaller/Api';
 // const uuidv4 = require('uuid/v4');
 class Form extends Component {
     constructor(props) {
@@ -23,14 +24,13 @@ class Form extends Component {
         const item ={};
         item.username = txtUser;
         item.password = txtPass;
-        this.props.add(item);
+        callApi('User','POST',item).then(res =>{
+            alert('Thêm người dùng thành công')
+            })
     }
 
 
     render() {
-        // noteData.once('value').then(function(snapshot){
-        //     console.log(snapshot.val());
-        //   })
         return (
             <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <div className="alert alert-danger" role="alert">
@@ -63,18 +63,4 @@ class Form extends Component {
         );
     }
 }
-
-// const mapStateToProps = (state, ownProps) => {
-//     return{
-//         testThoi:state.testconnect
-//     }
-// }
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//     return{
-//         addDataStore:()=>{
-//             dispatch({type:"Add_data"})
-//         }
-//     }
-// }
 export default Form;
-// export default connect(mapStateToProps, mapDispatchToProps)(Form);

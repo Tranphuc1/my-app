@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { firebaseConnect } from '../../../../FirebaseConnect';
 import _ from 'lodash';
-
+import { firebaseConnect } from '../../../../FirebaseConnect';
+import callApi from '../../../../ApiCaller/Api';
 
 var nodeData = firebaseConnect.database().ref('/Sanpham');
 const storage = firebaseConnect.storage();
@@ -27,7 +27,6 @@ class PushForm extends Component {
       componentDidMount(){
         nodeData.on('value',(snapshot) =>{
           var arr = Object.keys(snapshot.val());
-          console.log(_.last(arr));
           this.setState({
             key : _.last(arr)
           });
@@ -56,21 +55,12 @@ class PushForm extends Component {
       () => {
           // complete function ....
           storage.ref('images').child(img.name).getDownloadURL().then(url => {
-              console.log(url);
               this.setState({url});
           })
         });
     }
-  
-      renderShowsTotal(start, to, total) {
-        return (
-          <p style={ { color: 'red' } }>
-            From { start } to { to }, totals is { total }&nbsp;&nbsp;
-          </p>
-        );
-      }
       changedData = (event) => {
-        const target = event.target
+        const target = event.target;
         const name = target.name;
         const value = target.value;
         this.setState(() => ({
@@ -79,6 +69,7 @@ class PushForm extends Component {
       }
       submitProduct = (event) =>{
         event.preventDefault();
+        var {history} = this.props;
         const {key,name,author,kind,rating,description,price,url} = this.state;
         const item ={};
           item.key = key;
@@ -89,17 +80,13 @@ class PushForm extends Component {
           item.description = description;
           item.price = price;
           item.url = url;
-          this.add(item);
-      }
-        add=(item)=>{
-          nodeData.push(item)
-          alert('OK nha ..')
-          
-        }
-    render() {
-        var {name,author,kind,rating,description,price,url} = this.state;
-        return (
+          callApi('Sanpham','POST',item).then(res =>{
+            history.goBack();
+            })
+          }
 
+    render() {
+        return (
                 <div className="panel-panel waring">
                     <div className="card-header" style={{color:'blue'}}>
                         <h4>Sản phẩm</h4>
@@ -109,32 +96,36 @@ class PushForm extends Component {
                             <div className="form-group">
                                 <label>Ảnh</label>
                                 <input type="file" name="img" className="form-control"  onChange={this.handleChange}/>
-                                <a name="" id="" className="btn btn-success" role="button" onClick={this.handleUpload} style={{textAlign:'center'}}>UPLOAD</a>
-                                <progress style={{width:350}} value={this.state.progress} max="100"/>
                                 
+                                <button type="button" onClick={this.handleUpload} className="btn btn-success">UPLOAD</button>
+                                <br/>
+                                <progress style={{width:350}} value={this.state.progress} max="100"/>
                             </div>
                             <div className="form-group">
-                                <label value={url} >Coppy URL:</label>
+                                <label name="url" >Coppy URL:</label>
+                                <br/>
                                 <label style={{border:'solid 1px'}}><p>{this.state.url}</p></label>
                                 <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400"/>
                             </div>
                             <div className="form-group" >
                                 <label htmlFor="name">Tên Sản Phẩm</label>
-                                <input type="text" name="name" value={name} onChange={ (e) => this.changedData(e) } placeholder="Nhập Tên Sản Phẩm"  />
+                                <input type="text" name="name" onChange={ (e) => this.changedData(e) } placeholder="Nhập Tên Sản Phẩm"  />
                             </div>
                         
                             <div className="form-group">
                                 <label htmlFor="author">Tên Tác Giả</label>
                                 <input type="text" name="author" className="form-control" placeholder="Nhập Tên Tác Giả" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <form>
+                            <div className="form-group">
                                 <label >Thể Loại</label>
-                                <select className="form-control" value={kind}>
-                                    <option value="grapefruit">Grapefruit</option>
-                                    <option value="lime">Lime</option>
-                                    <option value="mango">Mango</option>
+                                <br/>
+                                <select style={{width:'225px',height:"25px"}} onChange={ (e) => this.changedData(e) } name="kind">
+                                    <option value>---Chọn---</option>
+                                    <option value="Sách Kinh Tế">Sách Kinh Tế</option>
+                                    <option value="Văn Học Nước Ngoài">Văn Học Nước Ngoài</option>
+                                    <option value="Kỹ Năng Sống">Kỹ Năng Sống</option>
                                 </select>
-                            </form>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="price">Giá</label>
                                 <input type="money" name="price" className="form-control" placeholder="Giá Tiền VNĐ" onChange={ (e) => this.changedData(e) }/>
@@ -151,12 +142,12 @@ class PushForm extends Component {
                                 <label htmlFor="Number">Rating</label>
                                 <input type="rating" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Thêm</button>
+                            <button type="submit" className="btn btn-danger" >Trở Về</button>                            
+                            <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>
                         </form>
                     </div>
                 </div>
         );
     }
 }
-
 export default PushForm;

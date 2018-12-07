@@ -9,11 +9,10 @@ import Footer from '../footerComponents/footer';
 import AllFile from '../Products/Components/AllFile';
 import Signup from '../Admin/Login/Signup';
 import App1 from '../Admin/Manage/App/App1';
-import PushProduct from '../Admin/Manage/ProductsForm/PushProduct';
+import PushProduct from '../Admin/Manage/ProductsForm/AdminProductContainer';
 import PushBill from '../Admin/Manage/Bill/PushBill';
 import UserResult from '../Admin/Manage/Form/UserResult';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
-import demo from '../Admin/Manage/ProductsForm/demo';
 
 
 //
@@ -32,7 +31,6 @@ class DieuHuong extends Component {
 								<Route path="/App1/PushBill" exact  component={PushBill} />
 								<Route path="/App1/PushProduct" exact component={PushProduct} />
 								<Route path="/App1/PushProduct/PushForm" exact component={PushForm} />
-								<Route path="/demo" exact component={demo} />
 							</Switch>
 							<Route path="/"  component={Footer} />
 		</div>

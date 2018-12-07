@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import Products from '../Components/Products';
 import Product from '../Components/Product';
 import PropTypes from 'prop-types';
-import { actAddToCart,actChangeMessage } from '../Reducer/index';
-import { actFetchProducts } from '../actions/actions';
+import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
 var _ = require('lodash');
 
@@ -18,12 +17,14 @@ class ProductsContainer extends Component {
     componentDidMount(){
         callApi('Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
+        
     })
 }
 
     render() {
         var { products } = this.props;
         return (
+            
             <Products>
                 { this.showProducts(products)}
             </Products>
