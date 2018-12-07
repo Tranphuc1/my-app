@@ -38,7 +38,7 @@ class ProductsContainer extends Component {
     }
     render() {
         var { products } = this.props;
-        const { allProducts, currentProducts, currentPage, totalPages } = this.state;
+        const { currentProducts, currentPage, totalPages } = this.state;
         const totalProducts = products.length;
         if (totalProducts === 0) return null;
         const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
@@ -46,6 +46,7 @@ class ProductsContainer extends Component {
             <div className="container mb-5">
                 <div className="row d-flex flex-row py-5">
                 <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+                    
                     <div className="d-flex flex-row align-items-center">
                     <h2 className={headerClass}>
                         <strong className="text-secondary">{totalProducts}</strong> Products
@@ -59,7 +60,6 @@ class ProductsContainer extends Component {
                     <div className="form-group">
                     <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                     </div>
-                    
                 </div>
                     { currentProducts.map((product,key) => { return <Product key={key} product={product} />; }) 
                     }
