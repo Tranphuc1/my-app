@@ -1,31 +1,45 @@
 import React, { Component } from 'react';
+import AdminProduct from './AdminProduct';
 
-class showProduct extends Component {
+class ShowProduct extends Component {
+    MappingData = () =>{
+        const sProducts = this.props.Data.map((value,key) =>{
+            return <AdminProduct 
+            key={key} 
+            author={value.author} 
+            kind={value.kind}
+            url ={value.url}
+            price={value.price}
+            rating={value.rating}
+            description={value.description}
+            >{value.name}</AdminProduct>
+        });
+        return sProducts;
+    }
     render() {
-        var {products} = this.props;
         return (
-            <div className="PushProduct" >
-            <table className="table">
-                <thead>
-                    <tr>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Thể Loại</th>
-                    <th>author</th>
-                    <th>description</th>
-                    <th>img</th>
-                    <th>price</th>
-                    <th >rating</th>
-                    <th >Thực Thi</th>
-                    <td className="text-center" width="50px"><a className="btn btn-warning btn-sm" href="sua" role="button"><i className="fa fa-pencil-square-o" aria-hidden="true" /> Sửa</a></td>
-                    <td className="text-center" width="50px"><a className="btn btn-danger btn-sm" href="xoa" role="button"><i className="fa fa-trash-o" aria-hidden="true" /> Xóa</a></td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
+            <div className="showProduct" >
+                <table className="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th>Product Name</th>
+                        <th>Kind</th>
+                        <th>author</th>
+                        <th>description</th>
+                        <th>Image</th>
+                        <th>price</th>
+                        <th >rating</th>
+                        <th className="text-center" colSpan={2}>Quyền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.MappingData()}
+                        
+                    </tbody>
                 </table>
             </div>
         )
     }
 }
 
-export default showProduct;
+export default ShowProduct;

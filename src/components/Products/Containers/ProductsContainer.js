@@ -5,44 +5,69 @@ import Product from '../Components/Product';
 import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
+import Pagination from '../../Pagination/Pagination';
+
 var _ = require('lodash');
 
 class ProductsContainer extends Component {
     constructor(props){
         super(props);
         this.state ={
-            products : []
+            allProducts:[],
+            products : [],
+            currentProducts:[],
+            currentPage:null,
+            totalPages:null
         };
     }
     componentDidMount(){
         callApi('Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
-        
-    })
-}
-
+    });
+    const {data: allProducts = [] } = this.props.products;
+    this.setState({
+        allProducts
+    });
+    }
+    onPageChanged = data => {
+        var { products } = this.props;
+        const { currentPage, totalPages, pageLimit } = data;
+        const offset = (currentPage - 1) * pageLimit;
+        const currentProducts = products.slice(offset, offset + pageLimit);
+        this.setState({ currentPage, currentProducts, totalPages });
+    }
     render() {
         var { products } = this.props;
+        const { allProducts, currentProducts, currentPage, totalPages } = this.state;
+        const totalProducts = products.length;
+        if (totalProducts === 0) return null;
+        const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-            
-            <Products>
-                { this.showProducts(products)}
-            </Products>
+            <div className="container mb-5">
+                <div className="row d-flex flex-row py-5">
+                <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+                    <div className="d-flex flex-row align-items-center">
+                    <h2 className={headerClass}>
+                        <strong className="text-secondary">{totalProducts}</strong> Products
+                    </h2>
+                    { currentPage && (
+                        <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                        Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
+                        </span>
+                    ) }
+                    </div>
+                    <div className="form-group">
+                    <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                    </div>
+                    
+                </div>
+                    { currentProducts.map((product,key) => { return <Product key={key} product={product} />; }) 
+                    }
+                </div>
+                
+            </div>
         );
 }
-    showProducts = (products) => {
-    const { onAddToCart, onChangeMessage } = this.props;
-    let result = null;
-    if (products.length > 0) {
-        result = products.map((p, key) => {
-            return <Product 
-                key={key} product={p} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage} 
-            />;
-        });
-    }
-    return result;
-};
-
 }
 
 ProductsContainer.propTypes = {

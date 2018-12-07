@@ -30,7 +30,6 @@ class UserResult extends Component {
         return <Form formToogle={ (e) => this.changeStatusForm(e) }></Form>
       }
     }
-  
     changeStatusForm = (event) => {
       event.preventDefault();
       this.setState({
@@ -43,7 +42,7 @@ class UserResult extends Component {
       return (
         <div className="App">
         <div className="container">
-          <EditUser />
+          {/* <EditUser /> */}
           <div className="container" style={{display: '-webkit-inline-box'}}>
             <Table userData ={User} changedButton = {this.state.statusForm} FromToogle = { (e) => this.changeStatusForm(e)}></Table>
             { this.showForm() } 

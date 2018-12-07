@@ -21,15 +21,13 @@ class Table extends Component {
 
     mappingData = () =>{
         const tableRow = this.props.userData.map((value,key) => {
-            return <TableRow key={key} index ={key} >{value.username}</TableRow>
+            return <TableRow key={key} index ={key} password={value.password}>{value.username}</TableRow>
         });
         return tableRow;
     }
-    
     render() {
         return (
             <div className={this.classTable()}>
-
                 <table className="table table-bordered table-hover">
                     <thead>
                         <tr>

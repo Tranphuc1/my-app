@@ -14,7 +14,7 @@ class App1 extends Component {
         <div className="App">
         <div className="container">
         <button onClick={e =>this.logout(e)} type="button" className="btn btn-danger">LogOut</button>
-          <Navvar></Navvar>
+          <Navvar/>
           </div>
         </div>
       );
