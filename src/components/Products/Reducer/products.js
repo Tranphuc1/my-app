@@ -16,9 +16,12 @@ const products = (state = initialState, action) => {
     var index = -1;
     var {key} = action;
     switch(action.type){
-       case Types.FETCH_PRODUCTS:
-         state = action.products;
-         return [...state];
+        case Types.FETCH_PRODUCTS:
+            state = action.products;
+            return [...state];
+        case Types.ADD_PRODUCT:
+        state.push(action.product);
+        return [...state];
         case Types.DELETE_PRODUCT:
             index = FindIndex(state,key);
             state.slice(index,1);

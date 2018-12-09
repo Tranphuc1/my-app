@@ -97,9 +97,7 @@ const mapDispatchToProps = (dispatch, props) => {
       onDeleteProduct : (key)=>{
           dispatch(actDeleteProductsRequest(key));
       },
-      getKeyProducts: (key) =>{
-          dispatch(actGetKey(key));
-      }
+
    }
 }
 

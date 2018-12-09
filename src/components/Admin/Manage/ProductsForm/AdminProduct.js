@@ -10,6 +10,9 @@ class AdminProduct extends Component {
             
         // }
         // firebaseConnect.database().ref('Sanpham').child(_.findKey)
+       var ref = firebaseConnect.database().ref('/Sanpham');
+       var key = ref.child('/SachBao')        
+        
     }
     // onDelete = (key) => {
     //     this.props.onDeleteProduct(key);

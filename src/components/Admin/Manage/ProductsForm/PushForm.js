@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 import callApi from '../../../../ApiCaller/Api';
 import { connect } from 'react-redux';
-import Listen from './Listen';
-var nodeData = firebaseConnect.database().ref('/Sanpham');
+import PropTypes from 'prop-types';
+import { actAddProductRequest } from '../../../Products/actions/actions';
 const storage = firebaseConnect.storage();
 
 class PushForm extends Component {
@@ -80,11 +80,22 @@ class PushForm extends Component {
           item.description = description;
           item.price = price;
           item.url = url;
-          callApi('Sanpham','POST',item).then(res =>{
+            // callApi('Sanpham','POST',item).then(res =>{
+            //     history.goBack();
+            // });
+            this.props.onAddProduct(item);
             history.goBack();
-            })
+            var nodeData = firebaseConnect.database();
+            var newkey = nodeData.ref('/Sanpham').push(item).getKey();
+            
+            
+        // this.setState(()=>{
+        //      newkey = key;
+        // })
+        
         }
     render() {
+        var {history} = this.props;
         return (
                 <div className="panel-panel waring">
                     <div className="card-header" style={{color:'blue'}}>
@@ -141,7 +152,7 @@ class PushForm extends Component {
                                 <label htmlFor="Number">Rating</label>
                                 <input type="rating" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <button type="submit" className="btn btn-danger" >Trở Về</button>                            
+                            <button type="submit" className="btn btn-danger" onClick={(e) => history.goBack(e)}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>
                         </form>
                     </div>
@@ -149,9 +160,20 @@ class PushForm extends Component {
         );
     }
 }
-const mapStateToProps = state => {
+PushForm.propTypes = {
+    key: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.shape({
+            key : PropTypes.string.isRequired
+        }).isRequired,
+    })).isRequired,
+    actGetKey : PropTypes.func.isRequired
+}
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        key : state.key
+        onAddProduct : (product) => {
+            dispatch(actAddProductRequest(product));
+        }
     }
 }
-export default connect(mapStateToProps, null)(PushForm);
+
+export default connect(null, mapDispatchToProps)(PushForm);
