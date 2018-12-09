@@ -13,6 +13,7 @@ import PushProduct from '../Admin/Manage/ProductsForm/AdminProductContainer';
 import PushBill from '../Admin/Manage/Bill/PushBill';
 import UserResult from '../Admin/Manage/Form/UserResult';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
+import Listen from '../Admin/Manage/ProductsForm/Listen';
 
 
 //
@@ -31,6 +32,7 @@ class DieuHuong extends Component {
 								<Route path="/App1/PushBill" exact  component={PushBill} />
 								<Route path="/App1/PushProduct" exact component={PushProduct} />
 								<Route path="/App1/PushProduct/PushForm" exact component={PushForm} />
+								<Route path="/App1/PushProduct/Listen" exact component={Listen} />
 							</Switch>
 							<Route path="/"  component={Footer} />
 		</div>

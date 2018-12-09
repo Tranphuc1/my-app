@@ -43,7 +43,6 @@ class Product extends Component {
 			</div>
 		);
 	}
-
 	onAddToCart = (product) => {
 		const { onAddToCart, onChangeMessage } = this.props;
 		onAddToCart(product);

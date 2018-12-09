@@ -40,3 +40,4 @@ class CartResult extends Component {
 }
 
 export default CartResult;
+

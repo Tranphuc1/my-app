@@ -25,8 +25,8 @@ class Form extends Component {
         item.username = txtUser;
         item.password = txtPass;
         callApi('User','POST',item).then(res =>{
-            alert('Thêm người dùng thành công')
-            })
+        alert('Thêm người dùng thành công')
+        })
     }
 
 

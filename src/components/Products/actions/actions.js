@@ -1,9 +1,14 @@
 import * as Types from '../constants/ActionType';
+import callApi from '../../../ApiCaller/Api';
 
-
-
-
-//user
+// Key
+export const actGetKey =(key) =>{
+    return{
+        type:Types.GET_KEY,
+        key
+    }
+}
+// user
 export const actShowAllUser = (User) =>{
     return {
         type:Types.SHOW_ALL_USER,
@@ -17,7 +22,24 @@ export const actFetchProducts = (products) => {
         products
     }
 }
-//cart
+
+export const actDeleteProductsRequest = (key) =>{
+    return dispatch =>{
+        return callApi(`Sanpham${key}`,'DELETE',null).then(res =>{
+            dispatch(actDeleteProducts(res));
+            console.log(res);
+        })
+    }
+}
+
+
+export const actDeleteProducts = (key) =>{
+    return {
+        type: Types.DELETE_PRODUCT,
+        key
+    }
+}
+// cart
 export const actAddToCart = (product, quantity) => {
     return {
         type: Types.ADD_TO_CART,

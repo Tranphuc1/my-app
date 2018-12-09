@@ -29,6 +29,21 @@ class ProductsContainer extends Component {
         allProducts
     });
     }
+    showProducts(products){
+        var result = null;
+        var { onAddToCart, onChangeMessage } = this.props;
+        if(products.length > 0){
+            result = products.map((product, index) => {
+                return <Product 
+                    key={index} 
+                    product={product}
+                    onAddToCart = {onAddToCart} 
+                    onChangeMessage = {onChangeMessage}
+                />
+            });
+        }
+        return result;
+    }
     onPageChanged = data => {
         var { products } = this.props;
         const { currentPage, totalPages, pageLimit } = data;
@@ -38,34 +53,36 @@ class ProductsContainer extends Component {
     }
     render() {
         var { products } = this.props;
-        const { currentProducts, currentPage, totalPages } = this.state;
-        const totalProducts = products.length;
-        if (totalProducts === 0) return null;
-        const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
+        // const { currentProducts, currentPage, totalPages } = this.state;
+        // const totalProducts = products.length;
+        // if (totalProducts === 0) return null;
+        // const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-            <div className="container mb-5">
-                <div className="row d-flex flex-row py-5">
-                <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+            // <div className="container mb-5">
+            //     <div className="row d-flex flex-row py-5">
+            //     <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
                     
-                    <div className="d-flex flex-row align-items-center">
-                    <h2 className={headerClass}>
-                        <strong className="text-secondary">{totalProducts}</strong> Products
-                    </h2>
-                    { currentPage && (
-                        <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-                        Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
-                        </span>
-                    ) }
-                    </div>
-                    <div className="form-group">
-                    <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-                    </div>
-                </div>
-                    { currentProducts.map((product,key) => { return <Product key={key} product={product} />; }) 
-                    }
-                </div>
-                
-            </div>
+            //         <div className="d-flex flex-row align-items-center">
+            //         <h2 className={headerClass}>
+            //             <strong className="text-secondary">{totalProducts}</strong> Products
+            //         </h2>
+            //         { currentPage && (
+            //             <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+            //             Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
+            //             </span>
+            //         ) }
+            //         </div>
+            //         <div className="form-group">
+            //         <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+            //         </div>
+            //     </div>
+            //         { currentProducts.map({this.showProducts(products)}) 
+            //         }
+            //     </div>
+                <Products>
+                    {this.showProducts(products)}
+                </Products>
+            // </div>
         );
 }
 }

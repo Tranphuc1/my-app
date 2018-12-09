@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 import callApi from '../../../../ApiCaller/Api';
-
+import { connect } from 'react-redux';
+import Listen from './Listen';
 var nodeData = firebaseConnect.database().ref('/Sanpham');
 const storage = firebaseConnect.storage();
 
@@ -24,15 +25,14 @@ class PushForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
       }
-      componentDidMount(){
-        nodeData.on('value',(snapshot) =>{
-          var arr = Object.keys(snapshot.val());
-          this.setState({
-            key : _.last(arr)
-          });
-          
-        })
-      }
+    //   componentWillMount(){
+    //     callApi('Sanpham','GET',null).then(res =>{
+    //       var arr = Object.keys(res.data);
+    //       this.setState({
+    //         key : _.last(arr)
+    //       });
+    //     })
+    //   }
       handleChange = e => {
         if (e.target.files[0]) {
           const img = e.target.files[0];
@@ -83,8 +83,7 @@ class PushForm extends Component {
           callApi('Sanpham','POST',item).then(res =>{
             history.goBack();
             })
-          }
-
+        }
     render() {
         return (
                 <div className="panel-panel waring">
@@ -150,4 +149,9 @@ class PushForm extends Component {
         );
     }
 }
-export default PushForm;
+const mapStateToProps = state => {
+    return {
+        key : state.key
+    }
+}
+export default connect(mapStateToProps, null)(PushForm);
