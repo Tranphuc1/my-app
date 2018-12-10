@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AdminProduct from './AdminProduct';
 
 class ShowProduct extends Component {
     // MappingData = () =>{
@@ -16,12 +17,14 @@ class ShowProduct extends Component {
     //     return sProducts;
     // }
     render() {
+        var {products} = this.props;
         return (
             <div className="showProduct" >
                 <table className="table table-bordered table-hover">
                     <thead>
                         <tr>
                         <th>STT</th>
+                        <th>Mã Sản Phẩm</th>
                         <th>Product Name</th>
                         <th>Kind</th>
                         <th>author</th>

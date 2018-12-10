@@ -24,7 +24,8 @@ export const actFetchProducts = (products) => {
 }
 export const actAddProductRequest = (product) => {
     return dispatch => {
-        return callApi('Sanpham', 'POST', product).then(res => {
+        return 
+            callApi('Sanpham', 'POST', product).then(res => {
             dispatch(actAddProduct(res.data));
         });
     }

@@ -21,7 +21,7 @@ class ProductsContainer extends Component {
         };
     }
     componentDidMount(){
-        callApi('Sanpham','GET',null).then(res =>{
+        callApi('Database/Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
     });
     const {data: allProducts = [] } = this.props.products;

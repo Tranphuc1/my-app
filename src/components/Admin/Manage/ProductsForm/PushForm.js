@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import ReactTimeout from 'react-timeout'
 import { firebaseConnect } from '../../../../FirebaseConnect';
-import callApi from '../../../../ApiCaller/Api';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { actAddProductRequest } from '../../../Products/actions/actions';
+import callApi from '../../../../ApiCaller/Api';
 const storage = firebaseConnect.storage();
 
 class PushForm extends Component {
@@ -25,14 +26,7 @@ class PushForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
       }
-    //   componentWillMount(){
-    //     callApi('Sanpham','GET',null).then(res =>{
-    //       var arr = Object.keys(res.data);
-    //       this.setState({
-    //         key : _.last(arr)
-    //       });
-    //     })
-    //   }
+
       handleChange = e => {
         if (e.target.files[0]) {
           const img = e.target.files[0];
@@ -80,20 +74,44 @@ class PushForm extends Component {
           item.description = description;
           item.price = price;
           item.url = url;
-            // callApi('Sanpham','POST',item).then(res =>{
-            //     history.goBack();
+            callApi('Database/Sanpham','POST',item).then(res =>{
+                history.goBack();
+            });
+            // this.props.onAddProduct(item);
+            // history.goBack();
+            // var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham').on('value',(snapchat)=>{
+            //     item = snapchat.val();
+            //     key = snapchat.key;
+            //     console.log(key);
             // });
-            this.props.onAddProduct(item);
-            history.goBack();
-            var nodeData = firebaseConnect.database();
-            var newkey = nodeData.ref('/Sanpham').push(item).getKey();
-            
+            // let newID = nodeData.push().getKey();
+            // this.setState({
+            //     uid : newID
+            // })
+            // nodeData.child(key).set(item);
+            // console.log('render1');
+            // history.goBack();
             
         // this.setState(()=>{
         //      newkey = key;
         // })
         
         }
+
+        // componentDidMount(){
+        //     var {uid} = this.state;
+        //     var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham');
+        //     // nodeData.child(`/${uid}`).set({
+        //     //     key : uid
+        //     // })
+        //     console.log('render');
+        // }
+        // removeDB(){
+        //     var {uid} = this.state;
+        //     var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham');
+        //     nodeData.child(`/${uid}`).set(null)
+        //     console.log('render');
+        // }
     render() {
         var {history} = this.props;
         return (
@@ -116,6 +134,10 @@ class PushForm extends Component {
                                 <br/>
                                 <label style={{border:'solid 1px'}}><p>{this.state.url}</p></label>
                                 <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400"/>
+                            </div>
+                            <div className="form-group" >
+                                <label htmlFor="ID">Mã Sản Phẩm</label>
+                                <input type="text" name="ID" onChange={ (e) => this.changedData(e) } placeholder="Nhập Tên Sản Phẩm"  />
                             </div>
                             <div className="form-group" >
                                 <label htmlFor="name">Tên Sản Phẩm</label>
@@ -161,11 +183,11 @@ class PushForm extends Component {
     }
 }
 PushForm.propTypes = {
-    key: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.shape({
+    key: PropTypes.arrayOf(
+        PropTypes.shape({
             key : PropTypes.string.isRequired
-        }).isRequired,
-    })).isRequired,
+        })
+    ).isRequired,
     actGetKey : PropTypes.func.isRequired
 }
 const mapDispatchToProps = (dispatch, props) => {
@@ -173,6 +195,9 @@ const mapDispatchToProps = (dispatch, props) => {
         onAddProduct : (product) => {
             dispatch(actAddProductRequest(product));
         }
+        // onGetKey : (key) =>{
+        //     // dispatch(actGetKey(key));
+        // }
     }
 }
 

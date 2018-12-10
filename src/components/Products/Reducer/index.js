@@ -3,13 +3,12 @@ import products from './products';
 import cart from './cart';
 import message from './Message';
 import User from './User';
-import key from './key';
+// import key from './key';
 const appReducers = combineReducers({
     products,
     cart,
     message,
-    User,
-    key
+    User
 });
 
 export default appReducers;

@@ -8,18 +8,67 @@ import _ from 'lodash';
 import ShowProduct from './showProduct';
 import AdminProduct from'./AdminProduct';
 import { firebaseConnect } from '../../../../FirebaseConnect';
-var nodeData = firebaseConnect.database().ref('/Sanpham');
+import PushForm from './PushForm';
+var nodeData = firebaseConnect.database();
 
 
 
 class PushProduct extends React.Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            data :[]
+        }
+    }
+    //     this.state ={
+    //         key:'',
+    //       name:'',
+    //       author: '',
+    //       kind:'',
+    //       rating:'',
+    //       description:'',
+    //       price:null,
+    //       url:''
+    //     }
+    // }
 
 
   componentDidMount(){
-    callApi('Sanpham','GET',null).then(res =>{
-        this.props.fetchAllProducts(_.toArray(res.data));
-    })
+    // callApi('Database/Sanpham','GET',null).then(res =>{
+        var ref = nodeData.ref('Database').child('Sanpham');
+        ref.on('value',(snapshot)=>{
+            this.props.fetchAllProducts(_.toArray(snapshot.val()));
+        });
+        // this.props.fetchAllProducts(_.toArray(res.data));
+        //     this.setState({
+        //         key : Object.keys(res.data)
+        //     })
+            
+        // console.log(Object.keys(res.data));
+    // })
     }
+    // writeNewPost(key,name,author,kind,rating,description,price,url) {
+    //     // A post entry.
+    //     var postData = {
+    //         key: key,
+    //         name: name,
+    //         author: author,
+    //         kind: kind,
+    //         rating: rating,
+    //         description: description,
+    //         price :price,
+    //         url :url
+    //     };
+      
+    //     // Get a key for a new Post.
+    //     var newPostKey = firebase.database().ref('Database').child('Sanpham').push().key;
+      
+    //     // Write the new post's data simultaneously in the posts list and the user's post list.
+    //     var updates = {};
+    //     updates['/Database/Sanpham' + newPostKey] = postData;
+      
+    //     return firebase.database.ref('Database').child('Sanpham').update(updates);
+    //   }
     // componentWillMount(){
     //     // nodeData.on('value',(snapshot)=>{
     //     //     var key =Object.keys(snapshot.val());
@@ -38,10 +87,10 @@ class PushProduct extends React.Component {
     //   }
     onDelete = (key) => {
         this.props.onDeleteProduct(key);
-
     }
     render() {
-      var { products,key } = this.props;
+        // console.log(this.state.key);
+      var { products } = this.props;
     //   console.log(key);
       return (
         <div className="form-group">
@@ -51,16 +100,15 @@ class PushProduct extends React.Component {
       );
     }
     showProducts(products) {
-        
         var result = null;
         if (products.length > 0) {
-            result = products.map((product, index) => {
+            result = products.map((product,index) => {
                 return (
                     <AdminProduct
                         key={index}
                         product={product}
                         index={index}
-                        onDelete={this.onDelete}
+                        // onDelete={this.onDelete}
                     />
                 );
             });
@@ -96,8 +144,7 @@ const mapDispatchToProps = (dispatch, props) => {
       },
       onDeleteProduct : (key)=>{
           dispatch(actDeleteProductsRequest(key));
-      },
-
+      }
    }
 }
 
