@@ -22,25 +22,10 @@ export const actFetchProducts = (products) => {
         products
     }
 }
-export const actAddProductRequest = (product) => {
-    return dispatch => {
-        return 
-            callApi('Sanpham', 'POST', product).then(res => {
-            dispatch(actAddProduct(res.data));
-        });
-    }
-}
-
-export const actAddProduct = (product) => {
-    return {
-        type : Types.ADD_PRODUCT,
-        product
-    }
-}
 export const actDeleteProductsRequest = (key) =>{
     return dispatch =>{
-        return callApi(`Sanpham${key}`,'DELETE',null).then(res =>{
-            dispatch(actDeleteProducts(res));
+        return callApi(`Database/Sanpham/${key}`,'DELETE',null).then(res =>{
+            dispatch(actDeleteProducts(key));
         })
     }
 }

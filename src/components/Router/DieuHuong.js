@@ -9,32 +9,37 @@ import Footer from '../footerComponents/footer';
 import AllFile from '../Products/Components/AllFile';
 import Signup from '../Admin/Login/Signup';
 import App1 from '../Admin/Manage/App/App1';
-import PushProduct from '../Admin/Manage/ProductsForm/AdminProductContainer';
-import PushBill from '../Admin/Manage/Bill/PushBill';
-import UserResult from '../Admin/Manage/Form/UserResult';
+import Routers from './Routers';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
-
-
 //
 
 class DieuHuong extends Component {
   render() {
     return (
     	<div>	
-							<Route path="/"  component={Header} />
+							<Route path="/" component={Header} />
 							<Route path="/Signup" component={Signup} />
 							<Route path="/" exact component={homePage} />
 							<Route path="/product" component={AllFile} />
 							<Route path="/App1" component={App1} />
 							<Switch>
-								<Route path="/App1/User" component={UserResult} />
-								<Route path="/App1/PushBill" exact  component={PushBill} />
-								<Route path="/App1/PushProduct" exact component={PushProduct} />
+								{this.showMenus(Routers)}
 								<Route path="/App1/PushProduct/PushForm" exact component={PushForm} />
 							</Switch>
 							<Route path="/"  component={Footer} />
 		</div>
      );
+  }
+  showMenus = (Routers) =>{
+	  var result =null;
+		if(Routers.length > 0){
+			result = Routers.map((router,index)=>{
+				return (
+					<Route key ={index} path={router.path} exact={router.exact} component={router.main} />
+				);
+			});
+		}
+	  return result;
   }
 }
 

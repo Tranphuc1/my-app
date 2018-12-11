@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import ReactTimeout from 'react-timeout'
 import { firebaseConnect } from '../../../../FirebaseConnect';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { actAddProductRequest } from '../../../Products/actions/actions';
 import callApi from '../../../../ApiCaller/Api';
 const storage = firebaseConnect.storage();
 
@@ -77,41 +74,7 @@ class PushForm extends Component {
             callApi('Database/Sanpham','POST',item).then(res =>{
                 history.goBack();
             });
-            // this.props.onAddProduct(item);
-            // history.goBack();
-            // var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham').on('value',(snapchat)=>{
-            //     item = snapchat.val();
-            //     key = snapchat.key;
-            //     console.log(key);
-            // });
-            // let newID = nodeData.push().getKey();
-            // this.setState({
-            //     uid : newID
-            // })
-            // nodeData.child(key).set(item);
-            // console.log('render1');
-            // history.goBack();
-            
-        // this.setState(()=>{
-        //      newkey = key;
-        // })
-        
         }
-
-        // componentDidMount(){
-        //     var {uid} = this.state;
-        //     var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham');
-        //     // nodeData.child(`/${uid}`).set({
-        //     //     key : uid
-        //     // })
-        //     console.log('render');
-        // }
-        // removeDB(){
-        //     var {uid} = this.state;
-        //     var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham');
-        //     nodeData.child(`/${uid}`).set(null)
-        //     console.log('render');
-        // }
     render() {
         var {history} = this.props;
         return (
@@ -134,10 +97,6 @@ class PushForm extends Component {
                                 <br/>
                                 <label style={{border:'solid 1px'}}><p>{this.state.url}</p></label>
                                 <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="300" width="400"/>
-                            </div>
-                            <div className="form-group" >
-                                <label htmlFor="ID">Mã Sản Phẩm</label>
-                                <input type="text" name="ID" onChange={ (e) => this.changedData(e) } placeholder="Nhập Tên Sản Phẩm"  />
                             </div>
                             <div className="form-group" >
                                 <label htmlFor="name">Tên Sản Phẩm</label>
@@ -190,15 +149,5 @@ PushForm.propTypes = {
     ).isRequired,
     actGetKey : PropTypes.func.isRequired
 }
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onAddProduct : (product) => {
-            dispatch(actAddProductRequest(product));
-        }
-        // onGetKey : (key) =>{
-        //     // dispatch(actGetKey(key));
-        // }
-    }
-}
 
-export default connect(null, mapDispatchToProps)(PushForm);
+export default PushForm;

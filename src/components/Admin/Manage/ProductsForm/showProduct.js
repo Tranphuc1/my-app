@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
-import AdminProduct from './AdminProduct';
 
 class ShowProduct extends Component {
-    // MappingData = () =>{
-    //     const sProducts = this.props.Data.map((value,index) =>{
-    //         return <AdminProduct 
-    //         index={value.key} 
-    //         author={value.author} 
-    //         kind={value.kind}
-    //         url ={value.url}
-    //         price={value.price}
-    //         rating={value.rating}
-    //         description={value.description}
-    //         >{value.name}</AdminProduct>
-    //     });
-    //     return sProducts;
-    // }
     render() {
-        var {products} = this.props;
         return (
             <div className="showProduct" >
                 <table className="table table-bordered table-hover">
