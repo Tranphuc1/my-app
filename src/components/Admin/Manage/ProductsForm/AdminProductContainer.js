@@ -7,10 +7,8 @@ import _ from 'lodash';
 import ShowProduct from './showProduct';
 import AdminProduct from'./AdminProduct';
 import { firebaseConnect } from '../../../../FirebaseConnect';
+
 var nodeData = firebaseConnect.database();
-
-
-
 class PushProduct extends React.Component {
     constructor(props){
         super(props);

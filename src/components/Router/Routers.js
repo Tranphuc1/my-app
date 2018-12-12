@@ -3,6 +3,7 @@ import PushProduct from '../Admin/Manage/ProductsForm/AdminProductContainer';
 import PushBill from '../Admin/Manage/Bill/PushBill';
 import UserResult from '../Admin/Manage/Form/UserResult';
 import EditForm from '../Admin/Manage/ProductsForm/EditForm';
+import ProductDetail from '../Products/Components/ProductsDetail';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -23,6 +24,11 @@ const Routers = [
 		path:'/App1/PushProduct/:key/EditForm',
 		exact:true,
 		main : ({match,history}) => <EditForm match={match} history={history}/>
+	},
+	{
+		path:'/ProductDetail',
+		exact:true,
+		main : () => <ProductDetail/>
 	}
 ];
 

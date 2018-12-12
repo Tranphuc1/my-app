@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
 import Pagination from '../../Pagination/Pagination';
-
 var _ = require('lodash');
 
 class ProductsContainer extends Component {
@@ -23,12 +22,13 @@ class ProductsContainer extends Component {
     componentDidMount(){
         callApi('Database/Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
-    });
-    const {data: allProducts = [] } = this.props.products;
-    this.setState({
-        allProducts
-    });
+        });
+        const {data: allProducts = [] } = this.props.products;
+        this.setState({
+            allProducts
+        });
     }
+    
     showProducts(products){
         var result = null;
         var { onAddToCart, onChangeMessage } = this.props;
@@ -52,37 +52,39 @@ class ProductsContainer extends Component {
         this.setState({ currentPage, currentProducts, totalPages });
     }
     render() {
+        var { onAddToCart, onChangeMessage } = this.props;
         var { products } = this.props;
-        // const { currentProducts, currentPage, totalPages } = this.state;
-        // const totalProducts = products.length;
-        // if (totalProducts === 0) return null;
-        // const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
+        const { currentProducts, currentPage, totalPages } = this.state;
+        const totalProducts = products.length;
+        if (totalProducts === 0) return null;
+        const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-            // <div className="container mb-5">
-            //     <div className="row d-flex flex-row py-5">
-            //     <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-                    
-            //         <div className="d-flex flex-row align-items-center">
-            //         <h2 className={headerClass}>
-            //             <strong className="text-secondary">{totalProducts}</strong> Products
-            //         </h2>
-            //         { currentPage && (
-            //             <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-            //             Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
-            //             </span>
-            //         ) }
-            //         </div>
-            //         <div className="form-group">
-            //         <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-            //         </div>
-            //     </div>
-            //         { currentProducts.map({this.showProducts(products)}) 
-            //         }
-            //     </div>
-                <Products>
+            <div className="container mb-5">
+                <div className="row d-flex flex-row py-5">
+                    <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+                        <div className="d-flex flex-row align-items-center">
+                        <h2 className={headerClass}>
+                            <strong className="text-secondary">{totalProducts}</strong>{" "}
+                            Product
+                        </h2>
+                        {currentPage && (
+                            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                            Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+                            <span className="font-weight-bold">{totalPages}</span>
+                            </span>
+                        )}
+                        </div>
+                        <div className="form-group">
+                            <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                        </div>
+                    </div>
+                    {currentProducts.map((product,index) =>{return <Product key={index} product={product} onAddToCart = {onAddToCart} 
+                    onChangeMessage = {onChangeMessage}/>})}
+                </div>
+                {/* <Products>
                     {this.showProducts(products)}
-                </Products>
-            // </div>
+                </Products>  */}
+             </div>
         );
 }
 }

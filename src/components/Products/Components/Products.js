@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
-
 class Products extends Component {
-
     render() {
         // const{allProducts,currentPage,currentProduct,totalPages} =this.state;
         return (

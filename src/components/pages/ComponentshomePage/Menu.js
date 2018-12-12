@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-class Demo extends Component {
+class Menu extends Component {
   render() {
     return (
- 		<div className="main_menu" style={{position:'inherit'}}>
+ 		<div className="main_menu" style ={{width:'15%'}}>
 		  <ul>
 		    <li><a style={{height: 50}}><h4>Nổi bật</h4></a>
 		      <ul className="submenu1">
@@ -94,4 +94,4 @@ class Demo extends Component {
   }
 }
 
-export default Demo;
+export default Menu;
