@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
 import Pagination from '../../Pagination/Pagination';
+import MenuHorizontal from '../Components/MenuHorizontal';
 var _ = require('lodash');
 
 class ProductsContainer extends Component {
@@ -59,14 +60,14 @@ class ProductsContainer extends Component {
         if (totalProducts === 0) return null;
         const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-            <div className="container mb-5">
-                <div className="row d-flex flex-row py-5">
-                    <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+            <div className="container ">
+                <div className="row d-flex flex-row">
+                    <div className="w-100 d-flex flex-row flex-wrap align-items-center justify-content-between">
                         <div className="d-flex flex-row align-items-center">
-                        <h2 className={headerClass}>
+                        <h4 className={headerClass}>
                             <strong className="text-secondary">{totalProducts}</strong>{" "}
                             Product
-                        </h2>
+                        </h4>
                         {currentPage && (
                             <span className="current-page d-inline-block h-100 pl-4 text-secondary">
                             Page <span className="font-weight-bold">{currentPage}</span> /{" "}
@@ -78,8 +79,10 @@ class ProductsContainer extends Component {
                             <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                         </div>
                     </div>
-                    {currentProducts.map((product,index) =>{return <Product key={index} product={product} onAddToCart = {onAddToCart} 
-                    onChangeMessage = {onChangeMessage}/>})}
+                    <MenuHorizontal>
+                        {currentProducts.map((product,index) =>{return <Product key={index} product={product} onAddToCart = {onAddToCart} 
+                        onChangeMessage = {onChangeMessage}/>})}
+                    </MenuHorizontal>
                 </div>
                 {/* <Products>
                     {this.showProducts(products)}

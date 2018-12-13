@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Message from '../constants/Message';
-
+import {Link } from 'react-router-dom';
 class Product extends Component {
 
 	render() {
@@ -8,8 +8,10 @@ class Product extends Component {
 		return (
 			<div className="col-lg-4 col-md-6 mb-r">
 				<div className="card text-center card-cascade narrower">
-					<div className="view overlay hm-white-slight z-depth-1">
-						<img src={product.url} className="img-fluid" alt={product.name} />
+					<div className="view overlay hm-white-slight z-depth-1" style ={{ height:'180px',marginLeft:'40px',width:'180px'}}>
+						<Link to="/product">
+							<img src={product.url} className="img-fluid" alt={product.name} style={{width:'180px',height:'180px'}}/>
+						</Link>
 						<a>
 							<div className="mask waves-light waves-effect waves-light" />
 						</a>

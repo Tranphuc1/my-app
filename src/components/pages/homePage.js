@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Search from './ComponentshomePage/search';
 import Menu from './ComponentshomePage/Menu';
 import SimpleSlider from './ComponentshomePage/slideContener';
-import MenuHorizontal from '../Products/Components/MenuHorizontal';
+import ProductsContainer from '../Products/Containers/ProductsContainer';
 class Homepage extends Component {
 	
   render() {
@@ -17,7 +17,7 @@ class Homepage extends Component {
 						<Menu />
 						<SimpleSlider />
 						</div>
-						<MenuHorizontal/>
+						<ProductsContainer/>
 					</form>
 
 	    	</div>

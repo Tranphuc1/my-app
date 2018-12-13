@@ -4,7 +4,7 @@ class Products extends Component {
         // const{allProducts,currentPage,currentProduct,totalPages} =this.state;
         return (
             <section className="section" >
-                <h1 className="section-heading" >Danh Sách Sản Phẩm</h1>
+                <h5 className="section-heading" >Danh Sách Sản Phẩm</h5>
                 <div className="row"> 
                     {this.props.children}
                 </div>
