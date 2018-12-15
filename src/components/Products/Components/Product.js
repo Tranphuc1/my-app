@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import * as Message from '../constants/Message';
 import {Link } from 'react-router-dom';
+import _ from 'lodash';
 class Product extends Component {
-
 	render() {
 		const { product } = this.props;
+		let linkToDetail = `/${product.key}/ProductDetail`
 		return (
 			<div className="col-lg-4 col-md-6 mb-r">
 				<div className="card text-center card-cascade narrower">
+				<Link to={linkToDetail}>
 					<div className="view overlay hm-white-slight z-depth-1" style ={{ height:'180px',marginLeft:'40px',width:'180px'}}>
-						<Link to="/product">
-							<img src={product.url} className="img-fluid" alt={product.name} style={{width:'180px',height:'180px'}}/>
-						</Link>
-						<a>
-							<div className="mask waves-light waves-effect waves-light" />
-						</a>
+						<img className="img-fluid" src={product.url} alt={product.name} style={{width:'180px',height:'180px'}}/>
 					</div>
+				</Link>
 					<div className="card-body">
 						<h4 className="card-title">
 							<strong>
-								<a>{product.name}</a>
+							<Link to={linkToDetail}>
+							{product.name}
+							</Link>
 							</strong>
 						</h4>
 						<ul className="rating">

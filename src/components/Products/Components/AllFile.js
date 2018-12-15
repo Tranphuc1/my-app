@@ -7,7 +7,7 @@ class AllFile extends Component {
         return (
             <div>
                 <main id="mainContainer">
-                    <div className="container">
+                    <div className="Container">
                         <ProductsContainer/>
                         <MessageContainer />
                         <CartContainer/>

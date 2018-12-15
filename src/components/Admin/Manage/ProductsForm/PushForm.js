@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 import PropTypes from 'prop-types';
 import callApi from '../../../../ApiCaller/Api';
@@ -115,6 +114,10 @@ class PushForm extends Component {
                                     <option value="Sách Kinh Tế">Sách Kinh Tế</option>
                                     <option value="Văn Học Nước Ngoài">Văn Học Nước Ngoài</option>
                                     <option value="Kỹ Năng Sống">Kỹ Năng Sống</option>
+                                    <option value="Sách Tuổi Teen">Sách Tuổi Teen</option>
+                                    <option value="Học Ngoại Ngữ">Học Ngoại Ngữ</option>
+                                    <option value="Sách Thiếu Nhi">Sách Thiếu Nhi</option>
+                                    <option value="Phương Thức Đời Sống">Phương Thức Đời Sống</option>
                                 </select>
                             </div>
                             <div className="form-group">

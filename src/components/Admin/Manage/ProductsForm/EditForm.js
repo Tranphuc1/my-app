@@ -34,7 +34,6 @@ class EditForm extends Component {
             })
         }
     }
-
     changedData = (event) => {
         const target = event.target;
         const name = target.name;
@@ -48,7 +47,7 @@ class EditForm extends Component {
         var {history} = this.props;
         const {key,name,author,kind,rating,description,price,url} = this.state;
         const item ={};
-            item.key= key;
+         item.key= key;
           item.name = name;
           item.author = author;
           item.kind = kind;

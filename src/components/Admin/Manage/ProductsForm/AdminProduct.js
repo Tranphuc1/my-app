@@ -3,6 +3,7 @@ import {Link } from 'react-router-dom';
 import { firebaseConnect } from '../../../../FirebaseConnect';
 import callApi from '../../../../ApiCaller/Api';
 import _ from 'lodash';
+import NumberFormat from 'react-number-format';
 class AdminProduct extends Component {
     onDelete = (key) => {
         if (confirm('Bạn chắc chắn muốn xóa ?')) { //eslint-disable-line
@@ -37,7 +38,7 @@ class AdminProduct extends Component {
                 <td>{product.author}</td>
                 <td>{product.description}</td>
                 <td><img src={product.url} height="100" width="100"/></td>
-                <td>{product.price}</td>
+                <td><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} suffix={' đ'} /></td>
                 <td>{product.rating}</td>
                 <td className="text-center" width="70px">
                     <Link to={`/App1/PushProduct/${product.key}/EditForm`}>

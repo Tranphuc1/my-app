@@ -4,6 +4,7 @@ import PushBill from '../Admin/Manage/Bill/PushBill';
 import UserResult from '../Admin/Manage/Form/UserResult';
 import EditForm from '../Admin/Manage/ProductsForm/EditForm';
 import ProductDetail from '../Products/Components/ProductsDetail';
+import ProductList from '../Products/Components/ProductList';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -26,9 +27,14 @@ const Routers = [
 		main : ({match,history}) => <EditForm match={match} history={history}/>
 	},
 	{
-		path:'/ProductDetail',
+		path:'/:key/ProductDetail',
 		exact:true,
-		main : () => <ProductDetail/>
+		main : ({match}) => <ProductDetail match={match}/>
+	},
+	{
+		path:'/ProductList',
+		exact:true,
+		main : () => <ProductList/>
 	}
 ];
 

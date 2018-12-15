@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Products from '../Components/Products';
-import Product from '../Components/Product';
 import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
-import Pagination from '../../Pagination/Pagination';
 import MenuHorizontal from '../Components/MenuHorizontal';
 var _ = require('lodash');
 
@@ -13,31 +10,25 @@ class ProductsContainer extends Component {
     constructor(props){
         super(props);
         this.state ={
-            allProducts:[],
-            products : [],
-            currentProducts:[],
-            currentPage:null,
-            totalPages:null
+            kind : []
         };
     }
-    componentDidMount(){
+    componentWillMount(){
         callApi('Database/Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
         });
-        const {data: allProducts = [] } = this.props.products;
-        this.setState({
-            allProducts
-        });
     }
-    
-    showProducts(products){
+    showProducts(){
         var result = null;
+        var { products } = this.props;
+        var kind =_.uniq(_.map(products,e => e.kind));
         var { onAddToCart, onChangeMessage } = this.props;
-        if(products.length > 0){
-            result = products.map((product, index) => {
-                return <Product 
+        if(kind.length > 0){
+            result = kind.map((kind, index) => {
+                return <MenuHorizontal  
                     key={index} 
-                    product={product}
+                    kind = {kind}
+                    products={products}
                     onAddToCart = {onAddToCart} 
                     onChangeMessage = {onChangeMessage}
                 />
@@ -45,51 +36,13 @@ class ProductsContainer extends Component {
         }
         return result;
     }
-    onPageChanged = data => {
-        var { products } = this.props;
-        const { currentPage, totalPages, pageLimit } = data;
-        const offset = (currentPage - 1) * pageLimit;
-        const currentProducts = products.slice(offset, offset + pageLimit);
-        this.setState({ currentPage, currentProducts, totalPages });
-    }
     render() {
-        var { onAddToCart, onChangeMessage } = this.props;
-        var { products } = this.props;
-        const { currentProducts, currentPage, totalPages } = this.state;
-        const totalProducts = products.length;
-        if (totalProducts === 0) return null;
-        const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-            <div className="container ">
-                <div className="row d-flex flex-row">
-                    <div className="w-100 d-flex flex-row flex-wrap align-items-center justify-content-between">
-                        <div className="d-flex flex-row align-items-center">
-                        <h4 className={headerClass}>
-                            <strong className="text-secondary">{totalProducts}</strong>{" "}
-                            Product
-                        </h4>
-                        {currentPage && (
-                            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-                            Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-                            <span className="font-weight-bold">{totalPages}</span>
-                            </span>
-                        )}
-                        </div>
-                        <div className="form-group">
-                            <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-                        </div>
-                    </div>
-                    <MenuHorizontal>
-                        {currentProducts.map((product,index) =>{return <Product key={index} product={product} onAddToCart = {onAddToCart} 
-                        onChangeMessage = {onChangeMessage}/>})}
-                    </MenuHorizontal>
-                </div>
-                {/* <Products>
-                    {this.showProducts(products)}
-                </Products>  */}
+            <div className="container">
+                {this.showProducts()}
              </div>
         );
-}
+    }
 }
 
 ProductsContainer.propTypes = {
@@ -99,8 +52,7 @@ ProductsContainer.propTypes = {
             name : PropTypes.string.isRequired,
             description : PropTypes.string.isRequired,
             author : PropTypes.string.isRequired,
-            price : PropTypes.number.isRequired,
-            inventory : PropTypes.number.isRequired,
+            price : PropTypes.string.isRequired,
             rating : PropTypes.number.isRequired,
             url : PropTypes.string.isRequired
         })

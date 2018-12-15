@@ -32,7 +32,7 @@ class PushProduct extends React.Component {
       return (
         <div className="form-group">
           <button className="btn btn-Secondary "><Link to="/App1/PushProduct/PushForm">Thêm Sản Phẩm</Link></button>
-          <ShowProduct  >{this.showProducts(products)}</ShowProduct>
+          <ShowProduct >{this.showProducts(products)}</ShowProduct>
         </div>
       );
     }
