@@ -12,7 +12,7 @@ class Header extends Component {
 					          <div className="block banner " id="banner_mainlogo">
 					          <div className="blockcontent">
 					          <a title="Logo chính" target="_self" href="/">
-					          <img src={logo} border={0} title="Logo chính" width={220} height={44} /></a></div></div>
+					          <img src={logo} title="Logo chính" /></a></div></div>
 					        </div>
 						</div>
 					</div>

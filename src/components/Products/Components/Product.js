@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import * as Message from '../constants/Message';
 import {Link } from 'react-router-dom';
 import _ from 'lodash';
+import NumberFormat from 'react-number-format';
 class Product extends Component {
 	render() {
 		const { product } = this.props;
 		let linkToDetail = `/${product.key}/ProductDetail`
 		return (
-			<div className="col-lg-4 col-md-6 mb-r">
+			<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				<div className="card text-center card-cascade narrower">
-				<Link to={linkToDetail}>
-					<div className="view overlay hm-white-slight z-depth-1" style ={{ height:'180px',marginLeft:'40px',width:'180px'}}>
+				<Link to={linkToDetail} >
+					<div className="view overlay hm-white-slight z-depth-1" style ={{ height:'180px',width:'180px'}}>
 						<img className="img-fluid" src={product.url} alt={product.name} style={{width:'180px',height:'180px'}}/>
 					</div>
 				</Link>
@@ -25,19 +26,22 @@ class Product extends Component {
 						<ul className="rating">
 							<li>{this.showRating(product.rating)}</li>
 						</ul>
-						<p className="card-text">{product.price}</p>
+						<p className="card-text">{product.author}</p>
 						<div className="card-footer">
-							<span className="left">{product.price}$</span>
-							<span className="right">
-								<a
-									className="btn-floating blue-gradient"
-									data-toggle="tooltip"
-									data-placement="top"
-									data-original-title="Add to Cart"
-									onClick={() => this.onAddToCart(product)}
-								>
-									<i className="fa fa-shopping-cart" />
-								</a>
+							<span className="final-price">
+								<NumberFormat 
+									value={product.price*0.75} 
+									displayType={'text'} 
+									thousandSeparator={true} 
+									suffix={' đ'} />
+								</span>
+							<span className="price-regular">
+							<br/>
+							<NumberFormat 
+								value={product.price} 
+								displayType={'text'}
+								thousandSeparator={true} 
+								suffix={' đ'} />
 							</span>
 						</div>
 					</div>
@@ -50,7 +54,6 @@ class Product extends Component {
 		onAddToCart(product);
 		onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
 	};
-
 	showRating = rating => {
 		let result = [];
 

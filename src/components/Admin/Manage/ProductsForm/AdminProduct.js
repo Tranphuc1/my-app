@@ -42,9 +42,10 @@ class AdminProduct extends Component {
                 <td>{product.rating}</td>
                 <td className="text-center" width="70px">
                     <Link to={`/App1/PushProduct/${product.key}/EditForm`}>
-                    <button className="btn btn-warning btn-sm" type="button">
-                    <i className="fa fa-pencil-square-o" aria-hidden="true" />
-                    Sửa</button></Link>
+                        <button className="btn btn-warning btn-sm" type="button">
+                        <i className="fa fa-pencil-square-o" aria-hidden="true" />
+                        Sửa</button>
+                    </Link>
                  </td>
                 <td className="text-center" width="50px">
                 <button className="btn btn-danger btn-sm" role="button"><i className="fa fa-trash-o" aria-hidden="true" 

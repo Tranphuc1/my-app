@@ -64,7 +64,7 @@ class MenuHorizontal extends Component {
                                         )}
                                         </div>
                                         <div className="form-group">
-                                            <Pagination totalRecords={totalProducts} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                                            <Pagination totalRecords={totalProducts} pageLimit={4} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                                         </div>
                                     </div>
                                         {currentProducts.map((product,index) =>{return <Product key={index} products={products} kind ={kind} product={product} onAddToCart = {onAddToCart} 

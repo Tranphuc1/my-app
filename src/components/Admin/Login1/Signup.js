@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { firebaseConnect } from '../../../FirebaseConnect';
+import { auth,firebaseConnect } from '../../../FirebaseConnect';
 
 class Signup extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Signup extends Component {
 
   login(e) {
     e.preventDefault();
-    firebaseConnect.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
     .then((u)=>{this.props.history.push("/App1/User");})
     .catch((error) => {
         console.log(error);
@@ -29,7 +29,7 @@ class Signup extends Component {
 
   signup(e){
     e.preventDefault();
-    firebaseConnect.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    auth.createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then(()=>alert('đăng ký thành công'))
     .catch((error) => {
         console.log(error);

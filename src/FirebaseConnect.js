@@ -7,4 +7,13 @@ var config = {
   storageBucket: "reactjs-1d447.appspot.com",
   messagingSenderId: "48949881617"
 }
-export const firebaseConnect = firebase.initializeApp(config);
+if (!firebase.apps.length) {
+	firebase.initializeApp(config);
+}
+const firebaseConnect = firebase;
+const auth = firebase.auth();
+
+export {
+	firebaseConnect,
+	auth,
+};

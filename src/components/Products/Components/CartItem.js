@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
 import * as Message from '../constants/Message';
 class CartItem extends Component {
     constructor(props){
@@ -13,7 +14,7 @@ class CartItem extends Component {
         return (
             <tr>
                 <th scope="row">
-                    <img src={item.product.image}
+                    <img src={item.product.url}
                         style={{width:150}}
                         alt="" className="img-fluid z-depth-0" />
                 </th>
@@ -24,7 +25,11 @@ class CartItem extends Component {
                 </td>
                 <td>
                     <h5>
-                        {item.product.price} $
+                    <NumberFormat 
+                        value={item.product.price} 
+                        displayType={'text'}
+                        thousandSeparator={true} 
+                        suffix={' đ'} />
                     </h5>
                 </td>
                 <td className="center-on-small-only"  >
@@ -44,7 +49,7 @@ class CartItem extends Component {
                         </label>
                     </div>
                 </td>
-                <td> {this.showSubTotal(item.product.price, item.quantity)} $</td>
+                <td> {this.showSubTotal(item.product.price, item.quantity)} </td>
                 <td>
                     <button
                         type="button"
@@ -75,7 +80,7 @@ class CartItem extends Component {
     }
 
     showSubTotal = (price, quantity) => {
-        return price * quantity;
+        return <NumberFormat value={price * quantity} displayType={'text'} thousandSeparator={true} suffix={' đ'} />
     }
 
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import NumberFormat from 'react-number-format';
 class CartResult extends Component {
     render() {
         var { cart } = this.props;
@@ -15,7 +15,7 @@ class CartResult extends Component {
                     <h4>
                         <strong>
                         {this.showTotalAmount(cart)}
-                        $</strong>
+                        </strong>
                     </h4>
                 </td>
                 <td colSpan="3">
@@ -34,7 +34,7 @@ class CartResult extends Component {
                 total += cart[i].product.price * cart[i].quantity;
             }
         }
-        return total;
+        return <NumberFormat value={total} displayType={'text'} thousandSeparator={true} suffix={' đ'} />;
     }
 
 }
