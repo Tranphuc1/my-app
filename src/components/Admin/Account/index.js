@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import PasswordChangeForm from '../PasswordChange';
-import withAuthorization from '../Session/withAuthentication';
+import withAuthorization from '../Session/withAuthorization';
 
 const AccountPage = ({ authUser }) =>
 	<div className="container">

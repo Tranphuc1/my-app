@@ -3,7 +3,7 @@ import products from './products';
 import cart from './cart';
 import message from './Message';
 import User from './User';
-import sessionReducer from './session';
+import sessionReducer from './Session';
 
 
 const appReducers = combineReducers({

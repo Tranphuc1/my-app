@@ -7,8 +7,8 @@ class SimpleSlider extends Component {
         <div id="carousel-id" className="carousel slide" data-ride="carousel"  >
           <ol className="carousel-indicators">
             <li data-target="#carousel-id" data-slide-to={0} className="active" />
-            <li data-target="#carousel-id" data-slide-to={1} className />
-            <li data-target="#carousel-id" data-slide-to={2} className />
+            <li data-target="#carousel-id" data-slide-to={1}  className="active"/>
+            <li data-target="#carousel-id" data-slide-to={2}  className="active"/>
           </ol>
           <div className="carousel-inner">
             <div className="item">

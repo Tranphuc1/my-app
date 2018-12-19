@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 //components
+import withAuthentication from './components/Admin/Session/withAuthentication';
 import DieuHuong from './components/Router/DieuHuong';
 //
 import './assets/css/style.min.css';
-
+import SignOut from './components/Admin/SignOut';
 
 class App extends Component {
 	
@@ -24,4 +25,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);

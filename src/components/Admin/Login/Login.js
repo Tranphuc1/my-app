@@ -42,10 +42,8 @@ class SignInForm extends Component {
             .catch(error => {
                 this.setState(updateByPropertyName('error', error));
             });
-
         event.preventDefault();
     }
-
     render() {
         const {
             email,
@@ -56,7 +54,6 @@ class SignInForm extends Component {
         const isInvalid =
             password === '' ||
             email === '';
-
         return (
             <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5" style={{marginLeft:'390px'}}>
                 <div className="login-box">

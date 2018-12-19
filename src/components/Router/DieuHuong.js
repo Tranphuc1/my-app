@@ -9,8 +9,8 @@ import AllFile from '../Products/Components/AllFile';
 import App1 from '../Admin/Manage/App/App1';
 import {Routers,Routers2} from './Routers';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
+import { SignInForm } from '../Admin/Login/Login';
 import AccountPage from '../Admin/Account';
-//
 
 class DieuHuong extends Component {
   render() {
@@ -19,8 +19,10 @@ class DieuHuong extends Component {
 			<Route path="/" component={Header} />
 			<Switch>
 				{this.showLoginForm(Routers2)}
+				<Route path="/Signin" exact component={SignInForm} />
+				<Route path ="/Account" exact component={AccountPage}/>
 			</Switch>
-			<Route path ="/" exact component={AccountPage}/>
+			
 			<Route path="/" exact component={homePage} />
 			<Route path="/product" component={AllFile} />
 			<Route path="/App1" component={App1} />
