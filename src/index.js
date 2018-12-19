@@ -6,9 +6,6 @@ import {createStore, applyMiddleware} from 'redux';
 import appReducers from './components/Products/Reducer/index';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-
-
-
 const store = createStore(
     appReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

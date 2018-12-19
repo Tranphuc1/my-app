@@ -1,13 +1,6 @@
 import * as Types from '../constants/ActionType';
 import callApi from '../../../ApiCaller/Api';
 
-// Key
-export const actGetKey =(key) =>{
-    return{
-        type:Types.GET_KEY,
-        key
-    }
-}
 // user
 export const actShowAllUser = (User) =>{
     return {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { firebaseConnect } from '../../../../FirebaseConnect';
-import PropTypes from 'prop-types';
 import callApi from '../../../../ApiCaller/Api';
 const storage = firebaseConnect.storage();
 
@@ -78,11 +77,11 @@ class PushForm extends Component {
         var {history} = this.props;
         return (
                 <div className="panel-panel waring">
-                    <div className="card-header" style={{color:'blue'}}>
-                        <h4>Sản phẩm</h4>
+                    <div className="card-header" >
+                        <h4>Thêm Sản phẩm</h4>
                     </div>
                     <div className="panel-body">
-                        <form  className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <form  className="col-xs-5 col-sm-5 col-md-5 col-lg-5" style={{marginLeft:'30%'}}>
                             <div className="form-group">
                                 <label>Ảnh</label>
                                 <input type="file" name="img" className="form-control"  onChange={this.handleChange}/>
@@ -136,21 +135,13 @@ class PushForm extends Component {
                                 <label htmlFor="Number">Rating</label>
                                 <input type="rating" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <button type="submit" className="btn btn-danger" onClick={(e) => history.goBack(e)}>Trở Về</button>                            
+                            <button type="submit" className="btn btn-danger" onClick={() => history.push("/App1/PushProduct")}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>
                         </form>
                     </div>
                 </div>
         );
     }
-}
-PushForm.propTypes = {
-    key: PropTypes.arrayOf(
-        PropTypes.shape({
-            key : PropTypes.string.isRequired
-        })
-    ).isRequired,
-    actGetKey : PropTypes.func.isRequired
 }
 
 export default PushForm;

@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import { Route, Switch} from "react-router-dom";
 
 //components
-// import Product from './../Product/Product';
 import homePage from './../pages/homePage';
 import Header from '../headerComponents/header';
 import Footer from '../footerComponents/footer';
 import AllFile from '../Products/Components/AllFile';
 import App1 from '../Admin/Manage/App/App1';
-import Routers from './Routers';
+import {Routers,Routers2} from './Routers';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
-import { SignUpForm } from '../Admin/Signup/Signup';
-import { SignInForm } from '../Admin/Login/Login';
-import { PasswordForgetForm } from '../Admin/PasswordForget';
+import AccountPage from '../Admin/Account';
 //
 
 class DieuHuong extends Component {
@@ -20,9 +17,10 @@ class DieuHuong extends Component {
     return (
     	<div>	
 			<Route path="/" component={Header} />
-			<Route path="/password-forget" component={PasswordForgetForm} />
-			<Route path="/SignIn" component={SignInForm} />
-			<Route path="/Signup" component={SignUpForm} />
+			<Switch>
+				{this.showLoginForm(Routers2)}
+			</Switch>
+			<Route path ="/" exact component={AccountPage}/>
 			<Route path="/" exact component={homePage} />
 			<Route path="/product" component={AllFile} />
 			<Route path="/App1" component={App1} />
@@ -33,6 +31,17 @@ class DieuHuong extends Component {
 			<Route path="/"  component={Footer} />
 		</div>
      );
+  }
+  showLoginForm =(Routers2)=>{
+	  var result = null;
+	  	if(Routers.length>0){
+			  result= Routers2.map((router,index) =>{
+				return ( 
+						<Route key ={index} path={router.path} exact={router.exact} component={router.main} />
+					);
+				});
+		  }
+	  return result;
   }
   showMenus = (Routers) =>{
 	  var result =null;

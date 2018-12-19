@@ -27,8 +27,6 @@ class PasswordForgetForm extends Component {
 		super(props);
 		this.state = { ...INITIAL_STATE };
 	}
-	
-
 	onSubmit = (event) => {
 		const { email } = this.state;
 
@@ -45,8 +43,10 @@ class PasswordForgetForm extends Component {
 
 	render() {
 		return (
-			<div className="login-box">
-				<EnhancedForgetForm />
+			<div className="col-xs-5 col-sm-5 col-md-5 col-lg-5" style={{marginLeft:'390px'}}>
+				<div className="login-box">
+					<EnhancedForgetForm />
+				</div>
 			</div>
 		);
 	}

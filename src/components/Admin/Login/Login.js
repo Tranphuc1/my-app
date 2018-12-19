@@ -62,6 +62,7 @@ class SignInForm extends Component {
                 <div className="login-box">
                     <form className="form-signin" onSubmit={this.onSubmit}>
                         <h2 className="text-center">Đăng nhập</h2>
+                        <label htmlFor="inputEmail">Email</label>
                         <div className="form-label-group">
                             <input
                                 value={email}
@@ -71,9 +72,8 @@ class SignInForm extends Component {
                                 placeholder="Email Address"
                                 className="form-control"
                             />
-                            <label htmlFor="inputEmail">Email</label>
                         </div>
-
+                        <label htmlFor="inputPassword">Password</label>
                         <div className="form-label-group">
                             <input
                                 value={password}
@@ -83,9 +83,8 @@ class SignInForm extends Component {
                                 placeholder="Password"
                                 className="form-control"
                             />
-                            <label htmlFor="inputPassword">Password</label>
                         </div>
-                        <button className="btn btn-lg btn-success btn-block" disabled={isInvalid} type="submit">Đăng nhập</button>
+                        <button className="btn btn-lg btn-warning btn-block" disabled={isInvalid} type="submit">Đăng nhập</button>
                         {error && <div className="mt-2 mb-0 alert alert-danger">{error.message}</div>}
                         <PasswordForgetLink />
                         <SignUpLink />

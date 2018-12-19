@@ -3,12 +3,15 @@ import products from './products';
 import cart from './cart';
 import message from './Message';
 import User from './User';
-// import key from './key';
+import sessionReducer from './session';
+
+
 const appReducers = combineReducers({
     products,
     cart,
     message,
-    User
+    User,
+    sessionState : sessionReducer
 });
 
 export default appReducers;

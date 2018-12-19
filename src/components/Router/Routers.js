@@ -7,8 +7,10 @@ import ProductDetail from '../Products/Components/ProductsDetail';
 import ProductList from '../Products/Components/ProductList';
 import ShowMenuProducts from '../pages/ComponentshomePage/ShowMenuProducts';
 import CartContainer from '../Products/Containers/CartContainer';
-
-
+import { SignUpForm } from '../Admin/Signup/Signup';
+import { SignInForm } from '../Admin/Login/Login';
+import { PasswordForgetForm } from '../Admin/PasswordForget';
+import AccountPage from '../Admin/Account';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -51,5 +53,22 @@ const Routers = [
 		main : () => <CartContainer/>
 	}
 ];
+const Routers2 =[
+	{
+		path:'/SignIn',
+		exact:true,
+		main : () => <SignInForm/>
+	},
+	{
+		path:'/SignUp',
+		exact:true,
+		main : () => <SignUpForm/>
+	},
+	{
+		path:'/pw-forget',
+		exact:true,
+		main : () => <PasswordForgetForm/>
+	}
 
-export default Routers;
+];
+export { Routers,Routers2};

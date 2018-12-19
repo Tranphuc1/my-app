@@ -108,7 +108,7 @@ class EditForm extends Component {
                                 <label htmlFor="Number">Rating</label>
                                 <input type="rating" name="rating" value={rating}  min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
-                            <button type="submit" className="btn btn-danger" onClick={() => history.goBack()}>Trở Về</button>                            
+                            <button type="submit" className="btn btn-danger" onClick={() => history.push("/App1/PushProduct")}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>
                         </form>
                     </div>

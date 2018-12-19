@@ -15,5 +15,5 @@ const auth = firebase.auth();
 
 export {
 	firebaseConnect,
-	auth,
+	auth
 };
