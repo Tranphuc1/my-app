@@ -17,26 +17,28 @@ class AdminProduct extends Component {
                 })
         })
         }
-        componentDidMount(){
-            setTimeout(callApi('Database/Sanpham','GET',null).then(res =>{
+        updatekey=()=>{
+           callApi('Database/Sanpham','GET',null).then(res =>{
                 var arr = Object.keys(res.data);
                 var data =_.last(arr);
                 var nodeData = firebaseConnect.database().ref('/Database').child('/Sanpham');
                 nodeData.child(`/${data}`).update({
                     key : data
-                })}),5000)
+                });
+            });
           }
 
     render() {
         var {product,index}= this.props;
         return (
             <tr className="tbody">
+            {this.updatekey()}
                 <td>{index +1}</td>
-                <td>{product.key}</td>
                 <td >{product.name}</td>
                 <td >{product.kind}</td>
                 <td>{product.author}</td>
                 <td>{product.description}</td>
+                <td>{product.quantity}</td>
                 <td><img src={product.url} height="100" width="100"/></td>
                 <td><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} suffix={' đ'} /></td>
                 <td>{product.rating}</td>

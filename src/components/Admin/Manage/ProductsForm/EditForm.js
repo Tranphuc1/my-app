@@ -11,6 +11,7 @@ class EditForm extends Component {
           kind:'',
           rating:null,
           description:'',
+          quantity:null,
           price:null,
           url:''
         }
@@ -28,6 +29,7 @@ class EditForm extends Component {
                     kind : data.kind,
                     rating: data.rating,
                     description : data.description,
+                    quantity: data.quantity,
                     url: data.url,
                     price: data.price
                 })
@@ -45,7 +47,7 @@ class EditForm extends Component {
     submitProduct = (event) =>{
         event.preventDefault();
         var {history} = this.props;
-        const {key,name,author,kind,rating,description,price,url} = this.state;
+        const {key,name,author,kind,rating,description,quantity,price,url} = this.state;
         const item ={};
          item.key= key;
           item.name = name;
@@ -53,6 +55,7 @@ class EditForm extends Component {
           item.kind = kind;
           item.rating = rating;
           item.description = description;
+          item.quantity = quantity;
           item.price = price;
           item.url = url;
           var {match} = this.props;
@@ -65,7 +68,7 @@ class EditForm extends Component {
         }
     render() {
         var {history} = this.props;
-        var {name,kind,author,description,rating,price,url} =this.state;
+        var {name,kind,author,description,rating,quantity,price,url} =this.state;
         return (
             <div className="panel-panel waring">
                     <div className="card-header" style={{color:'blue'}}>
@@ -99,6 +102,10 @@ class EditForm extends Component {
                             <div className="form-group">
                                 <label htmlFor="description">Mô Tả</label>
                                 <input type="text" name="description" value={description} className="form-control" placeholder="Mô Tả" onChange={ (e) => this.changedData(e) }/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="quantity">Số Lượng</label>
+                                <input type="text" name="quantity" value={quantity} className="form-control" placeholder="Số Lượng" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="URL">URL</label>

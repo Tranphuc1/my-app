@@ -2,7 +2,7 @@ import React from 'react';
 import * as yup from 'yup';
 import { withFormik, Form, Field } from 'formik';
 import { auth1 } from '../../../FirebaseConnect2';
-import { NotificationManager } from 'react-notifications';
+
 
 const PasswordChangeForm = props => {
     const {
@@ -14,6 +14,7 @@ const PasswordChangeForm = props => {
     return (
         <Form className="form-signin">
             <h2 className="text-center">Đổi mật khẩu</h2>
+            <label htmlFor="inputPassword">Mật khẩu Mới</label>
             <div className="form-label-group">
                 <Field
                     type="password"
@@ -22,9 +23,9 @@ const PasswordChangeForm = props => {
                     id="inputPassword"
                     className={errors.txtPassword && touched.txtPassword ? ('text-input error form-control') : ('form-control text-input')}
                 />
-                <label htmlFor="inputPassword">Mật khẩu</label>
             </div>
             {errors.txtPassword && touched.txtPassword && (<div className="alert alert-danger">{errors.txtPassword}</div>)}
+            <label htmlFor="inputConfirmPassword">Nhập lại</label>
             <div className="form-label-group">
                 <Field
                     type="password"
@@ -33,7 +34,6 @@ const PasswordChangeForm = props => {
                     id="inputConfirmPassword"
                     className={errors.txtConfirmPassword && touched.txtConfirmPassword ? ('text-input error form-control') : ('form-control text-input')}
                 />
-                <label htmlFor="inputConfirmPassword">Nhập lại</label>
             </div>
             {errors.txtConfirmPassword && touched.txtConfirmPassword && (<div className="alert alert-danger">{errors.txtConfirmPassword}</div>)}
 
@@ -77,7 +77,7 @@ const EnhancedPasswordChangeForm = withFormik({
 
         auth1.doPasswordUpdate(txtPassword)
             .then(() => {
-                NotificationManager.success('Đổi mật khẩu thành công!');
+                alert('Đổi mật khẩu thành công!');
                 resetForm({
                     txtPassword: '',
                     txtConfirmPassword: '',

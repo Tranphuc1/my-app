@@ -4,3 +4,4 @@ export const PASSWORD_FORGET = '/password-forget';
 export const HOME = '/';
 export const ADMIN = '/App1/PushProduct';
 export const ACCOUNT ='/Account';
+export const CART ='/cart';

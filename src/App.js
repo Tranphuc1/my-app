@@ -6,7 +6,6 @@ import withAuthentication from './components/Admin/Session/withAuthentication';
 import DieuHuong from './components/Router/DieuHuong';
 //
 import './assets/css/style.min.css';
-import SignOut from './components/Admin/SignOut';
 
 class App extends Component {
 	

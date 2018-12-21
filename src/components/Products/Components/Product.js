@@ -56,15 +56,12 @@ class Product extends Component {
 	};
 	showRating = rating => {
 		let result = [];
-
 		for (let index = 0; index < rating; index++) {
 			result.push(<i key={index} className="fa fa-star" />);
 		}
-
 		for (let index = 0; index < 5 - rating; index++) {
 			result.push(<i key={index + 5} className="fa fa-star-o" />);
 		}
-
 		return result;
 	};
 }

@@ -13,6 +13,7 @@ class PushForm extends Component {
           kind:'',
           rating:'',
           description:'',
+          quantity:'',
           img:null,
           price:null,
           url:'',
@@ -59,7 +60,7 @@ class PushForm extends Component {
       submitProduct = (event) =>{
         event.preventDefault();
         var {history} = this.props;
-        const {key,name,author,kind,rating,description,price,url} = this.state;
+        const {key,name,author,kind,rating,description,quantity,price,url} = this.state;
         const item ={};
           item.key = key;
           item.name = name;
@@ -67,6 +68,7 @@ class PushForm extends Component {
           item.kind = kind;
           item.rating = rating;
           item.description = description;
+          item.quantity = quantity;
           item.price = price;
           item.url = url;
             callApi('Database/Sanpham','POST',item).then(res =>{
@@ -128,12 +130,16 @@ class PushForm extends Component {
                                 <input type="text" name="description" className="form-control" placeholder="Mô Tả" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <div className="form-group">
+                                <label htmlFor="Number">Số lượng</label>
+                                <input type="Number" name="quantity" min="1" max="1000" className="form-control" placeholder="Nhập Số Lượng" onChange={ (e) => this.changedData(e) }/>
+                            </div>
+                            <div className="form-group">
                                 <label htmlFor="URL">URL</label>
                                 <input type="string" name="url" className="form-control" placeholder="Vui lòng copy URL ảnh bên trên" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Number">Rating</label>
-                                <input type="rating" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
+                                <input type="Number" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <button type="submit" className="btn btn-danger" onClick={() => history.push("/App1/PushProduct")}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>

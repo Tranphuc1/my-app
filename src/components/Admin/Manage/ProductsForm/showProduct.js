@@ -8,11 +8,11 @@ class ShowProduct extends Component {
                     <thead>
                         <tr>
                         <th>STT</th>
-                        <th>Mã Sản Phẩm</th>
                         <th>Product Name</th>
                         <th>Kind</th>
                         <th>author</th>
                         <th>description</th>
+                        <th>Số Lượng</th>
                         <th>Image</th>
                         <th>price</th>
                         <th >rating</th>

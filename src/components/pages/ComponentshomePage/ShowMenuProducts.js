@@ -36,20 +36,6 @@ class ShowMenuProducts extends Component {
         }
         return result;
     }
-    // showAuthor(){
-    //     var { onAddToCart, onChangeMessage } = this.props;
-    //     var {product} = this.state;
-    //     var result=null;
-    //     var author = this.state.data1.author;
-    //     var A = product.filter(product => product.author === author);
-    //     if(A.length>0){
-    //         return <ProductList 
-    //         product={A} 
-    //         onAddToCart={onAddToCart} 
-    //         onChangeMessage={onChangeMessage}/>
-    //     }
-    //     return result;
-    // }
     render() {
         var {match} =this.props;
         var kind = match.params.kind;

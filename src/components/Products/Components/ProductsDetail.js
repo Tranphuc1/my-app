@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import callApi from '../../../ApiCaller/Api';
 import { connect } from 'react-redux';
 import NumberFormat from 'react-number-format';
-import { actAddToCart,actChangeMessage } from '../actions/actions';
+import { actAddToCart,actChangeMessage, actGetKey } from '../actions/actions';
 import _ from 'lodash';
 import ProductList from './ProductList';
 import * as Message from '../constants/Message';
 import {Link } from 'react-router-dom';
-
+import Comment from './Comment/CheckComment';
 
 class ProductDetail extends Component {
     constructor(props){
@@ -29,12 +29,16 @@ class ProductDetail extends Component {
             });
         }
     }
-    componentDidMount(){
+    componentDidMount(){ 
+        var obj = new Object;
+        var {match} = this.props;
+        obj = match.params.key;
+        this.props.onGetKey(obj);
         callApi('Database/Sanpham','GET',null).then(res=>{
             var data = _.toArray(res.data);
             this.setState({
                 product : data
-            })
+            });
         });
     }
     showAuthor(){
@@ -59,7 +63,6 @@ class ProductDetail extends Component {
 	};
     render() {
         let linkToDetail = '/cart';
-        var {product} = this.state;
         var {data1} = this.state;
         return (
             <div className="Container-center" >
@@ -109,17 +112,10 @@ class ProductDetail extends Component {
                                             </span>
                                     </i>
                                 </p>
-                                
-                                {/* <button type="button" className="btn btn-danger">Mua Hàng</button> */}
-                                
-                                <Link to={linkToDetail}
-									className="btn-floating blue-gradient"
-									data-toggle="tooltip"
-									data-placement="top"
+                                <Link to={linkToDetail} className="btn btn-danger"
 									data-original-title="Add to Cart"
 									onClick={() => this.onAddToCart(data1)}
-								>
-									<i className="fa fa-shopping-cart" />
+								    >Mua Hàng <i className="fa fa-shopping-cart" />
                                 </Link>
                             </div>
                             </div>
@@ -140,13 +136,18 @@ class ProductDetail extends Component {
                             </form>
 						</div>
                         <h3>Gợi Ý Sản Phẩm</h3>
-                    <div className="menu-group" style={{width:'100%', height : '600px',display:'-webkit-box'}}>
-                            {this.showAuthor()}
-					</div>
+                            <div className="menu-group" style={{width:'100%', height : '600px',display:'-webkit-box'}}>
+                                    {this.showAuthor()}
+                            </div>
+                        <Comment/>  
 	    	</div>
         );
     }
 }
+const mapStateToProps = (state) => ({
+    keypd: state.keypd
+})
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddToCart: (product) => {
@@ -154,7 +155,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onChangeMessage : (message) => {
             dispatch(actChangeMessage(message));
+        },
+        onGetKey : (keypd) =>{
+            dispatch(actGetKey(keypd));
         }
     }
 }
-export default connect(null, mapDispatchToProps)(ProductDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

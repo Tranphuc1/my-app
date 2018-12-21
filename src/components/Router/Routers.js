@@ -9,6 +9,7 @@ import ShowMenuProducts from '../pages/ComponentshomePage/ShowMenuProducts';
 import CartContainer from '../Products/Containers/CartContainer';
 import { SignUpForm } from '../Admin/Signup/Signup';
 import { PasswordForgetForm } from '../Admin/PasswordForget';
+import FormCheck from '../Admin/Manage/CheckCommentForm/FormCheck';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -49,6 +50,11 @@ const Routers = [
 		path:'/cart',
 		exact:true,
 		main : () => <CartContainer/>
+	},
+	{
+		path:'/App1/CheckComment',
+		exact:true,
+		main : () => <FormCheck/>
 	}
 ];
 const Routers2 =[

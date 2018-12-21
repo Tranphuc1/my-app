@@ -20,8 +20,8 @@ const products = (state = initialState, action) => {
             state = action.products;
             return [...state];
         case Types.ADD_PRODUCT:
-        state.push(action.product);
-        return [...state];
+            state.push(action.product);
+            return [...state]; 
         case Types.DELETE_PRODUCT:
             index = FindIndex(state,key);
             state.slice(index,1);

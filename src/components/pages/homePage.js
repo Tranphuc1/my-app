@@ -7,35 +7,41 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as routes from '../Products/constants/Login';
 import ProductsContainer from '../Products/Containers/ProductsContainer';
+import CartButton from '../headerComponents/CartButton';
 	const Homepage = ({authUser}) =>
 	    	<div className="Container-center" >
-			<div className="Account" style={{position: 'absolute', top: 0,right: 50}}>
-				{authUser
-					? <NavigationAuth/>
-					: <NavigationNonAuth/>
-				}
-			</div>
-				<button type="button" className="btn btn-default" style={{position: 'absolute', top: 0,right:250}} ><a href ="/SignIn" >Trang Admin</a></button>
+				{/* <button type="button" className="btn btn-default" style={{position: 'absolute', top: 0,right:250}} ><a href ="/app1/PushProduct" >Trang Admin</a></button> */}
 	    		<a className="glyphicon glyphicon-th-list" style={{left: '40px'}}> Danh Mục Sản Phẩm</a>
-	    		<a className="glyphicon glyphicon-earphone" style={{left: '70%'}}> HotLine:0988888888</a>
 					<div>
 						<Search/>
+						<div className="collapse navbar-collapse" id="navbarResponsive" style={{position: 'absolute', top: 0,right:10}}>
+							{authUser ? <NavigationAuth/> : <NavigationNonAuth/>}
+						</div>
 						<div className="menu-group" style={{width:'100%',height : '400px',display:'-webkit-box'}}>
 						<Menu />
 						<SimpleSlider />
 						</div>
 						<ProductsContainer/>
 					</div>
-
 	    	</div>
+
 const NavigationAuth = () =>
-<ul className="navbar-nav ml-auto" >
-	<SignOutButton />
-</ul>
+	<ul className="navbar-nav ml-auto" >
+		<SignOutButton />
+		<li className="nav-item dropdown"  style={{position: 'absolute',right:250}}>
+			<CartButton/>
+		</li>
+		
+	</ul>
 const NavigationNonAuth = () =>
 	<ul className="navbar-nav ml-auto">
+		<li className="nav-item dropdown" style={{position: 'absolute', top: 0,right:250}}>
+			<CartButton/>
+		</li>
 		<li className="nav-item">
-			<Link className="nav-link" to={routes.SIGN_IN}>Đăng nhập</Link>
+			<Link className="nav-link" to={routes.SIGN_IN}>
+				<button type="button" className="btn btn-warning" >Đăng Nhập</button>
+			</Link>
 		</li>
 	</ul>
 

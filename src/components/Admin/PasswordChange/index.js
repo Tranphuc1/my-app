@@ -28,10 +28,8 @@ class PasswordChangeForm extends Component {
 			.catch(error => {
 				this.setState(updateByPropertyName('error', error));
 			});
-
 		event.preventDefault();
 	}
-
 	render() {
 		return (
 			<div className="login-box">

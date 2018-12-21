@@ -1,4 +1,4 @@
-var redux =require('redux');
+var redux = require('redux');
 
 const ManageInitialState ={}
 const allReducer = (state = ManageInitialState, action) => {

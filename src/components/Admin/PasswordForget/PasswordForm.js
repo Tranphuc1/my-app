@@ -1,7 +1,6 @@
 import React from 'react';
 import * as yup from 'yup';
 import { withFormik, Form, Field } from 'formik';
-import { NotificationManager } from 'react-notifications';
 import {auth1} from '../../../FirebaseConnect2';
 const ForgetForm = props => {
     const {
@@ -13,6 +12,7 @@ const ForgetForm = props => {
     return (
         <Form className="form-signin">
             <h2 className="text-center">Quên mật khẩu</h2>
+            <label htmlFor="inputEmail">Email</label>
             <div className="form-label-group">
                 <Field
                     type="text"
@@ -21,7 +21,6 @@ const ForgetForm = props => {
                     id="inputEmail"
                     className={errors.txtEmail && touched.txtEmail ? ('text-input error form-control') : ('form-control text-input')}
                 />
-                <label htmlFor="inputEmail">Email</label>
             </div>
             {errors.txtEmail && touched.txtEmail && (<div className="alert alert-danger">{errors.txtEmail}</div>)}
             <div className="field">
@@ -48,14 +47,14 @@ const EnhancedForgetForm = withFormik({
                 resetForm({
                     txtEmail: ''
                 });
-                NotificationManager.info(`Mật khẩu mới đã được gửi tới ${email}`,'', 10000);
+                alert(`Mật khẩu mới đã được gửi tới ${email}`,'', 1000);
             })
             .catch(error => {
                 setErrors(error);
             });
     },
 
-    displayName: 'ForgetForm', // helps with React DevTools
+    displayName: 'ForgetForm',
 })(ForgetForm);
 
 export default EnhancedForgetForm;

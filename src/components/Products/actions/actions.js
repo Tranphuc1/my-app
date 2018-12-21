@@ -57,3 +57,10 @@ export const actChangeMessage = (message) =>{
         message
     }
 }
+//getkeyproductdetail
+export const actGetKey = (keypd) =>{
+    return {
+        type:Types.GET_KEY,
+        keypd
+    }
+}
