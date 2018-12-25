@@ -135,11 +135,13 @@ class ProductDetail extends Component {
                                 </div>
                             </form>
 						</div>
-                        <h3>Gợi Ý Sản Phẩm</h3>
+                        <h3 style={{borderBottom:'#e4e4e4 solid 1px'}}>Gợi Ý Sản Phẩm Cùng Tác Giả </h3>
                             <div className="menu-group" style={{width:'100%', height : '600px',display:'-webkit-box'}}>
                                     {this.showAuthor()}
                             </div>
-                        <Comment/>  
+                        <div className ="menuComment" >
+                            <Comment/>
+                        </div>  
 	    	</div>
         );
     }

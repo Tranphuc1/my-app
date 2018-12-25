@@ -11,6 +11,7 @@ import {Routers,Routers2} from './Routers';
 import PushForm from '../Admin/Manage/ProductsForm/PushForm';
 import { SignInForm } from '../Admin/Login/Login';
 import AccountPage from '../Admin/Account';
+import { SignUpForm } from '../Admin/Signup/Signup';
 
 class DieuHuong extends Component {
   render() {
@@ -19,6 +20,7 @@ class DieuHuong extends Component {
 			<Route path="/" component={Header} />
 			<Switch>
 				{this.showLoginForm(Routers2)}
+				<Route path="/Signup" exact component={SignUpForm} />
 				<Route path="/Signin" exact component={SignInForm} />
 				<Route path ="/Account" exact component={AccountPage}/>
 			</Switch>

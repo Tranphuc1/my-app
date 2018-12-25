@@ -4,10 +4,10 @@ import ShowComment from './showComment';
 import InputComment from './InputComment';
 const CommentForm = ({ authUser,keypd }) =>
     
-	<li className="UserName">
+	<div className="UserName">
         <ShowComment keypd ={keypd}/>
         <InputComment authUser={authUser.email} keypd ={keypd}/>
-	</li>
+	</div>
 
 const mapStateToProps = (state) => ({
     authUser: state.sessionState.authUser,

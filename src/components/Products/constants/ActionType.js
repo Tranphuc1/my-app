@@ -21,3 +21,7 @@ export const AUTH_USER_SET ='AUTH_USER_SET';
 //keyProductDetail
 
 export const GET_KEY = 'GET_KEY';
+
+//Search
+
+export const KEYWORD ='KEYWORD';

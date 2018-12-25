@@ -5,7 +5,7 @@ class CartResult extends Component {
         var { cart } = this.props;
         return (
             <tr>
-                <td colSpan="3"></td>
+                <td colSpan={3}></td>
                 <td>
                     <h4>
                         <strong>Tổng Tiền</strong>
@@ -14,16 +14,13 @@ class CartResult extends Component {
                 <td>
                     <h4>
                         <strong>
-                        {this.showTotalAmount(cart)}
+                            {this.showTotalAmount(cart)}
                         </strong>
                     </h4>
                 </td>
-                <td colSpan="3">
-                    <button type="button" className="btn btn-primary waves-effect waves-light">Thanh Toán
-                            <i className="fa fa-angle-right right"></i>
-                    </button>
+                <td colSpan="2">
                 </td>
-            </tr>
+            </tr>             
         );
     }
 

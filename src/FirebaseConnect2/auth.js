@@ -1,4 +1,4 @@
-import { auth } from '../FirebaseConnect';
+import { auth,firebaseConnect } from '../FirebaseConnect';
 
 // Sign In
 export const doSignInWithEmailAndPassword = (email, password) =>
@@ -14,3 +14,7 @@ export const doPasswordReset = (email) =>
 // Password Change
 export const doPasswordUpdate = (password) =>
 	auth.currentUser.updatePassword(password);
+
+export const user = uid => firebaseConnect.database().ref(`/users/${uid}`);
+
+export const users = () => firebaseConnect.database().ref('/users');

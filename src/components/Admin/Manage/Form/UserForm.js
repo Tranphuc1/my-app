@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import callApi from '../../../../ApiCaller/Api';
+import {auth} from '../../../../FirebaseConnect';
 // const uuidv4 = require('uuid/v4');
 class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            txtUser : '',
-            txtPass : ''
+            email : '',
+            txtPassword : '',
+            diachi :''
         };
     }
     changeInput = (event) => {
@@ -20,25 +22,24 @@ class Form extends Component {
     submitForm =(event) =>{
         event.preventDefault();
         event.target.reset();
-        const {txtUser,txtPass} = this.state;
+        const {email,txtPassword,diachi} = this.state;
         const item ={};
-        item.username = txtUser;
-        item.password = txtPass;
-        callApi('User','POST',item).then(res =>{
-        alert('Thêm người dùng thành công')
-        })
+        item.email = email;
+        item.txtPassword = txtPassword;
+        item.diachi = diachi;
+        callApi('Database/User','POST',item).then(res =>{
+            alert('Thêm người dùng thành công')
+        });
+        auth.createUserWithEmailAndPassword(email, txtPassword)
+            .then((u)=>{
+            })
+			.catch(error => {
+                console.log(error);
+			});
     }
-
-
     render() {
         return (
             <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div className="alert alert-danger" role="alert">
-                    <strong>Lỗi </strong> Vui lòng nhập
-                </div>
-                <div className="alert alert-success" role="alert">
-                    <strong>Thông báo </strong> Thành công
-                </div>
                 <div className="card">
                     <div className="card-header">
                         Thêm
@@ -48,12 +49,16 @@ class Form extends Component {
                     <div className="card-block">
                         <form method="POST" onSubmit={ (e) => this.submitForm(e) }>
                             <div className="form-group">
-                                <label htmlFor="txtUser">Thành Viên</label>
-                                <input type="email" name="txtUser" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } />
+                                <label htmlFor="email">Thành Viên</label>
+                                <input type="email" name="email" className="form-control" placeholder="Nhập Thành Viên" onChange={ (e) => this.changeInput(e) } />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txtPass">Mật Khẩu</label>
-                                <input type="password" name="txtPass" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changeInput(e) } />
+                                <label htmlFor="txtDiachi">Địa Chỉ</label>
+                                <input type="txt" name="diachi" className="form-control" placeholder="Nhập Địa Chỉ" onChange={ (e) => this.changeInput(e) } />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="txtPassword">Mật Khẩu</label>
+                                <input type="password" name="txtPassword" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changeInput(e) } />
                             </div>
                             <button type="submit" className="btn btn-primary">Thêm</button>
                         </form>

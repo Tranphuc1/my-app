@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { withFormik, Form, Field } from 'formik';
 import * as routes from '../../Products/constants/Login';
 import { auth } from '../../../FirebaseConnect';
-
+import { auth1 } from '../../../FirebaseConnect2';
 const SignUpForm = props => {
     const {
         touched,
@@ -23,10 +23,9 @@ const SignUpForm = props => {
                     id="inputEmail"
                     className={errors.txtEmail && touched.txtEmail ? ('text-input error form-control') : ('form-control text-input')}
                 />
-                
             </div>
             {errors.txtEmail && touched.txtEmail && (<div className="alert alert-danger">{errors.txtEmail}</div>)}
-            <label htmlFor="inputPassword">Mật khẩu</label>
+            <label htmlFor="inputPassword">Mật khẩu :</label>
             <div className="form-label-group">
                 <Field
                     type="password"
@@ -38,9 +37,8 @@ const SignUpForm = props => {
                 
             </div>
             {errors.txtPassword && touched.txtPassword && (<div className="alert alert-danger">{errors.txtPassword}</div>)}
-            <label htmlFor="inputConfirmPassword">Nhập lại mật khẩu</label>
+            <label htmlFor="inputConfirmPassword">Nhập lại mật khẩu: </label>
             <div className="form-label-group">
-            
                 <Field
                     type="password"
                     name="txtConfirmPassword"
@@ -48,12 +46,28 @@ const SignUpForm = props => {
                     id="inputConfirmPassword"
                     className={errors.txtConfirmPassword && touched.txtConfirmPassword ? ('text-input error form-control') : ('form-control text-input')}
                 />
-                
             </div>
             {errors.txtConfirmPassword && touched.txtConfirmPassword && (<div className="alert alert-danger">{errors.txtConfirmPassword}</div>)}
-
+            <label htmlFor="inputdiachi">Địa Chỉ:</label>
+            <div className="form-label-group">
+                <Field
+                    type="text"
+                    name="diachi"
+                    placeholder="Địa Chỉ: "
+                    id="inputdiachi"
+                />
+            </div>
+            <label htmlFor="telephone">Số Điện Thoại:</label>
+            <div className="form-label-group">
+                <Field
+                    type="number"
+                    name="telephone"
+                    placeholder="Số điện thoại: "
+                    id="telephone"
+                />
+            </div>
             <div className="field">
-                <button disabled={isSubmitting} type="submit" className="btn btn-lg btn-warning btn-block">Đăng ký</button>
+                <button type="submit" className="btn btn-lg btn-warning btn-block">Đăng ký</button>
             </div>
             {errors && errors.message && <div className="mt-2 mb-0 alert alert-danger">{errors.message}</div>}
         </Form>
@@ -80,6 +94,8 @@ const EnhancedSignUpForm = withFormik({
         txtEmail: '',
         txtPassword: '',
         txtConfirmPassword: '',
+        diachi:'',
+        telephone:'',
         history: props.history
     }),
     validationSchema: yup.object().shape({
@@ -90,16 +106,41 @@ const EnhancedSignUpForm = withFormik({
     handleSubmit : (values, { setSubmitting, setErrors }) => {
         let email = values.txtEmail;
         let txtPassword = values.txtPassword;
+        let diachi =values.diachi;
+        let sodienthoai =values.telephone;
         let history = values.history;
         setSubmitting(false);
         auth.createUserWithEmailAndPassword(email, txtPassword)
-            .then((u)=>{
-                alert('Đăng ký thành công!');
-                history.push(routes.SIGN_IN)
-            })
-			.catch(error => {
-                setErrors(error);
-			});
+        .then(authUser => {
+            // Create a user in your Firebase realtime database
+            auth1
+              .user(authUser.user.uid)
+              .set({
+                email,
+                diachi,
+                sodienthoai,
+                role:'2'
+              })
+              .then((u)=>{
+                    alert('Đăng ký thành công!');
+                    history.push(routes.SIGN_IN);
+                })
+              .catch(error => {
+                this.setState({ error });
+              });
+          })
+          .catch(error => {
+            setErrors(error);
+          });
+    
+            // .then((u)=>{
+            //     alert('Đăng ký thành công!');
+            //     history.push(routes.SIGN_IN);
+            // })
+			// .catch(error => {
+            //     setErrors(error);
+            // });
+        
     },
     displayName: 'SignUpForm', // helps with React DevTools
 })(SignUpForm);

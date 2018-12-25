@@ -34,7 +34,7 @@ class CartItem extends Component {
                 </td>
                 <td className="center-on-small-only"  >
                     <span className="qty">
-                            {quantity}
+                            {quantity}&nbsp;
                      </span>
                      <div className="btn-group radio-group" data-toggle="buttons">
                         <label
@@ -44,6 +44,7 @@ class CartItem extends Component {
                         </label>
                         <label
                             onClick={() => this.onUpdateQuantity(item.product, item.quantity + 1)}
+                          
                             className="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
                             <a>+</a>
                         </label>
@@ -66,13 +67,12 @@ class CartItem extends Component {
         );
     }
     onUpdateQuantity = (product, quantity) => {
-        if (quantity > 0) {
+        if (quantity > 0 && quantity <= product.quantity ) {
             var { onUpdateProductInCart, onChangeMessage } = this.props;
             onUpdateProductInCart(product, quantity);
             onChangeMessage(Message.MSG_UPDATE_CART_SUCCESS);
         }
     }
-
     onDelete = (product) => {
         var { onDeleteProductInCart, onChangeMessage } = this.props;
         onDeleteProductInCart(product);

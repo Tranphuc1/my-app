@@ -6,6 +6,7 @@ import CartResult from '../Components/CartResult';
 import Cart from '../Components/Cart';
 import CartItem from '../Components/CartItem';
 import { actDeleteProductInCart, actChangeMessage,actUpdateProductInCart} from '../actions/actions';
+import SelectPay from '../Components/Pay/SelectPay';
 
 
 class CartContainer extends Component {
@@ -14,7 +15,8 @@ class CartContainer extends Component {
 		return (
 			<Cart>
 				{this.showCartItem(cart)}
-				{this.showTotalMount(cart)}
+                {this.showTotalMount(cart)}
+                {this.showPay(cart)}
 			</Cart>
 		);
 	}
@@ -39,12 +41,21 @@ class CartContainer extends Component {
         return result;
     }
     showTotalMount = (cart) => {
-		let result = [];
+        let result = [];
 		if (cart.length > 0) {
+            
 			result = <CartResult cart={cart} />
 		}
 		return result;
-	};
+    };
+    showPay =(cart) =>{
+        let result = [];
+		if (cart.length > 0) {
+            
+			result = <SelectPay cart={cart} />
+		}
+		return result;
+    } 
 
 }
 

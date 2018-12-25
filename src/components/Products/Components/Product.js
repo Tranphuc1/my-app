@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import * as Message from '../constants/Message';
-import {Link } from 'react-router-dom';
 import _ from 'lodash';
 import NumberFormat from 'react-number-format';
 class Product extends Component {
@@ -10,17 +8,17 @@ class Product extends Component {
 		return (
 			<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				<div className="card text-center card-cascade narrower">
-				<Link to={linkToDetail} >
+				<a href={linkToDetail} >
 					<div className="view overlay hm-white-slight z-depth-1" style ={{ height:'180px',width:'180px'}}>
 						<img className="img-fluid" src={product.url} alt={product.name} style={{width:'180px',height:'180px'}}/>
 					</div>
-				</Link>
+				</a>
 					<div className="card-body">
 						<h4 className="card-title">
 							<strong>
-							<Link to={linkToDetail}>
+							<a href={linkToDetail}>
 							{product.name}
-							</Link>
+							</a>
 							</strong>
 						</h4>
 						<ul className="rating">
@@ -49,11 +47,6 @@ class Product extends Component {
 			</div>
 		);
 	}
-	onAddToCart = (product) => {
-		const { onAddToCart, onChangeMessage } = this.props;
-		onAddToCart(product);
-		onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
-	};
 	showRating = rating => {
 		let result = [];
 		for (let index = 0; index < rating; index++) {

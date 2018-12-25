@@ -7,6 +7,7 @@ import EnhancedSignUpForm from './SignupForm';
 import * as routes from '../../Products/constants/Login';
 import {auth} from '../../../FirebaseConnect';
 
+
 const SignUpPage = ({ history }) =>
 	<SignUpForm history={history} />
 
@@ -35,7 +36,7 @@ class SignUpForm extends Component {
 		const {
 			history,
         } = this.props;
-        
+       
         auth.createUserWithEmailAndPassword(email, passwordOne)
         .then((u)=>{
             history.push(routes.HOME);

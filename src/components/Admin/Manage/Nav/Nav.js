@@ -20,10 +20,6 @@ class Nav extends Component {
                                 <button type="button" className="btn btn-defalt">
                                 <Link to ="/App1/PushBill">Hóa đơn</Link></button>
                             </li>
-                            <li className="nav-item">
-                                <button type="button" className="btn btn-defalt">
-                                <Link to ="/App1/CheckComment">Check-Comment</Link></button>
-                            </li>
                         </ul>
                         <div className="tab-content">
                             <div className="tab-pane fade show active" id="tab1Id" role="tabpanel" />

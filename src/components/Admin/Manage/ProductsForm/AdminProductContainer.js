@@ -7,6 +7,7 @@ import _ from 'lodash';
 import ShowProduct from './showProduct';
 import AdminProduct from'./AdminProduct';
 import { firebaseConnect } from '../../../../FirebaseConnect';
+import FormCheck from '../CheckCommentForm/FormCheck';
 
 var nodeData = firebaseConnect.database();
 class PushProduct extends React.Component {
@@ -16,8 +17,6 @@ class PushProduct extends React.Component {
             data :[]
         }
     }
-
-
   componentDidMount(){
         var ref = nodeData.ref('Database').child('Sanpham');
         ref.on('value',(snapshot)=>{
@@ -32,8 +31,12 @@ class PushProduct extends React.Component {
       return (
         <div className="form-group">
           <button className="btn btn-Secondary "><Link to="/App1/PushProduct/PushForm">Thêm Sản Phẩm</Link></button>
-          <ShowProduct >{this.showProducts(products)}</ShowProduct>
+          <button className="btn btn-Secondary "><Link to="/App1/PushProduct/CheckComment">Check Comment</Link></button>
+          <ShowProduct >
+            {this.showProducts(products)}
+          </ShowProduct>
         </div>
+        
       );
     }
     showProducts(products) {

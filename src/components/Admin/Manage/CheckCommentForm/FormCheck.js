@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import CommentChilden from './CommentChilden';
 class FormCheck extends Component {
     constructor(props){
         super(props);
@@ -7,26 +8,32 @@ class FormCheck extends Component {
             authUser:'',
         })
     }
+    showComment=()=>{
+        var result = null;
+        var { products }=this.props;
+        if(products.length>0){
+            result = products.map((product,index)=>{
+                return <CommentChilden
+                    key={index}
+                    product={product}
+                />
+            })
+        }
+        return result;
+    }
     render() {
+        var { products }=this.props;
         return (
             <div className="CheckComment" >
                 <table className="table table-bordered table-hover">
                     <thead>
-                        <tr>gi
+                        <tr>
                         <th>Comment</th>
-                        <th>ProductName</th>
-                        <th>Ảnh</th>
-                        <th className="text-center" colSpan={2}>Quyền</th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr className="tbody">
-                        <td>{}</td>
-                        <td >{}</td>
-                        <td >{}</td>
-                        <td className="text-center" width="50px">
-                        <button className="btn btn-danger btn-sm" role="button"><i className="fa fa-trash-o" aria-hidden="true" 
-                        /> Xóa</button></td>
+                        {/* {this.showComment()} */}
                     </tr>
                     </tbody>
                 </table>
@@ -34,5 +41,9 @@ class FormCheck extends Component {
         );
     }
 }
-
-export default FormCheck;
+const mapStateToProps = state => {
+    return {
+        products : state.products
+    }
+}
+export default connect(mapStateToProps,null)(FormCheck);

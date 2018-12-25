@@ -4,12 +4,12 @@ import PushBill from '../Admin/Manage/Bill/PushBill';
 import UserResult from '../Admin/Manage/Form/UserResult';
 import EditForm from '../Admin/Manage/ProductsForm/EditForm';
 import ProductDetail from '../Products/Components/ProductsDetail';
-import ProductList from '../Products/Components/ProductList';
 import ShowMenuProducts from '../pages/ComponentshomePage/ShowMenuProducts';
 import CartContainer from '../Products/Containers/CartContainer';
-import { SignUpForm } from '../Admin/Signup/Signup';
 import { PasswordForgetForm } from '../Admin/PasswordForget';
 import FormCheck from '../Admin/Manage/CheckCommentForm/FormCheck';
+import SearchChildren from '../pages/ComponentshomePage/SearchChildren';
+import Admin from '../Admin/Admin/Admin';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -37,11 +37,6 @@ const Routers = [
 		main : ({match}) => <ProductDetail match={match}/>
 	},
 	{
-		path:'/ProductList',
-		exact:true,
-		main : () => <ProductList/>
-	},
-	{
 		path:'/:kind/MenuProducts',
 		exact:true,
 		main : ({match}) => <ShowMenuProducts match={match}/>
@@ -52,9 +47,19 @@ const Routers = [
 		main : () => <CartContainer/>
 	},
 	{
-		path:'/App1/CheckComment',
+		path:'/App1/PushProduct/CheckComment',
 		exact:true,
 		main : () => <FormCheck/>
+	},
+	{
+		path:'/:keyword/SearchChildren',
+		exact:true,
+		main : ({match}) => <SearchChildren match={match}/>
+	},
+	{
+		path:'/Admin',
+		exact:true,
+		main : () => <Admin/>
 	}
 ];
 const Routers2 =[
@@ -63,11 +68,11 @@ const Routers2 =[
 	// 	exact:true,
 	// 	main : () => <SignInForm/>
 	// },
-	{
-		path:'/SignUp',
-		exact:true,
-		main : () => <SignUpForm/>
-	},
+	// {
+	// 	path:'/SignUp',
+	// 	exact:true,
+	// 	main : () => <SignUpForm/>
+	// },
 	{
 		path:'/password-forget',
 		exact:true,

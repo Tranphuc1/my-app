@@ -33,7 +33,7 @@ class ProductList extends Component {
         if (totalProducts === 0) return null;
         const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
         return (
-                <div className="menu-group" style={{width:'100%',border:'solid 1px #00cc66', height : '600px'}}>
+                <div className="menu-group" style={{width:'100%', height : '600px'}}>
                     <div className="container mb-5">
                         <div className="row ">
                             <div className="w-100 d-flex flex-row flex-wrap align-items-center justify-content-between">

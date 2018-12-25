@@ -12,7 +12,7 @@ class ShowComment extends Component {
     componentWillMount(){
         var {keypd} = this.props;
         var keypd1 = keypd.join('');
-        callApi(`/Database/Comment/${keypd1}`,'GET',null).then(res=>{
+        callApi(`/Database/Sanpham/${keypd1}/Comment`,'GET',null).then(res=>{
             var A =_.toArray(res.data);
             this.setState({
                 comment : A
@@ -34,7 +34,7 @@ class ShowComment extends Component {
     }
     render() {
         return (
-            <div className="showComment" style={{border:'solid'}}>
+            <div className="showComment" >
                 {this.ShowComment()}
             </div>
         );

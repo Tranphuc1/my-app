@@ -64,3 +64,10 @@ export const actGetKey = (keypd) =>{
         keypd
     }
 }
+//GETKEYWORD
+export const actKeyWord = (keyword) =>{
+    return {
+        type:Types.KEYWORD,
+        keyword
+    }
+}

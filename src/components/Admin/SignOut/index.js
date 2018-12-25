@@ -25,7 +25,7 @@ class SignOutButton extends Component {
 			<div>
 				<li className="nav-item dropdown">
 			 		<a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			            Xin chào {authUser2}
+			            {authUser2}
 			 		</a>
 			 		<div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 						<Link to={routes.ACCOUNT} className="dropdown-item">Đổi mật khẩu</Link>

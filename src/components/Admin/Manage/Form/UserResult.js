@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import Form from '../Form/UserForm';
 import Table from '../Table/Table';
-import EditUser from './EditUser';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {actShowAllUser} from '../../../Products/actions/actions';
-import callApi from '../../../../ApiCaller/Api';
+import {auth1} from '../../../../FirebaseConnect2';
 var _ = require('lodash');
 class UserResult extends Component {
     constructor(props) {
       super(props);  
       this.state = {
-        statusForm : true
+        statusForm : true,
+        users:[]
       }
     }
-    componentDidMount(){
-      callApi('User','GET',null).then(res=>{
-        this.props.actShowUser(_.toArray(res.data));
-      })
+    // componentDidMount(){
+    //   callApi('User','GET',null).then(res=>{
+    //     this.props.actShowUser(_.toArray(res.data));
+    //   })
+    // }
+    componentDidMount() {
+      auth1.users().on('value', snapshot => {
+        const usersObject = snapshot.val();
+        const usersList = Object.keys(usersObject).map(key => ({
+          ...usersObject[key],
+          uid: key,
+        }));
+        this.props.actShowUser(usersList);
+      });
+     
     }
     changeStatusForm = (event) => {
       event.preventDefault();
@@ -52,16 +62,6 @@ class UserResult extends Component {
       );
     }
   }
-UserResult.propTypes = {
-  User : PropTypes.arrayOf(
-      PropTypes.shape({
-          key : PropTypes.string.isRequired,
-          username : PropTypes.string.isRequired,
-          password : PropTypes.string.isRequired,
-      })
-  ).isRequired,
-  actShowUser : PropTypes.func.isRequired
-}
 const mapStateToProps = (state) =>{
   return {
     User: state.User

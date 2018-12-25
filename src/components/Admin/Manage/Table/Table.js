@@ -6,9 +6,9 @@ class Table extends Component {
 
     showButton = () => {
         if (!this.props.changedButton) {
-            return <a className="btn btn-success btn-sm" href="them" role="button" onClick={ (e) => this.props.FromToogle(e) }><i className="fa fa-plus" aria-hidden="true" /> Thêm</a>
+            return <a className="btn btn-success btn-sm" role="button" onClick={ (e) => this.props.FromToogle(e) }><i className="fa fa-plus" aria-hidden="true" /> Thêm</a>
         } else {
-            return <a className="btn btn-danger btn-sm" href="dong" role="button" onClick={(e) => this.props.FromToogle(e) }><i className="fa fa-close" aria-hidden="true" /> Đóng</a>
+            return <a className="btn btn-danger btn-sm" role="button" onClick={(e) => this.props.FromToogle(e) }><i className="fa fa-close" aria-hidden="true" /> Đóng</a>
         }
     }
     classTable = () => {
@@ -21,7 +21,7 @@ class Table extends Component {
 
     mappingData = () =>{
         const tableRow = this.props.userData.map((value,key) => {
-            return <TableRow key={key} index ={key} password={value.password}>{value.username}</TableRow>
+            return <TableRow key={key} index ={key} uid ={value.uid} role={value.role} sodienthoai={value.sodienthoai} diachi={value.diachi}>{value.email}</TableRow>
         });
         return tableRow;
     }
@@ -32,8 +32,12 @@ class Table extends Component {
                     <thead>
                         <tr>
                             <th>STT</th>
+                            <th>Phân Quyền</th>
+                            <th>UserID</th>
                             <th>Tài Khoản</th>
-                            <th>Mật Khẩu</th>
+                            <th>Địa Chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Quyền</th>
                             <th className="text-center" colSpan={2}>
                                 { this.showButton() }
                             </th>

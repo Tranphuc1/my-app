@@ -9,7 +9,6 @@ const AccountPage = ({ authUser }) =>
 		<div className="row">
 			<div className="col-12">
 				<PasswordChangeForm />
-				{/* <PasswordForgetForm /> */}
 			</div>
 		</div>
 	</div>

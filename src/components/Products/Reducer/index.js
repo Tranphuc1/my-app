@@ -5,6 +5,7 @@ import message from './Message';
 import User from './User';
 import sessionReducer from './Session';
 import keypd from './key';
+import keyword from './search';
 
 const appReducers = combineReducers({
     products,
@@ -12,6 +13,7 @@ const appReducers = combineReducers({
     message,
     User,
     keypd,
+    keyword,
     sessionState : sessionReducer
 });
 

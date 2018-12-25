@@ -1,23 +1,67 @@
 import React, { Component } from 'react';
 import Navvar from '../Nav/Nav';
-// import Table from '../Table/Table';
-// var noteData  = firebaseConnect.database().ref('User');
-//  noteData.once('value').then(function(snapshot){});
+import { connect } from 'react-redux';
+import * as routes from '../../../Products/constants/Login';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
+import callApi from '../../../../ApiCaller/Api';
 class App1 extends Component {
-  logout(e){
-    e.preventDefault()
-    this.props.history.push('/Signup')
+  constructor(props){
+    super(props);
+    this.state=({
+      role:''
+    })
   }
-
+  // logout(e){
+  //   e.preventDefault()
+  //   this.props.history.push('/Signup')
+  // }
+  showKey=()=>{
+    var {authUser} = this.props;
+    var key =_.get(authUser, ['uid']);
+    // console.log(key);
+    callApi(`users/${key}`,'GET',null).then(res=>{
+        var data1 = res.data;
+        this.setState({
+            role:_.get(data1,['role'])
+        })
+    })
+  }
+    renderAdmin=()=>{
+      var {role} = this.state;
+      if(role == '1'){
+        return <NavigationAuth/>
+      }else{
+        return <NavigationNonAuth/>
+      }
+    }
     render() {
+        
       return (
         <div className="App">
         <div className="container">
-        <button onClick={e =>this.logout(e)} type="button" className="btn btn-danger">LogOut</button>
-          <Navvar/>
+          {this.showKey()}
+          {this.renderAdmin()}
           </div>
         </div>
       );
     }
   }
-export default App1;
+const NavigationAuth = () =>
+  <div className="container">
+    <Navvar/>
+	</div>
+const NavigationNonAuth = () =>
+	<ul className="navbar-nav ml-auto">
+		<li className="nav-item">
+			<Link className="nav-link" to={routes.SIGN_IN}>
+				<button type="button" className="btn btn-warning" >Đăng Nhập</button>
+			</Link>
+		</li>
+	</ul>
+const mapStateToProps = (state) =>{
+  return {
+    authUser: state.sessionState.authUser
+  }
+}
+export default connect(mapStateToProps)(App1);

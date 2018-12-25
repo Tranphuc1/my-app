@@ -12,8 +12,7 @@ if (!firebase.apps.length) {
 }
 const firebaseConnect = firebase;
 const auth = firebase.auth();
-
 export {
 	firebaseConnect,
-	auth
+  auth
 };
