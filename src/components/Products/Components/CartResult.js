@@ -33,7 +33,6 @@ class CartResult extends Component {
         }
         return <NumberFormat value={total} displayType={'text'} thousandSeparator={true} suffix={' đ'} />;
     }
-
 }
 
 export default CartResult;

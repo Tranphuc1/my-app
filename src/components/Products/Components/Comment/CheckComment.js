@@ -5,6 +5,7 @@ import * as routes from '../../constants/Login';
 import CommentForm from './CommentForm';
 import callApi from '../../../../ApiCaller/Api';
 import _ from 'lodash';
+import Rating from './Rating';
 class Comment extends Component {
     constructor(props){
         super(props);
@@ -39,7 +40,7 @@ class Comment extends Component {
         return (
         <div>
             <h4 style={{borderBottom:'#e4e4e4 solid 1px'}}>Gửi Nhận Xét Của Bạn</h4>
-            <div className="menu-group" style={{width:'100%', height : '200px',display:'-webkit-box'}}>
+            <div className="menu-group" style={{width:'100%', height : '100%',display:'-webkit-box'}}>
             {this.showKey()}
             {this.renderAdmin()}
             </div>
@@ -48,19 +49,12 @@ class Comment extends Component {
     }
 }
 const NavigationAuth = () =>
-    <div>
         <div className="rate">
             <label>1. Đánh giá của bạn về sản phẩm này: </label> 
-            <ul className="rating">
-                <li><i className="fa fa-star" /></li>
-                <li><i className="fa fa-star" /></li>
-                <li><i className="fa fa-star" /></li>
-                <li><i className="fa fa-star" /></li>
-                <li><i className="fa fa-star" /></li>
-            </ul>    
+            <Rating/> 
+            <CommentForm />  
         </div>
-        <CommentForm />
-    </div>
+        
 const NavigationNonAuth = () =>
     <div>
         <Link to={routes.SIGN_IN}> Đăng Nhập </Link><a> để viết nhận xét !!!</a>  

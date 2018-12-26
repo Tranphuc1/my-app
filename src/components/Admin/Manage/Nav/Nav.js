@@ -21,19 +21,12 @@ class Nav extends Component {
                                 <Link to ="/App1/PushBill">Hóa đơn</Link></button>
                             </li>
                         </ul>
-                        <div className="tab-content">
-                            <div className="tab-pane fade show active" id="tab1Id" role="tabpanel" />
-                            <div className="tab-pane fade" id="tab2Id" role="tabpanel" />
-                            <div className="tab-pane fade" id="tab3Id" role="tabpanel" />
-                            <div className="tab-pane fade" id="tab4Id" role="tabpanel" />
-                            <div className="tab-pane fade" id="tab5Id" role="tabpanel" />
-                        </div>
                         </div>
 
-                    <form className="form-inline my-2 my-md-0">
+                    {/* <form className="form-inline my-2 my-md-0">
                         <input className="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa" />
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
-                    </form>
+                    </form> */}
                 </div>
             </nav>
         </div>

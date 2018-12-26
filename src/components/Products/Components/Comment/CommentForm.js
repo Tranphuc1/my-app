@@ -6,7 +6,7 @@ const CommentForm = ({ authUser,keypd }) =>
     
 	<div className="UserName">
         <ShowComment keypd ={keypd}/>
-        <InputComment authUser={authUser.email} keypd ={keypd}/>
+        {/* <InputComment authUser={authUser.email} keypd ={keypd}/> */}
 	</div>
 
 const mapStateToProps = (state) => ({

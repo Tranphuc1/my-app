@@ -24,12 +24,13 @@ class SignOutButton extends Component {
 		return (
 			<div>
 				<li className="nav-item dropdown">
-			 		<a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			            {authUser2}
+			 		<a className="nav-link dropdown-toggle" id="navbarDropdown" style={{background:'#00cc66',height:'55px',marginTop:'10px;'}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 <br/>
+					 <i className="fas fa-user-alt">&nbsp;&nbsp;&nbsp;{authUser2}</i>
 			 		</a>
 			 		<div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<Link to={routes.ACCOUNT} className="dropdown-item">Đổi mật khẩu</Link>
-			 			<a className="dropdown-item" onClick={auth1.doSignOut}>Đăng xuất</a>
+						<Link to={routes.ACCOUNT} className="dropdown-item"><i className="fas fa-exchange-alt">&nbsp;Đổi mật khẩu</i></Link>
+			 			<a className="dropdown-item" onClick={auth1.doSignOut}><i className="fas fa-sign-in-alt">&nbsp;Đăng xuất</i></a>
 			 		</div>
 				</li>
 			</div>

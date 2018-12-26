@@ -17,5 +17,5 @@ const mapStateToProps = (state) => ({
 	authUser: state.sessionState.authUser,
 });
 
-const authCondition = (authUser) => !!authUser;
+const authCondition = (authUser) => !authUser;
 export default compose(withAuthorization(authCondition),connect(mapStateToProps))(AccountPage);

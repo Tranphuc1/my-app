@@ -53,7 +53,7 @@ class Product extends Component {
 			result.push(<i key={index} className="fa fa-star" />);
 		}
 		for (let index = 0; index < 5 - rating; index++) {
-			result.push(<i key={index + 5} className="fa fa-star-o" />);
+			result.push(<i key={index + 5} className="far fa-star" />);
 		}
 		return result;
 	};

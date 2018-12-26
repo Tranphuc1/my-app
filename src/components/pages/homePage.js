@@ -20,7 +20,6 @@ import _ from 'lodash';
 	showKey=()=>{
 		var {authUser} = this.props;
 		var key =_.get(authUser, ['uid']);
-		// console.log(key);
 		callApi(`users/${key}`,'GET',null).then(res=>{
 			var data1 = res.data;
 			this.setState({
@@ -66,7 +65,7 @@ const NavigationAuthAdmin =() =>
 				<SignOutButton />
 			<li className="nav-item"  style={{position: 'absolute',right:250}}>
 				<Link to="/App1" className="nav-link" style={{position: 'absolute'}}>
-					<button type="button" class="btn btn-danger">Admin</button>
+					<button type="button" className="btn btn-danger">Admin</button>
 				</Link>
 			</li>
 		</ul>

@@ -45,8 +45,10 @@ class ProductDetail extends Component {
         var {product} = this.state;
         var result=null;
         var author = this.state.data1.author;
+        var key = this.state.data1.key;
         var { onAddToCart, onChangeMessage } = this.props;
-        var A = product.filter(product => product.author === author);
+        var A = product.filter(product => product.author === author && product.key !== key);
+        // var B = A.filter(product => product.author != author);
         if(A.length>0){
             return <ProductList 
             product={A} 
@@ -60,7 +62,7 @@ class ProductDetail extends Component {
         var { onAddToCart, onChangeMessage } = this.props;
 		onAddToCart(data1);
 		onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
-	};
+    };
     render() {
         let linkToDetail = '/cart';
         var {data1} = this.state;
@@ -78,11 +80,14 @@ class ProductDetail extends Component {
                             <div className="form-group" style={{borderBottom:'#e4e4e4 solid 1px',height:'50px'}}  >
                                 <label htmlFor="name"><h2>{data1.name}</h2></label>
                             </div>
-                            <div className="form-group" style={{borderBottom:'#e4e4e4 solid 1px',height:'50px'}}  >
+                            <div className="form-group" style={{borderBottom:'#e4e4e4 solid 1px',height:'80px'}}  >
                                 <label htmlFor="name"><h5>Tác Giả:</h5></label>
                                 <label>{data1.author}</label>
+                                <br/>
+                                <label htmlFor="quantity"><h5>Còn Lại:</h5></label>&nbsp;
+                                <label>{data1.quantity}</label>
+                                &nbsp;<label htmlFor="quantity"><h5>sản phẩm</h5></label>
                             </div>
-                            
                             <div className="form-group" style={{borderBottom:'#e4e4e4 solid 1px',height:'50px'}}  >
                                 <span className="final-price">Giá Khuyến Mại:<NumberFormat value={data1.price*0.75} displayType={'text'} thousandSeparator={true} suffix={' đ'} /></span>
                                 <br/>
@@ -111,6 +116,10 @@ class ProductDetail extends Component {
                                                 <strong>>250.000 vnđ</strong>
                                             </span>
                                     </i>
+                                </p>
+                                <p>
+                                        <span>Được Đánh Giá:&nbsp; </span>
+                                        <h4>{data1.rating} <i className="fa fa-star" style={{color:'#ffa000'}}></i> </h4>
                                 </p>
                                 <Link to={linkToDetail} className="btn btn-danger"
 									data-original-title="Add to Cart"

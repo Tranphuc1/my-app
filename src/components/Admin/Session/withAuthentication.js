@@ -12,7 +12,7 @@ const withAuthentication = (Component) => {
                 : onSetAuthUser(null);
             });
         }
-
+        
         render() {
             return (
                 <Component />

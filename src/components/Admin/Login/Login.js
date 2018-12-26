@@ -38,6 +38,7 @@ class SignInForm extends Component {
             .then(() => {
                 this.setState(() => ({ ...INITIAL_STATE }));
                 history.push(routes.HOME);
+                alert('Đăng Nhập Thành Công')
             })
             .catch(error => {
                 this.setState(updateByPropertyName('error', error));

@@ -27,9 +27,19 @@ class AdminProduct extends Component {
                 });
             });
           }
+        showQuantity=()=>{
+            var {product}= this.props;
+            var quantity =_.get(product,['quantity']);
+            if(quantity == 0 ){
+                return <h4>Hết Hàng</h4>
+            }else {
+                return <a>Còn Hàng</a>
+            }
 
+        }
     render() {
         var {product,index}= this.props;
+        console.log(_.get(product,['quantity']));
         return (
             <tr className="tbody">
             {this.updatekey()}
@@ -38,7 +48,7 @@ class AdminProduct extends Component {
                 <td >{product.kind}</td>
                 <td>{product.author}</td>
                 <td>{product.description}</td>
-                <td>{product.quantity}</td>
+                <td>{this.showQuantity()}</td>
                 <td><img src={product.url} height="100" width="100"/></td>
                 <td><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} suffix={' đ'} /></td>
                 <td>{product.rating}</td>

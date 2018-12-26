@@ -34,15 +34,16 @@ class ShipCode extends Component {
             }
     }
     ShipCode=()=>{
-        var {name,diachi,diachi2,telephone} = this.state;
+        var {name,diachi,diachi2,telephone,Tong} = this.state;
         var {cart} = this.props;
         const item ={};
           item.diachi = diachi;
           item.diachi2 = diachi2;
           item.telephone = telephone;
           item.name = name;
+          item.Tong=Tong;
           item.cart = cart;
-          firebaseConnect.database().ref('Database/Hoadon').set(item).then(
+          firebaseConnect.database().ref('Database/Hoadon').push(item).then(
             alert('Thành Công')
         )
         setTimeout(() => {
@@ -51,7 +52,18 @@ class ShipCode extends Component {
             })
         }, 1000);
     }
-    
+    componentDidMount (){
+        var {cart} = this.props;
+        var total = 0;
+        if (cart.length > 0) {
+            for (var i = 0; i < cart.length; i++) {
+                total += cart[i].product.price * cart[i].quantity;
+            }
+        }
+        this.setState({
+            Tong:total
+        })
+    }
     cleanLocalStore =()=>{
         var {checkdata} = this.state;
         if(!checkdata){
