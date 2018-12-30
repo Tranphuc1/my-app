@@ -18,7 +18,9 @@ export const actFetchProducts = (products) => {
 export const actDeleteProductsRequest = (key) =>{
     return dispatch =>{
         return callApi(`Database/Sanpham/${key}`,'DELETE',null).then(res =>{
-            dispatch(actDeleteProducts(key));
+            callApi(`Database/Danhgia/${key}`,'DELETE',null).then(res=>{
+                dispatch(actDeleteProducts(key));
+            })
         })
     }
 }
@@ -28,7 +30,19 @@ export const actDeleteProducts = (key) =>{
         key
     }
 }
-
+//COMMENT
+export const actShowComment = (CommentList) =>{
+    return {
+        type: Types.SHOWCOMMENT,
+        CommentList
+    }
+}
+export const actDeleteComment = (key) =>{
+    return {
+        type: Types.DELETE_COMMENT,
+        key
+    }
+}
 // cart
 export const actAddToCart = (product, quantity) => {
     return {

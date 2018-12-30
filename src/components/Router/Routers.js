@@ -10,6 +10,8 @@ import { PasswordForgetForm } from '../Admin/PasswordForget';
 import FormCheck from '../Admin/Manage/CheckCommentForm/FormCheck';
 import SearchChildren from '../pages/ComponentshomePage/SearchChildren';
 import Admin from '../Admin/Admin/Admin';
+import PasswordChangeForm from '../Admin/PasswordChange';
+import MessegerStatusBill from '../Admin/MessegerStatusBill/MessegerStatusBill';
 const Routers = [
 	{
 		path:'/App1/User',
@@ -27,12 +29,17 @@ const Routers = [
 		main :({match})=><PushProduct match={match}/>
 	},
 	{
+		path:'/App1/FormCheck',
+		exact:true,
+		main : () => <FormCheck/>
+	},
+	{
 		path:'/App1/PushProduct/:key/EditForm',
 		exact:true,
 		main : ({match,history}) => <EditForm match={match} history={history}/>
 	},
 	{
-		path:'/:key/ProductDetail',
+		path:'/ProductDetail/:key',
 		exact:true,
 		main : ({match}) => <ProductDetail match={match}/>
 	},
@@ -63,21 +70,22 @@ const Routers = [
 	}
 ];
 const Routers2 =[
-	// {
-	// 	path:'/SignIn',
-	// 	exact:true,
-	// 	main : () => <SignInForm/>
-	// },
-	// {
-	// 	path:'/SignUp',
-	// 	exact:true,
-	// 	main : () => <SignUpForm/>
-	// },
 	{
 		path:'/password-forget',
 		exact:true,
 		main : () => <PasswordForgetForm/>
-	}
+	},
+	{
+		path:'/password-changed',
+		exact:true,
+		main : () => <PasswordChangeForm/>
+	},
+	{
+		path:'/MessegerStatusBill',
+		exact:true,
+		main : () => <MessegerStatusBill/>
+	},
+	
 
 ];
 export { Routers,Routers2};

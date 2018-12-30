@@ -12,6 +12,7 @@ class ShipCode extends Component {
                 diachi2:'',
                 telephone:'',
                 Tong:'',
+                vanchuyen:'0',
                 checkdata:true
             }
         }
@@ -34,7 +35,7 @@ class ShipCode extends Component {
             }
     }
     ShipCode=()=>{
-        var {name,diachi,diachi2,telephone,Tong} = this.state;
+        var {name,diachi,diachi2,telephone,Tong,vanchuyen} = this.state;
         var {cart} = this.props;
         const item ={};
           item.diachi = diachi;
@@ -43,6 +44,7 @@ class ShipCode extends Component {
           item.name = name;
           item.Tong=Tong;
           item.cart = cart;
+          item.vanchuyen=vanchuyen;
           firebaseConnect.database().ref('Database/Hoadon').push(item).then(
             alert('Thành Công')
         )

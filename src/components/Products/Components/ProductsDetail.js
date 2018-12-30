@@ -66,6 +66,7 @@ class ProductDetail extends Component {
     render() {
         let linkToDetail = '/cart';
         var {data1} = this.state;
+        var Rating =_.round(data1.rating,2);
         return (
             <div className="Container-center" >
                 <div className="menuBaner" style={{background:'#e4e4e4'}}>
@@ -119,7 +120,7 @@ class ProductDetail extends Component {
                                 </p>
                                 <p>
                                         <span>Được Đánh Giá:&nbsp; </span>
-                                        <h4>{data1.rating} <i className="fa fa-star" style={{color:'#ffa000'}}></i> </h4>
+                                        <h4>{Rating}<i className="fa fa-star" style={{color:'#ffa000'}}></i> </h4>
                                 </p>
                                 <Link to={linkToDetail} className="btn btn-danger"
 									data-original-title="Add to Cart"

@@ -10,7 +10,7 @@ class ShowComment extends Component {
             comment:[]
         }
     };
-    componentWillMount(){
+    setTotal(){
         var {keypd} = this.props;
         var keypd1 = keypd.join('');
             callApi('Database/Danhgia','GET',null).then(res=>{
@@ -20,7 +20,10 @@ class ShowComment extends Component {
                     var data = (res.data);
                     var rating = _.mapValues(data,'rating');
                     var total =_.mean(Object.values(rating));
-                    firebaseConnect.database().ref(`Database/Sanpham/${key}/rating`).set(total);
+                    // console.log(total);
+                    if(key !== ''){
+                        firebaseConnect.database().ref(`Database/Sanpham/${key}/rating`).set(total);
+                    }
             });
         });
         });
@@ -47,6 +50,7 @@ class ShowComment extends Component {
     render() {
         return (
             <div className="showComment" >
+                {this.setTotal()}
                 {this.ShowComment()}
             </div>
         );

@@ -25,3 +25,6 @@ export const GET_KEY = 'GET_KEY';
 //Search
 
 export const KEYWORD ='KEYWORD';
+//
+export const SHOWCOMMENT ='SHOWCOMMENT';
+export const DELETE_COMMENT ='DELETE_COMMENT';

@@ -7,7 +7,7 @@ const CartButton = ({cart}) =>
     	<div>
     		<div className="subcontent">
 			    	<div className="buttom" id="showcartlink">
-							<Link to={routers.CART} className="cartlink" title="GIỎ HÀNG CỦA TÔI">Giỏ hàng ({countItemInCart(cart)}) <i className="fa fa-play" /></Link>
+							<Link to={routers.CART} className="cartlink" title="GIỎ HÀNG CỦA TÔI"><i className="fas fa-shopping-cart"/>&nbsp;Giỏ hàng ({countItemInCart(cart)}) <i className="fa fa-play" /></Link>
   					</div>
   		  </div>
     	</div>

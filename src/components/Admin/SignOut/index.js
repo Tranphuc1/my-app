@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as routes from './../../Products/constants/Login';
 import { auth1 } from '../../../FirebaseConnect2';
 
 class SignOutButton extends Component {
@@ -24,12 +23,13 @@ class SignOutButton extends Component {
 		return (
 			<div>
 				<li className="nav-item dropdown">
-			 		<a className="nav-link dropdown-toggle" id="navbarDropdown" style={{background:'#00cc66',height:'55px',marginTop:'10px;'}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			 		<a className="nav-link dropdown-toggle" id="navbarDropdown" style={{background:'#00cc66',height:'55px'}} role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					 <br/>
 					 <i className="fas fa-user-alt">&nbsp;&nbsp;&nbsp;{authUser2}</i>
 			 		</a>
 			 		<div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<Link to={routes.ACCOUNT} className="dropdown-item"><i className="fas fa-exchange-alt">&nbsp;Đổi mật khẩu</i></Link>
+					 	<Link to="/MessegerStatusBill" className="dropdown-item"><i className="fas fa-comments">&nbsp;Bạn có ({'1'}) Tin Nhắn</i></Link>
+						<Link to="/password-changed" className="dropdown-item"><i className="fas fa-exchange-alt">&nbsp;Đổi mật khẩu</i></Link>
 			 			<a className="dropdown-item" onClick={auth1.doSignOut}><i className="fas fa-sign-in-alt">&nbsp;Đăng xuất</i></a>
 			 		</div>
 				</li>

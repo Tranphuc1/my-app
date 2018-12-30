@@ -48,6 +48,7 @@ class TableRow extends Component {
     }
     showOption = ()=>{
         var {role} = this.props;
+      
         if(role == '1'){
         return 'Admin'
         } if (role =='2'){
@@ -88,7 +89,7 @@ class TableRow extends Component {
                 <td>{this.showOption()}</td>
                 <td className="text-center" width="50px">
                     <a className="btn btn-danger btn-sm" role="button">
-                    <i className="fa fa-trash-o" aria-hidden="true" onClick={()=>{this.XoaUser()}}/> Xóa</a>
+                    <i className="fas fa-trash-alt" onClick={()=>{this.XoaUser()}}/> Xóa</a>
                 </td>
             </tr>
         );

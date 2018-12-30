@@ -20,12 +20,9 @@ class Footer extends Component {
 			            &nbsp;</div>
 			          <div style={{textAlign: 'center'}}>
 			            &nbsp;</div>
-										<li className="group">Hỗ trợ khách hàng
-											<ul>
-												<li className="group">Hotline: <b>0967.701.195</b></li>
-												<li className="group">Email: tranphuc301995@gmail.vn</li>
-											</ul>
-										</li>
+									<div style={{textAlign: 'center'}}>Hỗ trợ khách hàng</div>
+									<div style={{textAlign: 'center'}}>Hotline: <b>0967.701.195</b></div>
+									<div style={{textAlign: 'center'}}>Email: tranphuc301995@gmail.vn</div>
 			        </div></div>
 			    </div>
 			  </div>

@@ -69,12 +69,10 @@ class InputComment extends Component {
         }
     render() {
         var {authUser}= this.props;
-        console.log(authUser);
         return (
             <div className="inputComment" style={{width:'1200px',display:'flex'}}>
                 {this.showInput()}
                 {this.showButton()}
-                
             </div>
         );
     }

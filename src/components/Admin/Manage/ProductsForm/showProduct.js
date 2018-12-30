@@ -13,7 +13,7 @@ class ShowProduct extends Component {
                         <th>author</th>
                         <th>description</th>
                         <th>Số Lượng</th>
-                        <th>Image</th>
+                        <th style={{width:'100px'}}>Image</th>
                         <th>price</th>
                         <th >rating</th>
                         <th className="text-center" colSpan={2}>Quyền</th>

@@ -16,7 +16,6 @@ class Comment extends Component {
     showKey=()=>{
     var {authUser} = this.props;
     var key =_.get(authUser, ['uid']);
-    // console.log(key);
     callApi(`users/${key}`,'GET',null).then(res=>{
         var data1 = res.data;
         this.setState({

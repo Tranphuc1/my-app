@@ -62,8 +62,9 @@ import _ from 'lodash';
 }
 const NavigationAuthAdmin =() =>
 	<ul className="navbar-nav ml-auto" >
+				
 				<SignOutButton />
-			<li className="nav-item"  style={{position: 'absolute',right:250}}>
+			<li className="nav-item"  style={{position: 'absolute',right:300}}>
 				<Link to="/App1" className="nav-link" style={{position: 'absolute'}}>
 					<button type="button" className="btn btn-danger">Admin</button>
 				</Link>

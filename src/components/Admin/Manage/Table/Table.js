@@ -6,9 +6,9 @@ class Table extends Component {
 
     showButton = () => {
         if (!this.props.changedButton) {
-            return <a className="btn btn-success btn-sm" role="button" onClick={ (e) => this.props.FromToogle(e) }><i className="fa fa-plus" aria-hidden="true" /> Thêm</a>
+            return <a className="btn btn-success btn-sm" role="button" onClick={ (e) => this.props.FromToogle(e) }><i className="fas fa-times"/>Thêm</a>
         } else {
-            return <a className="btn btn-danger btn-sm" role="button" onClick={(e) => this.props.FromToogle(e) }><i className="fa fa-close" aria-hidden="true" /> Đóng</a>
+            return <a className="btn btn-danger btn-sm" role="button" onClick={(e) => this.props.FromToogle(e) }><i className="fas fa-times"/> Đóng</a>
         }
     }
     classTable = () => {
@@ -21,7 +21,12 @@ class Table extends Component {
 
     mappingData = () =>{
         const tableRow = this.props.userData.map((value,key) => {
-            return <TableRow key={key} index ={key} uid ={value.uid} role={value.role} sodienthoai={value.sodienthoai} diachi={value.diachi}>{value.email}</TableRow>
+            return <TableRow key={key}
+             index ={key} 
+             uid ={value.uid} 
+             role={value.role}
+            sodienthoai={value.sodienthoai}
+                diachi={value.diachi}>{value.email}</TableRow>
         });
         return tableRow;
     }

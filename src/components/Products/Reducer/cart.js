@@ -2,7 +2,7 @@ import * as Types from './../constants/ActionType';
 import { connect } from 'react-redux';
 import {firebaseConnect} from '../../../FirebaseConnect';
 var Data = JSON.parse(localStorage.getItem('CART'));
-var Data1 = firebaseConnect.database().ref('Database/Cart');
+// var Data1 = firebaseConnect.database().ref('Database/Cart');
 var initialState= Data ? Data : [];
 
 // updateKeycart =() =>{
@@ -13,9 +13,9 @@ var initialState= Data ? Data : [];
        
 //     }
 // }
-firebaseConnect.database().ref('Cart').on('value',(snapshot)=>{
-    var key = snapshot.key;
-})
+// firebaseConnect.database().ref('Cart').on('value',(snapshot)=>{
+//     var key = snapshot.key;
+// })
 const products = (state = initialState, action) => {
     var {product,quantity } = action;
     var index = -1;
@@ -31,7 +31,7 @@ const products = (state = initialState, action) => {
             });
             }
             localStorage.setItem('CART',JSON.stringify(state));
-            firebaseConnect.database().ref(`Database/Cart`).set(state);
+            // firebaseConnect.database().ref(`Database/Cart`).set(state);
             return [...state];
         case Types.DELETE_PRODUCT_IN_CART:
                 index = findProductInCart (state,product);
@@ -39,7 +39,7 @@ const products = (state = initialState, action) => {
                     state.splice(index,1);
                 }
                 localStorage.setItem('CART',JSON.stringify(state));
-                firebaseConnect.database().ref('Database/Cart').set(state);
+                // firebaseConnect.database().ref('Database/Cart').set(state);
                 return [...state];
         case Types.UPDATE_PRODUCT_IN_CART:
                 index = findProductInCart(state, product);
@@ -47,7 +47,7 @@ const products = (state = initialState, action) => {
                     state[index].quantity = quantity;
                 }
                 localStorage.setItem('CART', JSON.stringify(state));
-                firebaseConnect.database().ref('Database/Cart').set(state);
+                // firebaseConnect.database().ref('Database/Cart').set(state);
                 return [...state];
         default : return [...state];
     }

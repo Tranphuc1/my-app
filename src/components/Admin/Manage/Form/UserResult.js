@@ -9,15 +9,10 @@ class UserResult extends Component {
     constructor(props) {
       super(props);  
       this.state = {
-        statusForm : true,
+        statusForm : false,
         users:[]
       }
     }
-    // componentDidMount(){
-    //   callApi('User','GET',null).then(res=>{
-    //     this.props.actShowUser(_.toArray(res.data));
-    //   })
-    // }
     componentDidMount() {
       auth1.users().on('value', snapshot => {
         const usersObject = snapshot.val();

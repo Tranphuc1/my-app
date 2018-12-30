@@ -37,13 +37,6 @@ class Rating extends Component {
                     })
                 }
             });    
-                // var name =_.get(A,'name');
-                // console.log(name);
-                // if(email==name){
-                //     this.setState({
-                //         activeInput : false
-                //     });
-                // }
         }
       onStarClickHalfStar(nextValue, prevValue, name, e) {
         // const xPos = (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;

@@ -12,6 +12,8 @@ class PushBill extends Component {
     componentDidMount(){
         callApi('Database/Hoadon','GET',null).then(res=>{
             var key = Object.keys(res.data);
+            var vanchuyen =_.map(res.data,'vanchuyen');
+            console.log(vanchuyen);
             this.setState({
                 key:key
             })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 class SimpleSlider extends Component {
   render() {
     return (
@@ -12,7 +12,9 @@ class SimpleSlider extends Component {
           </ol>
           <div className="carousel-inner">
             <div className="item">
+            <Link to="">
               <img alt="First slide" src="http://nobita.vn/stores/banners/thoi-gian-vun-vo.jpg" style={{height:'400px'}} />
+            </Link>
             </div>
             <div className="item">
               <img data-src="" alt="Second slide" src="http://nobita.vn/stores/banners/luc-xu-qc.jpg" style={{height:'400px'}} />

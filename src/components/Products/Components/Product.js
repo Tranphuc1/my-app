@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format';
 class Product extends Component {
 	render() {
 		const { product } = this.props;
-		let linkToDetail = `/${product.key}/ProductDetail`
+		let linkToDetail = `/ProductDetail/${product.key}`
 		return (
 			<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 				<div className="card text-center card-cascade narrower">
