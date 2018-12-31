@@ -22,7 +22,7 @@ class Product extends Component {
 							</strong>
 						</h4>
 						<ul className="rating">
-							<li>{this.showRating(product.rating)}</li>
+							<li>{this.showRating(parseInt(product.rating))}</li>
 						</ul>
 						<p className="card-text">{product.author}</p>
 						<div className="card-footer">

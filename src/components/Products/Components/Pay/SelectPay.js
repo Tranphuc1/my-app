@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ShipCode from './ShipCode';
+import ShipCode from './COD';
 import { connect } from 'react-redux';
 import OnlinePay from './OnlinePay';
 class SelectPay extends Component {
@@ -22,7 +22,7 @@ class SelectPay extends Component {
         var {authUser} =this.props;
         var {Select} = this.state;
         var {cart} = this.props;
-        if(Select == "ShipCode"){
+        if(Select == "COD"){
             if(cart.length >0){
                     return <ShipCode
                         authUser={authUser}
@@ -43,7 +43,7 @@ class SelectPay extends Component {
                     <h4>Chọn Phương Thức Thanh Toán</h4>
                     <select style={{width:'250px',height:"25px"}} onChange={ (e) => this.changedData(e) } name="Select">
                         <option value>---Chọn---</option>
-                        <option value="ShipCode">ShipCode</option>
+                        <option value="COD">COD</option>
                         <option value="PayOnline">Thanh Toán Trực Tuyến</option>
                     </select >
                     <br/>

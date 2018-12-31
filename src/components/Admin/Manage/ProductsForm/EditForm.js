@@ -93,6 +93,10 @@ class EditForm extends Component {
                                     <option value="Sách Kinh Tế">Sách Kinh Tế</option>
                                     <option value="Văn Học Nước Ngoài">Văn Học Nước Ngoài</option>
                                     <option value="Kỹ Năng Sống">Kỹ Năng Sống</option>
+                                    <option value="Sách Tuổi Teen">Sách Tuổi Teen</option>
+                                    <option value="Học Ngoại Ngữ">Học Ngoại Ngữ</option>
+                                    <option value="Sách Thiếu Nhi">Sách Thiếu Nhi</option>
+                                    <option value="Phương Thức Đời Sống">Phương Thức Đời Sống</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -113,7 +117,7 @@ class EditForm extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Number">Rating</label>
-                                <input type="rating" name="rating" value={rating}  min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
+                                <input type="rating" name="rating" value={rating}  min="1" max="5" className="form-control" placeholder="Nhập Rating" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <button type="submit" className="btn btn-danger" onClick={() => history.push("/App1/PushProduct")}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>

@@ -54,6 +54,7 @@ import _ from 'lodash';
 						<Menu />
 						<SimpleSlider />
 						</div>
+						<br/>
 						<ProductsContainer/>
 					</div>
 			</div>

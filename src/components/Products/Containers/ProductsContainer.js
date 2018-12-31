@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { actAddToCart,actChangeMessage,actFetchProducts } from '../actions/actions';
 import callApi from '../../../ApiCaller/Api';
 import MenuHorizontal from '../Components/MenuHorizontal';
+import ProductList from '../Components/ProductList';
 var _ = require('lodash');
 
 class ProductsContainer extends Component {
@@ -17,6 +18,20 @@ class ProductsContainer extends Component {
         callApi('Database/Sanpham','GET',null).then(res =>{
             this.props.fetchAllProducts(_.toArray(res.data));
         });
+    }
+    showProducts1(){
+        var {products} = this.props;
+        var result=null;
+        var { onAddToCart, onChangeMessage } = this.props;
+        var A = products.filter(product => product.rating >= 3 );
+        if(A.length>0){
+            return <ProductList 
+            product={A}
+            onAddToCart ={onAddToCart}
+            onChangeMessage={onChangeMessage}
+            />
+        }
+        return result;
     }
     showProducts(){
         var result = null;
@@ -39,6 +54,10 @@ class ProductsContainer extends Component {
     render() {
         return (
             <div className="container">
+                <h3 style={{borderBottom:'#e4e4e4 solid 1px',background:'#e4e4e4',height:'30px'}}>Nổi Bật</h3>
+                            <div className="menu-group" style={{width:'100%', height : '600px',display:'-webkit-box'}}>
+                                    {this.showProducts1()}
+                            </div>
                 {this.showProducts()}
              </div>
         );

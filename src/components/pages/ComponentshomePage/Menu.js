@@ -32,7 +32,6 @@ class Menu extends Component {
 		return result;
 	}
   render() {
-		var {products} = this.props;
     return (
 			<div className="main_menu" style ={{width:'15%'}}>
 				{this.showProducts()}

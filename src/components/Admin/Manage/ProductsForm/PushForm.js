@@ -139,7 +139,7 @@ class PushForm extends Component {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="Number">Rating</label>
-                                <input type="Number" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Mật Khẩu" onChange={ (e) => this.changedData(e) }/>
+                                <input type="Number" name="rating" min="1" max="5" className="form-control" placeholder="Nhập Rating" onChange={ (e) => this.changedData(e) }/>
                             </div>
                             <button type="submit" className="btn btn-danger" onClick={() => history.push("/App1/PushProduct")}>Trở Về</button>                            
                             <button type="submit" className="btn btn-primary" onClick={ (e) => this.submitProduct(e) }>Lưu</button>

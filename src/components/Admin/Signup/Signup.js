@@ -26,7 +26,6 @@ class SignUpForm extends Component {
 		super(props);
 		this.state = { ...INITIAL_STATE };
 	}
-
 	onSubmit = (event) => {
 		const {
 			email,
